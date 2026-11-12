@@ -1,0 +1,30 @@
+name: Validate beam output formatting
+on:
+  push:
+    branches: [validation/beam-eos-output-style-20261112]
+permissions:
+  contents: read
+jobs:
+  style:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+      - name: Ruff checks
+        id: check
+        continue-on-error: true
+        run: uvx ruff==0.17.2 check --diff vllm/entrypoints/generate/beam_search/offline.py vllm/entrypoints/generate/beam_search/online.py vllm/sampling_params.py tests/conftest.py tests/samplers/test_beam_search.py
+      - name: Ruff formatting
+        id: format
+        continue-on-error: true
+        run: uvx ruff==0.17.2 format --diff vllm/entrypoints/generate/beam_search/offline.py vllm/entrypoints/generate/beam_search/online.py vllm/sampling_params.py tests/conftest.py tests/samplers/test_beam_search.py
+      - name: Require both checks
+        run: |
+          test "${{ steps.check.outcome }}" = success
+          test "${{ steps.format.outcome }}" = success
