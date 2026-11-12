@@ -20,7 +20,7 @@ def main():
     )
     fast.save_pretrained(model_dir)
     config = GPT2Config(
-        vocab_size=32, n_embd=32, n_layer=2, n_head=4,
+        vocab_size=32, n_embd=128, n_layer=2, n_head=2,
         n_positions=64, bos_token_id=1, eos_token_id=2, pad_token_id=0,
         attn_pdrop=0.0, embd_pdrop=0.0, resid_pdrop=0.0,
     )

@@ -33,16 +33,42 @@ jobs:
           path: /home/runner/.cache/vllm-ccache
           key: vllm-cpu-c74cab9b-gcc12-${{ github.run_id }}
           restore-keys: vllm-cpu-c74cab9b-gcc12-
+      - uses: actions/cache/restore@v4
+        id: native_runtime
+        with:
+          path: |
+            .venv
+            vllm/*.so
+            vllm/libs
+          key: vllm-native-c74cab9b-py312-torch214-ubuntu24-v1
       - name: Install the official CPU build dependencies
+        if: steps.native_runtime.outputs.cache-hit != 'true'
         run: |
           uv venv --python 3.12 .venv
           uv pip install --python .venv/bin/python -r requirements/build/cpu.txt -r requirements/cpu.txt --torch-backend cpu --index-strategy unsafe-best-match
           uv pip install --python .venv/bin/python pytest pytest-asyncio pandas datasets
       - name: Build the current native CPU runtime
+        id: native_build
+        if: steps.native_runtime.outputs.cache-hit != 'true'
         env:
           CC: gcc-12
           CXX: g++-12
         run: uv pip install --python .venv/bin/python --editable . --no-build-isolation --verbose
+      - name: Save the successful native runtime
+        if: steps.native_build.outcome == 'success' && steps.native_runtime.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .venv
+            vllm/*.so
+            vllm/libs
+          key: vllm-native-c74cab9b-py312-torch214-ubuntu24-v1
+      - name: Save compiler cache after building
+        if: always() && steps.native_build.outcome == 'success'
+        uses: actions/cache/save@v4
+        with:
+          path: /home/runner/.cache/vllm-ccache
+          key: vllm-cpu-c74cab9b-gcc12-build-${{ github.run_id }}
       - name: Load real saved weights and compare native generation
         run: |
           IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
