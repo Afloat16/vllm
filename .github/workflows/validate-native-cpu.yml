@@ -1,0 +1,36 @@
+name: Validate native CPU development environment
+on:
+  push:
+    branches: [validation/native-cpu-environment-20261112]
+permissions:
+  contents: read
+jobs:
+  native-cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      VLLM_TARGET_DEVICE: cpu
+      VLLM_USE_PRECOMPILED: '1'
+      VLLM_PRECOMPILED_WHEEL_VARIANT: cpu
+      VLLM_CPU_KVCACHE_SPACE: '1'
+      VLLM_CPU_OMP_THREADS_BIND: nobind
+      OMP_NUM_THREADS: '2'
+      TOKENIZERS_PARALLELISM: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 64
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: astral-sh/setup-uv@v6
+      - name: Install the official CPU Python development configuration
+        run: |
+          uv venv --python 3.12 .venv
+          uv pip install --python .venv/bin/python --editable . --torch-backend cpu
+          uv pip install --python .venv/bin/python pytest pytest-asyncio pandas datasets
+      - name: Load real saved weights and compare native generation
+        run: |
+          IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
+          if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
+          .venv/bin/python validation/vllm_native_cpu_smoke.py
