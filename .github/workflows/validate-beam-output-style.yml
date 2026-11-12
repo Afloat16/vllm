@@ -24,7 +24,15 @@ jobs:
         id: format
         continue-on-error: true
         run: uvx ruff==0.17.2 format --diff vllm/entrypoints/generate/beam_search/offline.py vllm/entrypoints/generate/beam_search/online.py vllm/sampling_params.py tests/conftest.py tests/samplers/test_beam_search.py
+      - name: Run applicable repository pre-commit hooks
+        if: always()
+        id: hooks
+        continue-on-error: true
+        run: |
+          uvx pre-commit run --files vllm/entrypoints/generate/beam_search/offline.py vllm/entrypoints/generate/beam_search/online.py vllm/sampling_params.py tests/conftest.py tests/samplers/test_beam_search.py docs/serving/offline_inference.md .buildkite/test_areas/samplers.yaml
+          git diff --exit-code
       - name: Require both checks
         run: |
           test "${{ steps.check.outcome }}" = success
           test "${{ steps.format.outcome }}" = success
+          test "${{ steps.hooks.outcome }}" = success
