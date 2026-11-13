@@ -12,7 +12,7 @@ Prevent cancellation from corrupting token log probabilities in the standalone C
 
 - [Exact-source native ARM CPU validation](https://github.com/Afloat16/vllm/actions/runs/43419952030): **19 failures / 9 passes on the original source**, then **28 passes with this change**.
 - **10 existing CPU logprob tests pass.**
-- [Repository pre-commit hooks and Ruff](https://github.com/Afloat16/vllm/actions/runs/43414866395) pass.
+- [Repository pre-commit hooks and Ruff](https://github.com/Afloat16/vllm/actions/runs/43424290155) pass.
 - Tests cover FP16/BF16/FP32 logits, positive and negative common offsets, masked and nonfinite rows, empty selected-token sets, top-k scores, and prompt scores.
 - Six saved tiny GPT-2 cases exercise the real public `LLM.generate` path in raw and processed logprob modes. The native C++ and Rust runtime was built for the unchanged base `191e5d5` on ARM and reused for the exact final-source run.
 

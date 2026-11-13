@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13T12:22:00Z",
+  "updated_at": "2026-11-13T12:25:00Z",
   "base": "191e5d5df2ec693d5536a635079d58864dfacebb",
   "shared_validation_branch": "validation/native-cpu-environment-20261112",
   "shared_head": "62ab11b2f720b9ad30f4e9ea6c2b5c1a8ef84bda",
@@ -24,6 +24,13 @@
       "head": "168ec59ed61bdbfdfbfb05478ef65ee7f4bcf23d",
       "pr": "https://github.com/vllm-project/vllm/pull/67477",
       "merged_at": null
+    },
+    {
+      "item": 9,
+      "branch": "fix/numpy-multimodal-embedding-byteorder-20261113",
+      "head": "e4ffb1f7a6e2f582cf62d567753b7a658ca86354",
+      "pr": "https://github.com/vllm-project/vllm/pull/67479",
+      "merged_at": null
     }
   ],
   "remaining": [
@@ -35,17 +42,7 @@
       "status": "native-validation-in-progress",
       "native_validation_head": "62ab11b2f720b9ad30f4e9ea6c2b5c1a8ef84bda",
       "native_run": 43424202700,
-      "latest_style_head": "bcb2a2505a33552e075ea474ed4da4c7d844dc9a"
-    },
-    {
-      "item": 9,
-      "branch": "fix/numpy-multimodal-embedding-byteorder-20261113",
-      "head": "50abe3b5a09cd3e505762c92f2fceccf3ebdd38d",
-      "tree": "542a3a5d7d7675f1f129427aa781243ab5151645",
-      "status": "native-validation-in-progress",
-      "native_validation_head": "d0659a8c17549ec767a8e18172ad8138083b0982",
-      "native_run": 43423892421,
-      "latest_style_head": "5e35502cd732dc553321cee7897abb2c49eb1257"
+      "latest_style_head": "6355b152fb99ea892ab2d2448af2283f6ec34035"
     },
     {
       "item": 10,
@@ -55,7 +52,7 @@
       "status": "native-validation-in-progress",
       "native_validation_head": "48e7e079f32181647cecf8a5dbb14eb4e6c7416a",
       "native_run": 43424033592,
-      "latest_style_head": "e2355aa29a6ff0e3f857ea7914b09e0fc491e9e4"
+      "latest_style_head": "69c43bc61c634cf149d8f4a058bcc9dd134beb6b"
     }
   ],
   "diagnostics": {

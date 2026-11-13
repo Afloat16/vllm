@@ -1,0 +1,1887 @@
+﻿2026-11-13T12:17:33.9282884Z Current runner version: '2.338.2'
+2026-11-13T12:17:33.9318509Z ##[group]Runner Image Provisioner
+2026-11-13T12:17:33.9319964Z Hosted Compute Agent
+2026-11-13T12:17:33.9320879Z Version: 20261103.629
+2026-11-13T12:17:33.9321946Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-13T12:17:33.9323075Z Build Date: 2026-11-03T17:26:59Z
+2026-11-13T12:17:33.9324082Z Worker ID: {c46d2bc4-587b-48c2-883a-237499302891}
+2026-11-13T12:17:33.9325342Z Region: eastus3
+2026-11-13T12:17:33.9326368Z Cloud: Azure
+2026-11-13T12:17:33.9327834Z ##[endgroup]
+2026-11-13T12:17:33.9330072Z ##[group]Operating System
+2026-11-13T12:17:33.9331054Z Ubuntu
+2026-11-13T12:17:33.9331920Z 24.04.5
+2026-11-13T12:17:33.9332766Z LTS
+2026-11-13T12:17:33.9333587Z ##[endgroup]
+2026-11-13T12:17:33.9334533Z ##[group]Runner Image
+2026-11-13T12:17:33.9335460Z Image: ubuntu-24.04
+2026-11-13T12:17:33.9336673Z Version: 20261111.370.1
+2026-11-13T12:17:33.9338723Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-13T12:17:33.9341275Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-13T12:17:33.9342873Z ##[endgroup]
+2026-11-13T12:17:33.9344743Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T12:17:33.9348412Z Contents: read
+2026-11-13T12:17:33.9349380Z Metadata: read
+2026-11-13T12:17:33.9350278Z ##[endgroup]
+2026-11-13T12:17:33.9353753Z Secret source: Actions
+2026-11-13T12:17:33.9355171Z Cache mode: write
+2026-11-13T12:17:33.9356630Z Prepare workflow directory
+2026-11-13T12:17:33.9925066Z Prepare all required actions
+2026-11-13T12:17:34.0000571Z Getting action download info
+2026-11-13T12:17:34.2391647Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T12:17:34.3498186Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-13T12:17:34.4178528Z Download action repository 'astral-sh/setup-uv@v6' (SHA:d0cc045d04ccac9d8b7881df0226f9e82c39688e)
+2026-11-13T12:17:34.7503815Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-11-13T12:17:34.8349178Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-13T12:17:35.0392194Z Complete job name: native-numpy-mm
+2026-11-13T12:17:35.1383141Z ##[group]Run actions/checkout@v4
+2026-11-13T12:17:35.1384086Z with:
+2026-11-13T12:17:35.1384583Z   fetch-depth: 64
+2026-11-13T12:17:35.1385087Z   repository: Afloat16/vllm
+2026-11-13T12:17:35.1389110Z   token: ***
+2026-11-13T12:17:35.1389597Z   ssh-strict: true
+2026-11-13T12:17:35.1390083Z   ssh-user: git
+2026-11-13T12:17:35.1390583Z   persist-credentials: true
+2026-11-13T12:17:35.1391118Z   clean: true
+2026-11-13T12:17:35.1391613Z   sparse-checkout-cone-mode: true
+2026-11-13T12:17:35.1392178Z   fetch-tags: false
+2026-11-13T12:17:35.1392673Z   show-progress: true
+2026-11-13T12:17:35.1393169Z   lfs: false
+2026-11-13T12:17:35.1393636Z   submodules: false
+2026-11-13T12:17:35.1394192Z   set-safe-directory: true
+2026-11-13T12:17:35.1394753Z   allow-unsafe-pr-checkout: false
+2026-11-13T12:17:35.1395573Z env:
+2026-11-13T12:17:35.1396167Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:17:35.1396732Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:17:35.1397281Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:17:35.1397945Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:17:35.1398531Z   OMP_NUM_THREADS: 2
+2026-11-13T12:17:35.1399048Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:17:35.1399639Z ##[endgroup]
+2026-11-13T12:17:35.4529307Z Syncing repository: Afloat16/vllm
+2026-11-13T12:17:35.4533303Z ##[group]Getting Git version info
+2026-11-13T12:17:35.4535127Z Working directory is '/home/runner/work/vllm/vllm'
+2026-11-13T12:17:35.4542621Z [command]/usr/bin/git version
+2026-11-13T12:17:35.4631812Z git version 2.56.1
+2026-11-13T12:17:35.4670777Z ##[endgroup]
+2026-11-13T12:17:35.4683724Z Temporarily overriding HOME='/home/runner/work/_temp/1f47bf1f-525d-4a32-a7fe-5882597154c6' before making global git config changes
+2026-11-13T12:17:35.4690012Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T12:17:35.4694711Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vllm/vllm
+2026-11-13T12:17:35.4769012Z Deleting the contents of '/home/runner/work/vllm/vllm'
+2026-11-13T12:17:35.4782032Z ##[group]Initializing the repository
+2026-11-13T12:17:35.4785715Z [command]/usr/bin/git init /home/runner/work/vllm/vllm
+2026-11-13T12:17:35.4896410Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T12:17:35.4900752Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T12:17:35.4904529Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T12:17:35.4909994Z hint: call:
+2026-11-13T12:17:35.4911793Z hint:
+2026-11-13T12:17:35.4913861Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T12:17:35.4916522Z hint:
+2026-11-13T12:17:35.4920213Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T12:17:35.4927267Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T12:17:35.4932702Z hint:
+2026-11-13T12:17:35.4936211Z hint: 	git branch -m <name>
+2026-11-13T12:17:35.4938838Z hint:
+2026-11-13T12:17:35.4943206Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T12:17:35.4947839Z Initialized empty Git repository in /home/runner/work/vllm/vllm/.git/
+2026-11-13T12:17:35.4954418Z [command]/usr/bin/git remote add origin https://github.com/Afloat16/vllm
+2026-11-13T12:17:35.5005768Z ##[endgroup]
+2026-11-13T12:17:35.5009145Z ##[group]Disabling automatic garbage collection
+2026-11-13T12:17:35.5011598Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T12:17:35.5046679Z ##[endgroup]
+2026-11-13T12:17:35.5050350Z ##[group]Setting up auth
+2026-11-13T12:17:35.5055381Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T12:17:35.5097129Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T12:17:35.5512825Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T12:17:35.5549644Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T12:17:35.5748193Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T12:17:35.5783827Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T12:17:35.5981071Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T12:17:35.6018104Z ##[endgroup]
+2026-11-13T12:17:35.6020150Z ##[group]Fetching the repository
+2026-11-13T12:17:35.6034493Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=64 origin +d0659a8c17549ec767a8e18172ad8138083b0982:refs/remotes/origin/validation/native-cpu-environment-20261112
+2026-11-13T12:17:42.6783389Z From https://github.com/Afloat16/vllm
+2026-11-13T12:17:42.6785033Z  * [new ref]         d0659a8c17549ec767a8e18172ad8138083b0982 -> origin/validation/native-cpu-environment-20261112
+2026-11-13T12:17:42.6787619Z ##[endgroup]
+2026-11-13T12:17:42.6788231Z ##[group]Determining the checkout info
+2026-11-13T12:17:42.6788857Z ##[endgroup]
+2026-11-13T12:17:42.6795053Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T12:17:42.6847275Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T12:17:42.6878335Z ##[group]Checking out the ref
+2026-11-13T12:17:42.6883688Z [command]/usr/bin/git checkout --progress --force -B validation/native-cpu-environment-20261112 refs/remotes/origin/validation/native-cpu-environment-20261112
+2026-11-13T12:17:43.3979433Z Switched to a new branch 'validation/native-cpu-environment-20261112'
+2026-11-13T12:17:43.3982141Z branch 'validation/native-cpu-environment-20261112' set up to track 'origin/validation/native-cpu-environment-20261112'.
+2026-11-13T12:17:43.4006994Z ##[endgroup]
+2026-11-13T12:17:43.4059432Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T12:17:43.4089980Z d0659a8c17549ec767a8e18172ad8138083b0982
+2026-11-13T12:17:43.4336482Z ##[group]Run actions/setup-python@v5
+2026-11-13T12:17:43.4336830Z with:
+2026-11-13T12:17:43.4337029Z   python-version: 3.12
+2026-11-13T12:17:43.4337254Z   check-latest: false
+2026-11-13T12:17:43.4339581Z   token: ***
+2026-11-13T12:17:43.4339796Z   update-environment: true
+2026-11-13T12:17:43.4340034Z   allow-prereleases: false
+2026-11-13T12:17:43.4340264Z   freethreaded: false
+2026-11-13T12:17:43.4340466Z env:
+2026-11-13T12:17:43.4340657Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:17:43.4340911Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:17:43.4341151Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:17:43.4341430Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:17:43.4341684Z   OMP_NUM_THREADS: 2
+2026-11-13T12:17:43.4341908Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:17:43.4342183Z ##[endgroup]
+2026-11-13T12:17:43.5685376Z ##[group]Installed versions
+2026-11-13T12:17:43.5765129Z (node:2329) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:17:43.5766514Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:17:43.5767162Z Successfully set up CPython (3.12.16)
+2026-11-13T12:17:43.5768155Z ##[endgroup]
+2026-11-13T12:17:43.5977774Z ##[group]Run astral-sh/setup-uv@v6
+2026-11-13T12:17:43.5978064Z with:
+2026-11-13T12:17:43.5978295Z   activate-environment: false
+2026-11-13T12:17:43.5978585Z   working-directory: /home/runner/work/vllm/vllm
+2026-11-13T12:17:43.5978924Z   server-url: https://github.com
+2026-11-13T12:17:43.5981235Z   github-token: ***
+2026-11-13T12:17:43.5981450Z   enable-cache: auto
+2026-11-13T12:17:43.5982025Z   cache-dependency-glob: **/*requirements*.txt
+**/*requirements*.in
+**/*constraints*.txt
+**/*constraints*.in
+**/pyproject.toml
+**/uv.lock
+**/*.py.lock
+
+2026-11-13T12:17:43.5982628Z   restore-cache: true
+2026-11-13T12:17:43.5982845Z   save-cache: true
+2026-11-13T12:17:43.5983053Z   prune-cache: true
+2026-11-13T12:17:43.5983271Z   ignore-nothing-to-cache: false
+2026-11-13T12:17:43.5983535Z   ignore-empty-workdir: false
+2026-11-13T12:17:43.5983791Z   add-problem-matchers: true
+2026-11-13T12:17:43.5984020Z env:
+2026-11-13T12:17:43.5984211Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:17:43.5984486Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:17:43.5984726Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:17:43.5984997Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:17:43.5985255Z   OMP_NUM_THREADS: 2
+2026-11-13T12:17:43.5985471Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:17:43.5985787Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:43.5986526Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:17:43.5986959Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:43.5987329Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:43.5987711Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:43.5988090Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:17:43.5988409Z ##[endgroup]
+2026-11-13T12:17:43.8068845Z (node:2338) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:17:43.8070787Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:17:43.8226301Z Trying to find version for uv in: /home/runner/work/vllm/vllm/uv.toml
+2026-11-13T12:17:43.8227532Z Could not find file: /home/runner/work/vllm/vllm/uv.toml
+2026-11-13T12:17:43.8229126Z Trying to find version for uv in: /home/runner/work/vllm/vllm/pyproject.toml
+2026-11-13T12:17:43.8279662Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-11-13T12:17:43.8281478Z Getting latest version from GitHub API...
+2026-11-13T12:17:44.1225709Z manifest-file not provided, reading from local file.
+2026-11-13T12:17:44.1256681Z manifest-file does not contain version 0.13.8, arch x86_64, platform unknown-linux-gnu. Falling back to GitHub releases.
+2026-11-13T12:17:44.1258466Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.13.8/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-11-13T12:17:44.4763841Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/adabb311-065c-4697-b242-c0c42deb4eb1 -f /home/runner/work/_temp/0a215608-53ff-418e-8d8e-209434912483
+2026-11-13T12:17:44.7948397Z Added /home/runner/.local/bin to the path
+2026-11-13T12:17:44.7951044Z Added /opt/hostedtoolcache/uv/0.13.8/x86_64 to the path
+2026-11-13T12:17:44.7959621Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:17:44.7960322Z Successfully installed uv version 0.13.8
+2026-11-13T12:17:44.7962128Z Searching files using cache dependency glob: /home/runner/work/vllm/vllm/**/*requirements*.txt,/home/runner/work/vllm/vllm/**/*requirements*.in,/home/runner/work/vllm/vllm/**/*constraints*.txt,/home/runner/work/vllm/vllm/**/*constraints*.in,/home/runner/work/vllm/vllm/**/pyproject.toml,/home/runner/work/vllm/vllm/**/uv.lock,/home/runner/work/vllm/vllm/**/*.py.lock
+2026-11-13T12:17:44.8771896Z /home/runner/work/vllm/vllm/benchmarks/kernels/requirements.txt
+2026-11-13T12:17:44.8800118Z /home/runner/work/vllm/vllm/benchmarks/multi_turn/requirements.txt
+2026-11-13T12:17:44.9688418Z /home/runner/work/vllm/vllm/examples/features/structured_outputs/pyproject.toml
+2026-11-13T12:17:44.9853975Z /home/runner/work/vllm/vllm/pyproject.toml
+2026-11-13T12:17:45.3192541Z /home/runner/work/vllm/vllm/tools/recipes/requirements.txt
+2026-11-13T12:17:45.7169340Z Found 5 files to hash.
+2026-11-13T12:17:45.8268355Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T12:17:45.9175477Z Cache hit for: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T12:17:45.9281162Z (node:2338) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T12:17:46.2371965Z Received 2866372 of 2866372 (100.0%), 11.1 MBs/sec
+2026-11-13T12:17:46.2372665Z Cache Size: ~3 MB (2866372 B)
+2026-11-13T12:17:46.2399792Z [command]/usr/bin/tar -xf /home/runner/work/_temp/83ddf474-2aa5-4a97-8580-f48388da0af9/cache.tzst -P -C /home/runner/work/vllm/vllm --use-compress-program unzstd
+2026-11-13T12:17:46.2580697Z Cache restored successfully
+2026-11-13T12:17:46.2587068Z uv cache restored from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T12:17:46.2733240Z ##[group]Run sudo apt-get update -y
+2026-11-13T12:17:46.2733856Z [36;1msudo apt-get update -y[0m
+2026-11-13T12:17:46.2734387Z [36;1msudo apt-get install -y libnuma-dev libtcmalloc-minimal4 ripgrep[0m
+2026-11-13T12:17:46.2753034Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:17:46.2753437Z env:
+2026-11-13T12:17:46.2753773Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:17:46.2754101Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:17:46.2754496Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:17:46.2754860Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:17:46.2755211Z   OMP_NUM_THREADS: 2
+2026-11-13T12:17:46.2755662Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:17:46.2756301Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:46.2757032Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:17:46.2757539Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:46.2758150Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:46.2758615Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:46.2759126Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:17:46.2759579Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:17:46.2759986Z ##[endgroup]
+2026-11-13T12:17:46.3607739Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-13T12:17:46.3806419Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-11-13T12:17:46.4017963Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-11-13T12:17:46.4128158Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-11-13T12:17:46.4568574Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [767 kB]
+2026-11-13T12:17:46.4590482Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-11-13T12:17:46.4710925Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-11-13T12:17:46.4737778Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [697 kB]
+2026-11-13T12:17:46.5666159Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1450 kB]
+2026-11-13T12:17:46.6029863Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [315 kB]
+2026-11-13T12:17:46.6158466Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1713 kB]
+2026-11-13T12:17:46.6349957Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [345 kB]
+2026-11-13T12:17:46.6538783Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1883 kB]
+2026-11-13T12:17:46.6697742Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [430 kB]
+2026-11-13T12:17:46.6826901Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.6 kB]
+2026-11-13T12:17:46.6946296Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1195 kB]
+2026-11-13T12:17:46.7105358Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [238 kB]
+2026-11-13T12:17:46.7230829Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1228 kB]
+2026-11-13T12:17:46.7943749Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [248 kB]
+2026-11-13T12:17:46.8087613Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1788 kB]
+2026-11-13T12:17:46.8289281Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [411 kB]
+2026-11-13T12:17:50.3074735Z Fetched 13.1 MB in 1s (9807 kB/s)
+2026-11-13T12:17:51.5599111Z Reading package lists...
+2026-11-13T12:17:51.6044454Z Reading package lists...
+2026-11-13T12:17:51.8723114Z Building dependency tree...
+2026-11-13T12:17:51.8730414Z Reading state information...
+2026-11-13T12:17:52.1243663Z The following NEW packages will be installed:
+2026-11-13T12:17:52.1253280Z   libnuma-dev libtcmalloc-minimal4t64 ripgrep
+2026-11-13T12:17:52.1494420Z 0 upgraded, 3 newly installed, 0 to remove and 20 not upgraded.
+2026-11-13T12:17:52.1495302Z Need to get 1678 kB of archives.
+2026-11-13T12:17:52.1495965Z After this operation, 5843 kB of additional disk space will be used.
+2026-11-13T12:17:52.1496920Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-13T12:17:52.2143462Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtcmalloc-minimal4t64 amd64 2.15-3build1 [89.5 kB]
+2026-11-13T12:17:52.2651056Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 ripgrep amd64 14.1.0-1 [1551 kB]
+2026-11-13T12:17:52.3444892Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libnuma-dev amd64 2.0.18-1ubuntu0.24.04.1 [37.0 kB]
+2026-11-13T12:17:52.6215050Z Fetched 1678 kB in 0s (8114 kB/s)
+2026-11-13T12:17:52.6468466Z Selecting previously unselected package libtcmalloc-minimal4t64:amd64.
+2026-11-13T12:17:52.6715552Z (Reading database ... 
+2026-11-13T12:17:52.6716217Z (Reading database ... 5%
+2026-11-13T12:17:52.6717094Z (Reading database ... 10%
+2026-11-13T12:17:52.6717542Z (Reading database ... 15%
+2026-11-13T12:17:52.6717955Z (Reading database ... 20%
+2026-11-13T12:17:52.6718207Z (Reading database ... 25%
+2026-11-13T12:17:52.6718439Z (Reading database ... 30%
+2026-11-13T12:17:52.6718670Z (Reading database ... 35%
+2026-11-13T12:17:52.6718916Z (Reading database ... 40%
+2026-11-13T12:17:52.6719147Z (Reading database ... 45%
+2026-11-13T12:17:52.6719377Z (Reading database ... 50%
+2026-11-13T12:17:52.6777710Z (Reading database ... 55%
+2026-11-13T12:17:52.8033152Z (Reading database ... 60%
+2026-11-13T12:17:52.9652587Z (Reading database ... 65%
+2026-11-13T12:17:53.1048707Z (Reading database ... 70%
+2026-11-13T12:17:53.3126894Z (Reading database ... 75%
+2026-11-13T12:17:53.4109573Z (Reading database ... 80%
+2026-11-13T12:17:53.5695805Z (Reading database ... 85%
+2026-11-13T12:17:53.7183805Z (Reading database ... 90%
+2026-11-13T12:17:53.8184079Z (Reading database ... 95%
+2026-11-13T12:17:53.8184670Z (Reading database ... 100%
+2026-11-13T12:17:53.8185324Z (Reading database ... 216752 files and directories currently installed.)
+2026-11-13T12:17:53.8232688Z Preparing to unpack .../libtcmalloc-minimal4t64_2.15-3build1_amd64.deb ...
+2026-11-13T12:17:53.8267915Z Unpacking libtcmalloc-minimal4t64:amd64 (2.15-3build1) ...
+2026-11-13T12:17:53.8484646Z Selecting previously unselected package ripgrep.
+2026-11-13T12:17:53.8611574Z Preparing to unpack .../ripgrep_14.1.0-1_amd64.deb ...
+2026-11-13T12:17:53.8623445Z Unpacking ripgrep (14.1.0-1) ...
+2026-11-13T12:17:53.9054385Z Selecting previously unselected package libnuma-dev:amd64.
+2026-11-13T12:17:53.9184527Z Preparing to unpack .../libnuma-dev_2.0.18-1ubuntu0.24.04.1_amd64.deb ...
+2026-11-13T12:17:53.9196664Z Unpacking libnuma-dev:amd64 (2.0.18-1ubuntu0.24.04.1) ...
+2026-11-13T12:17:53.9645771Z Setting up libnuma-dev:amd64 (2.0.18-1ubuntu0.24.04.1) ...
+2026-11-13T12:17:53.9668780Z Setting up libtcmalloc-minimal4t64:amd64 (2.15-3build1) ...
+2026-11-13T12:17:53.9686542Z Setting up ripgrep (14.1.0-1) ...
+2026-11-13T12:17:53.9710314Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-11-13T12:17:53.9735456Z Not building database; man-db/auto-update is not 'true'.
+2026-11-13T12:17:53.9749206Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-11-13T12:17:54.6254620Z 
+2026-11-13T12:17:54.6255658Z Running kernel seems to be up-to-date.
+2026-11-13T12:17:54.6256205Z 
+2026-11-13T12:17:54.6256385Z No services need to be restarted.
+2026-11-13T12:17:54.6256700Z 
+2026-11-13T12:17:54.6256804Z No containers need to be restarted.
+2026-11-13T12:17:54.6256994Z 
+2026-11-13T12:17:54.6257132Z No user sessions are running outdated binaries.
+2026-11-13T12:17:54.6257372Z 
+2026-11-13T12:17:54.6257577Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-13T12:17:55.8618255Z ##[group]Run actions/cache/restore@v4
+2026-11-13T12:17:55.8618559Z with:
+2026-11-13T12:17:55.8618765Z   path: .venv
+vllm/*.so
+vllm/libs
+
+2026-11-13T12:17:55.8619091Z   key: vllm-native-191e5d5d-py312-torch214-ubuntu24-v1
+2026-11-13T12:17:55.8619415Z   fail-on-cache-miss: true
+2026-11-13T12:17:55.8619666Z   enableCrossOsArchive: false
+2026-11-13T12:17:55.8619909Z   lookup-only: false
+2026-11-13T12:17:55.8620123Z env:
+2026-11-13T12:17:55.8620319Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:17:55.8620553Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:17:55.8620787Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:17:55.8621064Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:17:55.8621323Z   OMP_NUM_THREADS: 2
+2026-11-13T12:17:55.8621544Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:17:55.8621861Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:55.8622486Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:17:55.8622961Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:55.8623349Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:55.8623739Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:17:55.8624121Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:17:55.8624492Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:17:55.8624782Z ##[endgroup]
+2026-11-13T12:17:55.9768546Z (node:2811) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:17:55.9769399Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:17:56.0822015Z Cache hit for: vllm-native-191e5d5d-py312-torch214-ubuntu24-v1
+2026-11-13T12:17:56.0948461Z (node:2811) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T12:17:57.1657720Z Received 218103808 of 875527660 (24.9%), 207.2 MBs/sec
+2026-11-13T12:17:58.1661993Z Received 457179136 of 875527660 (52.2%), 217.2 MBs/sec
+2026-11-13T12:17:59.1712900Z Received 704643072 of 875527660 (80.5%), 223.0 MBs/sec
+2026-11-13T12:17:59.8987536Z Received 875527660 of 875527660 (100.0%), 223.6 MBs/sec
+2026-11-13T12:17:59.8996803Z Cache Size: ~835 MB (875527660 B)
+2026-11-13T12:17:59.9070157Z [command]/usr/bin/tar -xf /home/runner/work/_temp/eef59e9c-12c6-4823-b9b6-1abc63d4d412/cache.tzst -P -C /home/runner/work/vllm/vllm --use-compress-program unzstd
+2026-11-13T12:18:06.3346277Z Cache restored successfully
+2026-11-13T12:18:06.8652044Z Cache restored from key: vllm-native-191e5d5d-py312-torch214-ubuntu24-v1
+2026-11-13T12:18:06.9132118Z ##[group]Run uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema
+2026-11-13T12:18:06.9133488Z [36;1muv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema[0m
+2026-11-13T12:18:06.9155712Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:18:06.9156458Z env:
+2026-11-13T12:18:06.9156825Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:18:06.9157279Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:18:06.9157692Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:18:06.9158182Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:18:06.9158659Z   OMP_NUM_THREADS: 2
+2026-11-13T12:18:06.9159037Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:18:06.9159579Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:06.9160330Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:18:06.9161062Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:06.9161804Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:06.9162493Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:06.9163141Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:18:06.9163724Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:18:06.9164209Z ##[endgroup]
+2026-11-13T12:18:07.3613324Z Resolved 28 packages in 254ms
+2026-11-13T12:18:07.3989846Z Prepared 1 package in 37ms
+2026-11-13T12:18:07.4604829Z Installed 1 package in 60ms
+2026-11-13T12:18:07.4606367Z  + tblib==3.2.2
+2026-11-13T12:18:07.5082189Z ##[group]Run source .venv/bin/activate
+2026-11-13T12:18:07.5082747Z [36;1msource .venv/bin/activate[0m
+2026-11-13T12:18:07.5083518Z [36;1mIOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)[0m
+2026-11-13T12:18:07.5084537Z [36;1mTC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')[0m
+2026-11-13T12:18:07.5085651Z [36;1mif [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi[0m
+2026-11-13T12:18:07.5087039Z [36;1mpython validation/run_numpy_mm_native.py[0m
+2026-11-13T12:18:07.5107307Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:18:07.5107837Z env:
+2026-11-13T12:18:07.5108199Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:18:07.5108650Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:18:07.5109100Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:18:07.5109609Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:18:07.5110111Z   OMP_NUM_THREADS: 2
+2026-11-13T12:18:07.5110596Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:18:07.5111124Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:07.5111804Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:18:07.5112482Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:07.5113106Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:07.5113841Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:18:07.5114559Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:18:07.5115282Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:18:07.5115842Z ##[endgroup]
+2026-11-13T12:19:55.5940393Z /home/runner/work/vllm/vllm/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:306: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+2026-11-13T12:19:55.5943559Z The event loop scope for asynchronous fixtures will default to the fixture scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session". Set it to "fixture-scope" to keep the current behavior.
+2026-11-13T12:19:55.5946265Z 
+2026-11-13T12:19:55.5946697Z   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+2026-11-13T12:19:55.5947634Z ..................FFFFFFFFFFFFFFFFFFFFFFFF..FF...F                       [100%]
+2026-11-13T12:19:55.5948405Z =================================== FAILURES ===================================
+2026-11-13T12:19:55.5949039Z _ test_numpy_embedding_values_preserve_byteorder[>-f2-bytes-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.5949369Z 
+2026-11-13T12:19:55.5949594Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.5950016Z route = 'bytes', dtype = 'f2', byteorder = '>'
+2026-11-13T12:19:55.5950469Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr18')
+2026-11-13T12:19:55.5950799Z 
+2026-11-13T12:19:55.5951064Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.5951598Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.5952031Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.5952389Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.5952738Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.5953096Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.5953384Z     ):
+2026-11-13T12:19:55.5953689Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.5954125Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.5954872Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.5955305Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.5955597Z         original = view.copy()
+2026-11-13T12:19:55.5955866Z         expected = torch.tensor(
+2026-11-13T12:19:55.5956386Z             view.tolist(),
+2026-11-13T12:19:55.5956626Z             dtype=getattr(
+2026-11-13T12:19:55.5956946Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.5957270Z             ),
+2026-11-13T12:19:55.5957613Z         )
+2026-11-13T12:19:55.5957799Z     
+2026-11-13T12:19:55.5958061Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.5958429Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5958627Z 
+2026-11-13T12:19:55.5958781Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.5959140Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.5959569Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.5959946Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.5960224Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5960514Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.5960820Z     return self._load_numpy(data)
+2026-11-13T12:19:55.5961085Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5961376Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.5961617Z 
+2026-11-13T12:19:55.5961882Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9e024aea0>
+2026-11-13T12:19:55.5962781Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f2', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...@H\xa0I\x00I`I\xc0\xc1\x00\xbf\x00\xbc\x00\xb4\x008\x00=\x00@\x00A\x80C\x00D@E\x00E\xc0F\x80G@H\x00H`H\xc0I I\x80I\xe0"
+2026-11-13T12:19:55.5963442Z 
+2026-11-13T12:19:55.5963601Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.5963920Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.5964214Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.5964517Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5965118Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.5965629Z 
+2026-11-13T12:19:55.5965757Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.5966367Z _ test_numpy_embedding_values_preserve_byteorder[>-f2-bytes-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.5966708Z 
+2026-11-13T12:19:55.5966941Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.5967569Z route = 'bytes', dtype = 'f2', byteorder = '>'
+2026-11-13T12:19:55.5967995Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr19')
+2026-11-13T12:19:55.5968339Z 
+2026-11-13T12:19:55.5968664Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.5969180Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.5969569Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.5969919Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.5970261Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.5970607Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.5970892Z     ):
+2026-11-13T12:19:55.5971190Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.5971625Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.5972051Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.5972446Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.5972898Z         original = view.copy()
+2026-11-13T12:19:55.5973168Z         expected = torch.tensor(
+2026-11-13T12:19:55.5973421Z             view.tolist(),
+2026-11-13T12:19:55.5973822Z             dtype=getattr(
+2026-11-13T12:19:55.5974161Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.5974488Z             ),
+2026-11-13T12:19:55.5974688Z         )
+2026-11-13T12:19:55.5974871Z     
+2026-11-13T12:19:55.5975137Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.5975602Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5975905Z 
+2026-11-13T12:19:55.5976242Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.5976807Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.5977462Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.5978091Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.5978523Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5979022Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.5979589Z     return self._load_numpy(data)
+2026-11-13T12:19:55.5979949Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5980393Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.5980733Z 
+2026-11-13T12:19:55.5981139Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef26c0>
+2026-11-13T12:19:55.5982642Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f2', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...@H\xa0I\x00I`I\xc0\xc1\x00\xbf\x00\xbc\x00\xb4\x008\x00=\x00@\x00A\x80C\x00D@E\x00E\xc0F\x80G@H\x00H`H\xc0I I\x80I\xe0"
+2026-11-13T12:19:55.5983807Z 
+2026-11-13T12:19:55.5984029Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.5984552Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.5985010Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.5985482Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.5987003Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.5987794Z 
+2026-11-13T12:19:55.5987990Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.5988687Z _ test_numpy_embedding_values_preserve_byteorder[>-f2-base64-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.5989261Z 
+2026-11-13T12:19:55.5989632Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.5990332Z route = 'base64', dtype = 'f2', byteorder = '>'
+2026-11-13T12:19:55.5991051Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr20')
+2026-11-13T12:19:55.5991622Z 
+2026-11-13T12:19:55.5992061Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.5992984Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.5993695Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.5994304Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.5994922Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.5995516Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.5996211Z     ):
+2026-11-13T12:19:55.5996727Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.5997512Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.5998225Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.5998909Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.5999275Z         original = view.copy()
+2026-11-13T12:19:55.5999539Z         expected = torch.tensor(
+2026-11-13T12:19:55.5999793Z             view.tolist(),
+2026-11-13T12:19:55.6000245Z             dtype=getattr(
+2026-11-13T12:19:55.6000564Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6000895Z             ),
+2026-11-13T12:19:55.6001098Z         )
+2026-11-13T12:19:55.6001277Z     
+2026-11-13T12:19:55.6001552Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6001909Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6002118Z 
+2026-11-13T12:19:55.6002263Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6002721Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6003133Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6003618Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6004029Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6004374Z vllm/multimodal/media/image.py:168: in load_base64
+2026-11-13T12:19:55.6004769Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6005139Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6005474Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6005779Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6006234Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6006652Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6006889Z 
+2026-11-13T12:19:55.6007137Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef3a70>
+2026-11-13T12:19:55.6008043Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f2', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...@H\xa0I\x00I`I\xc0\xc1\x00\xbf\x00\xbc\x00\xb4\x008\x00=\x00@\x00A\x80C\x00D@E\x00E\xc0F\x80G@H\x00H`H\xc0I I\x80I\xe0"
+2026-11-13T12:19:55.6008689Z 
+2026-11-13T12:19:55.6008831Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6009152Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6009444Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6009744Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6010353Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6010864Z 
+2026-11-13T12:19:55.6010983Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6011430Z _ test_numpy_embedding_values_preserve_byteorder[>-f2-base64-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6011756Z 
+2026-11-13T12:19:55.6011975Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6012391Z route = 'base64', dtype = 'f2', byteorder = '>'
+2026-11-13T12:19:55.6012828Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr21')
+2026-11-13T12:19:55.6013165Z 
+2026-11-13T12:19:55.6013427Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6013944Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6014332Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6015155Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6015657Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6016356Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6016727Z     ):
+2026-11-13T12:19:55.6017040Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6017498Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6017953Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6018583Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6018894Z         original = view.copy()
+2026-11-13T12:19:55.6019166Z         expected = torch.tensor(
+2026-11-13T12:19:55.6019431Z             view.tolist(),
+2026-11-13T12:19:55.6019667Z             dtype=getattr(
+2026-11-13T12:19:55.6019984Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6020324Z             ),
+2026-11-13T12:19:55.6020519Z         )
+2026-11-13T12:19:55.6020700Z     
+2026-11-13T12:19:55.6020997Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6021821Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6022156Z 
+2026-11-13T12:19:55.6022402Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6023020Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6023600Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6024112Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6024532Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6024881Z vllm/multimodal/media/video.py:263: in load_base64
+2026-11-13T12:19:55.6025267Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6025632Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6025960Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6026486Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6026749Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6027039Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6027286Z 
+2026-11-13T12:19:55.6027551Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef25a0>
+2026-11-13T12:19:55.6028492Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f2', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...@H\xa0I\x00I`I\xc0\xc1\x00\xbf\x00\xbc\x00\xb4\x008\x00=\x00@\x00A\x80C\x00D@E\x00E\xc0F\x80G@H\x00H`H\xc0I I\x80I\xe0"
+2026-11-13T12:19:55.6029168Z 
+2026-11-13T12:19:55.6029313Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6029644Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6029954Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6030267Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6030870Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6031383Z 
+2026-11-13T12:19:55.6031511Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6031963Z _ test_numpy_embedding_values_preserve_byteorder[>-f2-file-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6032300Z 
+2026-11-13T12:19:55.6032522Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6032946Z route = 'file', dtype = 'f2', byteorder = '>'
+2026-11-13T12:19:55.6033391Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr22')
+2026-11-13T12:19:55.6033734Z 
+2026-11-13T12:19:55.6034002Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6034523Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6034923Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6035280Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6035625Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6035979Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6036513Z     ):
+2026-11-13T12:19:55.6036819Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6037767Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6038224Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6038693Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6038986Z         original = view.copy()
+2026-11-13T12:19:55.6039245Z         expected = torch.tensor(
+2026-11-13T12:19:55.6039495Z             view.tolist(),
+2026-11-13T12:19:55.6039730Z             dtype=getattr(
+2026-11-13T12:19:55.6040035Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6040445Z             ),
+2026-11-13T12:19:55.6040643Z         )
+2026-11-13T12:19:55.6040821Z     
+2026-11-13T12:19:55.6041087Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6041443Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6041649Z 
+2026-11-13T12:19:55.6041798Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6042172Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6042596Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6042965Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6043224Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6043516Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6043754Z 
+2026-11-13T12:19:55.6044006Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef2420>
+2026-11-13T12:19:55.6044647Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr22/embeddings.npy')
+2026-11-13T12:19:55.6045042Z 
+2026-11-13T12:19:55.6045200Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6045528Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6046865Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6047206Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6047812Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6048735Z 
+2026-11-13T12:19:55.6048881Z vllm/multimodal/media/image.py:172: ValueError
+2026-11-13T12:19:55.6049330Z _ test_numpy_embedding_values_preserve_byteorder[>-f2-file-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6059441Z 
+2026-11-13T12:19:55.6059776Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6061231Z route = 'file', dtype = 'f2', byteorder = '>'
+2026-11-13T12:19:55.6061802Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr23')
+2026-11-13T12:19:55.6062223Z 
+2026-11-13T12:19:55.6062507Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6063024Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6063438Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6064059Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6064459Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6064813Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6065102Z     ):
+2026-11-13T12:19:55.6065417Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6065880Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6066538Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6066962Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6067256Z         original = view.copy()
+2026-11-13T12:19:55.6067540Z         expected = torch.tensor(
+2026-11-13T12:19:55.6067797Z             view.tolist(),
+2026-11-13T12:19:55.6068026Z             dtype=getattr(
+2026-11-13T12:19:55.6069021Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6069398Z             ),
+2026-11-13T12:19:55.6069607Z         )
+2026-11-13T12:19:55.6069786Z     
+2026-11-13T12:19:55.6070053Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6070421Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6070618Z 
+2026-11-13T12:19:55.6070776Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6071152Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6071642Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6072009Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6072273Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6072563Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6072797Z 
+2026-11-13T12:19:55.6073057Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef16d0>
+2026-11-13T12:19:55.6073682Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr23/embeddings.npy')
+2026-11-13T12:19:55.6074590Z 
+2026-11-13T12:19:55.6074741Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6075074Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6075377Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6100391Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6101124Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6101642Z 
+2026-11-13T12:19:55.6101782Z vllm/multimodal/media/video.py:267: ValueError
+2026-11-13T12:19:55.6102230Z _ test_numpy_embedding_values_preserve_byteorder[>-f4-bytes-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6102573Z 
+2026-11-13T12:19:55.6102800Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6112477Z route = 'bytes', dtype = 'f4', byteorder = '>'
+2026-11-13T12:19:55.6113056Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr24')
+2026-11-13T12:19:55.6113488Z 
+2026-11-13T12:19:55.6113831Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6114498Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6114989Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6115426Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6115831Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6116391Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6116685Z     ):
+2026-11-13T12:19:55.6116990Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6117452Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6117888Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6118328Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6118617Z         original = view.copy()
+2026-11-13T12:19:55.6118879Z         expected = torch.tensor(
+2026-11-13T12:19:55.6119148Z             view.tolist(),
+2026-11-13T12:19:55.6119379Z             dtype=getattr(
+2026-11-13T12:19:55.6119693Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6120024Z             ),
+2026-11-13T12:19:55.6120216Z         )
+2026-11-13T12:19:55.6120397Z     
+2026-11-13T12:19:55.6120658Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6121004Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6121204Z 
+2026-11-13T12:19:55.6121359Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6122024Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6122452Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6122820Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6123088Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6123387Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6123694Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6123958Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6124333Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6124566Z 
+2026-11-13T12:19:55.6124813Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef2120>
+2026-11-13T12:19:55.6126319Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f4', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...a0\x00\x00@\xb8\x00\x00@\xd0\x00\x00@\xe8\x00\x00A\x00\x00\x00A\x0c\x00\x00A\x18\x00\x00A$\x00\x00A0\x00\x00A<\x00\x00"
+2026-11-13T12:19:55.6126989Z 
+2026-11-13T12:19:55.6127135Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6127471Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6127769Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6128074Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6128679Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6129197Z 
+2026-11-13T12:19:55.6129324Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6130372Z _ test_numpy_embedding_values_preserve_byteorder[>-f4-bytes-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6130712Z 
+2026-11-13T12:19:55.6130926Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6131365Z route = 'bytes', dtype = 'f4', byteorder = '>'
+2026-11-13T12:19:55.6131812Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr25')
+2026-11-13T12:19:55.6132151Z 
+2026-11-13T12:19:55.6132418Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6132934Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6133323Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6133700Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6134051Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6134402Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6134687Z     ):
+2026-11-13T12:19:55.6134985Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6135432Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6135867Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6136581Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6136875Z         original = view.copy()
+2026-11-13T12:19:55.6137134Z         expected = torch.tensor(
+2026-11-13T12:19:55.6137404Z             view.tolist(),
+2026-11-13T12:19:55.6137644Z             dtype=getattr(
+2026-11-13T12:19:55.6137960Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6138283Z             ),
+2026-11-13T12:19:55.6138478Z         )
+2026-11-13T12:19:55.6138671Z     
+2026-11-13T12:19:55.6139359Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6139753Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6139963Z 
+2026-11-13T12:19:55.6140121Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6140490Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6141126Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6141499Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6141767Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6142066Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6142365Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6142619Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6142908Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6143142Z 
+2026-11-13T12:19:55.6143520Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef1a60>
+2026-11-13T12:19:55.6144410Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f4', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...a0\x00\x00@\xb8\x00\x00@\xd0\x00\x00@\xe8\x00\x00A\x00\x00\x00A\x0c\x00\x00A\x18\x00\x00A$\x00\x00A0\x00\x00A<\x00\x00"
+2026-11-13T12:19:55.6145059Z 
+2026-11-13T12:19:55.6145201Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6145554Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6145851Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6146257Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6146856Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6148315Z 
+2026-11-13T12:19:55.6148469Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6148928Z _ test_numpy_embedding_values_preserve_byteorder[>-f4-base64-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6149270Z 
+2026-11-13T12:19:55.6149487Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6149918Z route = 'base64', dtype = 'f4', byteorder = '>'
+2026-11-13T12:19:55.6150353Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr26')
+2026-11-13T12:19:55.6150688Z 
+2026-11-13T12:19:55.6150963Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6151481Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6151872Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6152228Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6152565Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6153400Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6153720Z     ):
+2026-11-13T12:19:55.6154023Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6154474Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6154905Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6155317Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6155603Z         original = view.copy()
+2026-11-13T12:19:55.6155856Z         expected = torch.tensor(
+2026-11-13T12:19:55.6156365Z             view.tolist(),
+2026-11-13T12:19:55.6156635Z             dtype=getattr(
+2026-11-13T12:19:55.6156947Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6157265Z             ),
+2026-11-13T12:19:55.6157454Z         )
+2026-11-13T12:19:55.6157637Z     
+2026-11-13T12:19:55.6157891Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6158249Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6158456Z 
+2026-11-13T12:19:55.6158610Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6158971Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6159392Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6159868Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6160473Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6160818Z vllm/multimodal/media/image.py:168: in load_base64
+2026-11-13T12:19:55.6161209Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6161589Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6161911Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6162225Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6162553Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6162845Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6163073Z 
+2026-11-13T12:19:55.6163328Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef55b0>
+2026-11-13T12:19:55.6164207Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f4', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...a0\x00\x00@\xb8\x00\x00@\xd0\x00\x00@\xe8\x00\x00A\x00\x00\x00A\x0c\x00\x00A\x18\x00\x00A$\x00\x00A0\x00\x00A<\x00\x00"
+2026-11-13T12:19:55.6164845Z 
+2026-11-13T12:19:55.6164988Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6165307Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6165604Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6165899Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6166605Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6167117Z 
+2026-11-13T12:19:55.6167254Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6167693Z _ test_numpy_embedding_values_preserve_byteorder[>-f4-base64-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6168028Z 
+2026-11-13T12:19:55.6168249Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6168678Z route = 'base64', dtype = 'f4', byteorder = '>'
+2026-11-13T12:19:55.6169110Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr27')
+2026-11-13T12:19:55.6169446Z 
+2026-11-13T12:19:55.6169711Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6170224Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6170617Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6170965Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6171314Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6171654Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6171932Z     ):
+2026-11-13T12:19:55.6172228Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6172658Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6173080Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6173470Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6173752Z         original = view.copy()
+2026-11-13T12:19:55.6174014Z         expected = torch.tensor(
+2026-11-13T12:19:55.6174260Z             view.tolist(),
+2026-11-13T12:19:55.6174492Z             dtype=getattr(
+2026-11-13T12:19:55.6174801Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6175121Z             ),
+2026-11-13T12:19:55.6175318Z         )
+2026-11-13T12:19:55.6175499Z     
+2026-11-13T12:19:55.6175757Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6176230Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6176535Z 
+2026-11-13T12:19:55.6176686Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6177056Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6177587Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6178068Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6178488Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6178830Z vllm/multimodal/media/video.py:263: in load_base64
+2026-11-13T12:19:55.6179221Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6179588Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6179991Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6180295Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6180548Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6180841Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6181063Z 
+2026-11-13T12:19:55.6181325Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef4ef0>
+2026-11-13T12:19:55.6182195Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f4', 'fortran_order': False, 'shape': (3, 4, 5), }                                ...a0\x00\x00@\xb8\x00\x00@\xd0\x00\x00@\xe8\x00\x00A\x00\x00\x00A\x0c\x00\x00A\x18\x00\x00A$\x00\x00A0\x00\x00A<\x00\x00"
+2026-11-13T12:19:55.6182828Z 
+2026-11-13T12:19:55.6182970Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6183287Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6183583Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6183881Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6184478Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6184986Z 
+2026-11-13T12:19:55.6185113Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6185542Z _ test_numpy_embedding_values_preserve_byteorder[>-f4-file-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6185865Z 
+2026-11-13T12:19:55.6186171Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6186589Z route = 'file', dtype = 'f4', byteorder = '>'
+2026-11-13T12:19:55.6187025Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr28')
+2026-11-13T12:19:55.6187344Z 
+2026-11-13T12:19:55.6187606Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6188128Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6188522Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6188886Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6189239Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6189578Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6189871Z     ):
+2026-11-13T12:19:55.6190174Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6190610Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6191041Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6191430Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6191725Z         original = view.copy()
+2026-11-13T12:19:55.6191986Z         expected = torch.tensor(
+2026-11-13T12:19:55.6192242Z             view.tolist(),
+2026-11-13T12:19:55.6192591Z             dtype=getattr(
+2026-11-13T12:19:55.6192899Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6193220Z             ),
+2026-11-13T12:19:55.6193427Z         )
+2026-11-13T12:19:55.6193607Z     
+2026-11-13T12:19:55.6193875Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6194228Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6224231Z 
+2026-11-13T12:19:55.6224569Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6225186Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6225801Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6226544Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6226976Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6227490Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6227931Z 
+2026-11-13T12:19:55.6228208Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef6cc0>
+2026-11-13T12:19:55.6228863Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr28/embeddings.npy')
+2026-11-13T12:19:55.6229259Z 
+2026-11-13T12:19:55.6229419Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6229759Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6230079Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6230402Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6231007Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6231536Z 
+2026-11-13T12:19:55.6231669Z vllm/multimodal/media/image.py:172: ValueError
+2026-11-13T12:19:55.6232111Z _ test_numpy_embedding_values_preserve_byteorder[>-f4-file-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6232442Z 
+2026-11-13T12:19:55.6232673Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6233098Z route = 'file', dtype = 'f4', byteorder = '>'
+2026-11-13T12:19:55.6233541Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr29')
+2026-11-13T12:19:55.6233873Z 
+2026-11-13T12:19:55.6234433Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6235340Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6235777Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6236456Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6236825Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6239739Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6240103Z     ):
+2026-11-13T12:19:55.6240440Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6240913Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6241959Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6242410Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6242712Z         original = view.copy()
+2026-11-13T12:19:55.6242994Z         expected = torch.tensor(
+2026-11-13T12:19:55.6243569Z             view.tolist(),
+2026-11-13T12:19:55.6243851Z             dtype=getattr(
+2026-11-13T12:19:55.6244204Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6245139Z             ),
+2026-11-13T12:19:55.6245349Z         )
+2026-11-13T12:19:55.6245555Z     
+2026-11-13T12:19:55.6245850Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6247065Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6247303Z 
+2026-11-13T12:19:55.6247491Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6247875Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6248310Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6248686Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6248953Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6249516Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6249760Z 
+2026-11-13T12:19:55.6250021Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef5460>
+2026-11-13T12:19:55.6250695Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr29/embeddings.npy')
+2026-11-13T12:19:55.6251103Z 
+2026-11-13T12:19:55.6251255Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6251604Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6251928Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6252336Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6252950Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6253475Z 
+2026-11-13T12:19:55.6253604Z vllm/multimodal/media/video.py:267: ValueError
+2026-11-13T12:19:55.6254081Z _ test_numpy_embedding_values_preserve_byteorder[>-f8-bytes-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6254428Z 
+2026-11-13T12:19:55.6254655Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6255094Z route = 'bytes', dtype = 'f8', byteorder = '>'
+2026-11-13T12:19:55.6255540Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr30')
+2026-11-13T12:19:55.6255889Z 
+2026-11-13T12:19:55.6256393Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6256936Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6257340Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6257726Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6258084Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6258442Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6258733Z     ):
+2026-11-13T12:19:55.6259042Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6259497Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6259941Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6260363Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6260652Z         original = view.copy()
+2026-11-13T12:19:55.6260924Z         expected = torch.tensor(
+2026-11-13T12:19:55.6261192Z             view.tolist(),
+2026-11-13T12:19:55.6261434Z             dtype=getattr(
+2026-11-13T12:19:55.6261747Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6262082Z             ),
+2026-11-13T12:19:55.6262278Z         )
+2026-11-13T12:19:55.6262475Z     
+2026-11-13T12:19:55.6262743Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6263104Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6263319Z 
+2026-11-13T12:19:55.6263478Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6263851Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6264272Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6264640Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6264936Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6265234Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6265548Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6265802Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6266301Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6266545Z 
+2026-11-13T12:19:55.6266804Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef55b0>
+2026-11-13T12:19:55.6267823Z data = b'\x93NUMPY\x01\x00v\x00{\'descr\': \'>f8\', \'fortran_order\': False, \'shape\': (3, 4, 5), }                        ...0\x00\x00\x00@#\x00\x00\x00\x00\x00\x00@$\x80\x00\x00\x00\x00\x00@&\x00\x00\x00\x00\x00\x00@\'\x80\x00\x00\x00\x00\x00'
+2026-11-13T12:19:55.6268487Z 
+2026-11-13T12:19:55.6268637Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6268960Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6269275Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6269579Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6270283Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6270791Z 
+2026-11-13T12:19:55.6270921Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6271356Z _ test_numpy_embedding_values_preserve_byteorder[>-f8-bytes-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6271701Z 
+2026-11-13T12:19:55.6271931Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6272355Z route = 'bytes', dtype = 'f8', byteorder = '>'
+2026-11-13T12:19:55.6272792Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr31')
+2026-11-13T12:19:55.6273131Z 
+2026-11-13T12:19:55.6273398Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6273915Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6274325Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6274682Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6275041Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6275387Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6275674Z     ):
+2026-11-13T12:19:55.6275979Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6276655Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6277101Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6277504Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6277793Z         original = view.copy()
+2026-11-13T12:19:55.6278074Z         expected = torch.tensor(
+2026-11-13T12:19:55.6279387Z             view.tolist(),
+2026-11-13T12:19:55.6280222Z             dtype=getattr(
+2026-11-13T12:19:55.6280570Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6280910Z             ),
+2026-11-13T12:19:55.6281107Z         )
+2026-11-13T12:19:55.6281288Z     
+2026-11-13T12:19:55.6281550Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6281908Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6282104Z 
+2026-11-13T12:19:55.6282257Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6282639Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6283050Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6283418Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6283704Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6283993Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6284299Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6284553Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6284847Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6285079Z 
+2026-11-13T12:19:55.6285332Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef2600>
+2026-11-13T12:19:55.6286507Z data = b'\x93NUMPY\x01\x00v\x00{\'descr\': \'>f8\', \'fortran_order\': False, \'shape\': (3, 4, 5), }                        ...0\x00\x00\x00@#\x00\x00\x00\x00\x00\x00@$\x80\x00\x00\x00\x00\x00@&\x00\x00\x00\x00\x00\x00@\'\x80\x00\x00\x00\x00\x00'
+2026-11-13T12:19:55.6287142Z 
+2026-11-13T12:19:55.6287292Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6287622Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6287925Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6288224Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6288824Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6289401Z 
+2026-11-13T12:19:55.6289527Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6289970Z _ test_numpy_embedding_values_preserve_byteorder[>-f8-base64-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6290307Z 
+2026-11-13T12:19:55.6290535Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6290962Z route = 'base64', dtype = 'f8', byteorder = '>'
+2026-11-13T12:19:55.6291407Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr32')
+2026-11-13T12:19:55.6291746Z 
+2026-11-13T12:19:55.6292010Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6292527Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6292929Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6293285Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6293636Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6293986Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6294270Z     ):
+2026-11-13T12:19:55.6294576Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6295018Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6295451Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6295865Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6296240Z         original = view.copy()
+2026-11-13T12:19:55.6296515Z         expected = torch.tensor(
+2026-11-13T12:19:55.6296777Z             view.tolist(),
+2026-11-13T12:19:55.6297018Z             dtype=getattr(
+2026-11-13T12:19:55.6297348Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6297677Z             ),
+2026-11-13T12:19:55.6297879Z         )
+2026-11-13T12:19:55.6298062Z     
+2026-11-13T12:19:55.6298328Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6298684Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6298878Z 
+2026-11-13T12:19:55.6299033Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6299400Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6299825Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6300293Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6300717Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6301054Z vllm/multimodal/media/image.py:168: in load_base64
+2026-11-13T12:19:55.6301443Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6301795Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6302113Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6302421Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6302668Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6302964Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6303191Z 
+2026-11-13T12:19:55.6303450Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef28d0>
+2026-11-13T12:19:55.6304413Z data = b'\x93NUMPY\x01\x00v\x00{\'descr\': \'>f8\', \'fortran_order\': False, \'shape\': (3, 4, 5), }                        ...0\x00\x00\x00@#\x00\x00\x00\x00\x00\x00@$\x80\x00\x00\x00\x00\x00@&\x00\x00\x00\x00\x00\x00@\'\x80\x00\x00\x00\x00\x00'
+2026-11-13T12:19:55.6305039Z 
+2026-11-13T12:19:55.6305188Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6305514Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6305826Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6306206Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6306942Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6307444Z 
+2026-11-13T12:19:55.6307570Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6308007Z _ test_numpy_embedding_values_preserve_byteorder[>-f8-base64-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6308342Z 
+2026-11-13T12:19:55.6308576Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6309011Z route = 'base64', dtype = 'f8', byteorder = '>'
+2026-11-13T12:19:55.6309454Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr33')
+2026-11-13T12:19:55.6309785Z 
+2026-11-13T12:19:55.6310059Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6310582Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6310975Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6311333Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6311699Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6312042Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6312338Z     ):
+2026-11-13T12:19:55.6312643Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6313082Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6313515Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6313909Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6314202Z         original = view.copy()
+2026-11-13T12:19:55.6314458Z         expected = torch.tensor(
+2026-11-13T12:19:55.6314709Z             view.tolist(),
+2026-11-13T12:19:55.6314946Z             dtype=getattr(
+2026-11-13T12:19:55.6315260Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6315579Z             ),
+2026-11-13T12:19:55.6315776Z         )
+2026-11-13T12:19:55.6315954Z     
+2026-11-13T12:19:55.6316507Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6316865Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6317070Z 
+2026-11-13T12:19:55.6317218Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6317605Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6318018Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6318504Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6318915Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6319257Z vllm/multimodal/media/video.py:263: in load_base64
+2026-11-13T12:19:55.6319646Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6320008Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6320338Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6320643Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6320899Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6321336Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6321572Z 
+2026-11-13T12:19:55.6321822Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef1970>
+2026-11-13T12:19:55.6322704Z data = b'\x93NUMPY\x01\x00v\x00{\'descr\': \'>f8\', \'fortran_order\': False, \'shape\': (3, 4, 5), }                        ...0\x00\x00\x00@#\x00\x00\x00\x00\x00\x00@$\x80\x00\x00\x00\x00\x00@&\x00\x00\x00\x00\x00\x00@\'\x80\x00\x00\x00\x00\x00'
+2026-11-13T12:19:55.6323322Z 
+2026-11-13T12:19:55.6323459Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6323857Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6324155Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6324460Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6325076Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6325578Z 
+2026-11-13T12:19:55.6325712Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6326269Z _ test_numpy_embedding_values_preserve_byteorder[>-f8-file-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6326591Z 
+2026-11-13T12:19:55.6326816Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6327253Z route = 'file', dtype = 'f8', byteorder = '>'
+2026-11-13T12:19:55.6329708Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr34')
+2026-11-13T12:19:55.6330057Z 
+2026-11-13T12:19:55.6330341Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6330862Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6331264Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6331627Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6331969Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6332319Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6332604Z     ):
+2026-11-13T12:19:55.6332903Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6333375Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6333809Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6334214Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6334495Z         original = view.copy()
+2026-11-13T12:19:55.6334791Z         expected = torch.tensor(
+2026-11-13T12:19:55.6335053Z             view.tolist(),
+2026-11-13T12:19:55.6335282Z             dtype=getattr(
+2026-11-13T12:19:55.6335588Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6335914Z             ),
+2026-11-13T12:19:55.6336351Z         )
+2026-11-13T12:19:55.6336571Z     
+2026-11-13T12:19:55.6336841Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6337199Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6337403Z 
+2026-11-13T12:19:55.6337554Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6337914Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6338335Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6338693Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6338953Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6339263Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6339488Z 
+2026-11-13T12:19:55.6339744Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfef2e10>
+2026-11-13T12:19:55.6340377Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr34/embeddings.npy')
+2026-11-13T12:19:55.6341337Z 
+2026-11-13T12:19:55.6341725Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6342089Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6342410Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6342722Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6343327Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6343833Z 
+2026-11-13T12:19:55.6343967Z vllm/multimodal/media/image.py:172: ValueError
+2026-11-13T12:19:55.6344471Z _ test_numpy_embedding_values_preserve_byteorder[>-f8-file-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6344791Z 
+2026-11-13T12:19:55.6345014Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6345430Z route = 'file', dtype = 'f8', byteorder = '>'
+2026-11-13T12:19:55.6345863Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr35')
+2026-11-13T12:19:55.6346299Z 
+2026-11-13T12:19:55.6346562Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6347087Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6347477Z     @pytest.mark.parametrize("dtype", ["f2", "f4", "f8"])
+2026-11-13T12:19:55.6347833Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6348188Z     def test_numpy_embedding_values_preserve_byteorder(
+2026-11-13T12:19:55.6348529Z         handler_type, route, dtype, byteorder, tmp_path
+2026-11-13T12:19:55.6348830Z     ):
+2026-11-13T12:19:55.6349128Z         # np.save must preserve logical values of transposed/strided arrays too.
+2026-11-13T12:19:55.6349563Z         values = np.arange(120, dtype=np.float64).reshape(4, 5, 6)
+2026-11-13T12:19:55.6349989Z         values = (values / 8 - 3).astype(np.dtype(dtype).newbyteorder(byteorder))
+2026-11-13T12:19:55.6350386Z         view = values.transpose(2, 0, 1)[::2]
+2026-11-13T12:19:55.6350682Z         original = view.copy()
+2026-11-13T12:19:55.6350943Z         expected = torch.tensor(
+2026-11-13T12:19:55.6351194Z             view.tolist(),
+2026-11-13T12:19:55.6351429Z             dtype=getattr(
+2026-11-13T12:19:55.6351734Z                 torch, {"f2": "float16", "f4": "float32", "f8": "float64"}[dtype]
+2026-11-13T12:19:55.6352064Z             ),
+2026-11-13T12:19:55.6352249Z         )
+2026-11-13T12:19:55.6352424Z     
+2026-11-13T12:19:55.6352686Z >       actual = _load_array(handler_type(), view, route, tmp_path)
+2026-11-13T12:19:55.6353040Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6353247Z 
+2026-11-13T12:19:55.6353391Z tests/renderers/test_numpy_embedding_byteorder.py:50: 
+2026-11-13T12:19:55.6353755Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6354161Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6354541Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6354807Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6355104Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6355342Z 
+2026-11-13T12:19:55.6355601Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfef7050>
+2026-11-13T12:19:55.6356479Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_values_pr35/embeddings.npy')
+2026-11-13T12:19:55.6356897Z 
+2026-11-13T12:19:55.6357048Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6357402Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6357715Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6358039Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6358642Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6359144Z 
+2026-11-13T12:19:55.6359386Z vllm/multimodal/media/video.py:267: ValueError
+2026-11-13T12:19:55.6359837Z _ test_numpy_embedding_metadata_preserves_large_integers[bytes-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6360184Z 
+2026-11-13T12:19:55.6360399Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6360796Z route = 'bytes'
+2026-11-13T12:19:55.6361149Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_0')
+2026-11-13T12:19:55.6361477Z 
+2026-11-13T12:19:55.6361742Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6362807Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6363244Z     def test_numpy_embedding_metadata_preserves_large_integers(
+2026-11-13T12:19:55.6363602Z         handler_type, route, tmp_path
+2026-11-13T12:19:55.6371029Z     ):
+2026-11-13T12:19:55.6371408Z         values = [[2**53 + 1, -(2**53) - 3], [2**63 - 1, -(2**63)]]
+2026-11-13T12:19:55.6373123Z         array = np.array(values, dtype=">i8")
+2026-11-13T12:19:55.6373609Z >       actual = _load_array(handler_type(), array, route, tmp_path)
+2026-11-13T12:19:55.6374020Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6374251Z 
+2026-11-13T12:19:55.6374418Z tests/renderers/test_numpy_embedding_byteorder.py:65: 
+2026-11-13T12:19:55.6374812Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6375236Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6375631Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6375923Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6376336Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6376664Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6376917Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6377216Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6377449Z 
+2026-11-13T12:19:55.6377709Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfece510>
+2026-11-13T12:19:55.6378609Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>i8', 'fortran_order': False, 'shape': (2, 2), }                                   ...00\x00\x00\x00\x00\x01\xff\xdf\xff\xff\xff\xff\xff\xfd\x7f\xff\xff\xff\xff\xff\xff\xff\x80\x00\x00\x00\x00\x00\x00\x00"
+2026-11-13T12:19:55.6379259Z 
+2026-11-13T12:19:55.6379407Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6379736Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6380037Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6380334Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6380935Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6381448Z 
+2026-11-13T12:19:55.6381578Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6382024Z _ test_numpy_embedding_metadata_preserves_large_integers[bytes-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6382370Z 
+2026-11-13T12:19:55.6382599Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6382993Z route = 'bytes'
+2026-11-13T12:19:55.6383360Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_1')
+2026-11-13T12:19:55.6383700Z 
+2026-11-13T12:19:55.6383969Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6384493Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6384913Z     def test_numpy_embedding_metadata_preserves_large_integers(
+2026-11-13T12:19:55.6385258Z         handler_type, route, tmp_path
+2026-11-13T12:19:55.6385512Z     ):
+2026-11-13T12:19:55.6385774Z         values = [[2**53 + 1, -(2**53) - 3], [2**63 - 1, -(2**63)]]
+2026-11-13T12:19:55.6386414Z         array = np.array(values, dtype=">i8")
+2026-11-13T12:19:55.6386786Z >       actual = _load_array(handler_type(), array, route, tmp_path)
+2026-11-13T12:19:55.6387141Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6387352Z 
+2026-11-13T12:19:55.6387497Z tests/renderers/test_numpy_embedding_byteorder.py:65: 
+2026-11-13T12:19:55.6387871Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6388276Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6388730Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6388999Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6389291Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6389630Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6389877Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6390178Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6390407Z 
+2026-11-13T12:19:55.6390664Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfecf7a0>
+2026-11-13T12:19:55.6391559Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>i8', 'fortran_order': False, 'shape': (2, 2), }                                   ...00\x00\x00\x00\x00\x01\xff\xdf\xff\xff\xff\xff\xff\xfd\x7f\xff\xff\xff\xff\xff\xff\xff\x80\x00\x00\x00\x00\x00\x00\x00"
+2026-11-13T12:19:55.6392179Z 
+2026-11-13T12:19:55.6392324Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6392645Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6392947Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6393248Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6393875Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6394372Z 
+2026-11-13T12:19:55.6394504Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6394963Z _ test_numpy_embedding_metadata_preserves_large_integers[base64-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6395300Z 
+2026-11-13T12:19:55.6395522Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6395912Z route = 'base64'
+2026-11-13T12:19:55.6396577Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_2')
+2026-11-13T12:19:55.6396910Z 
+2026-11-13T12:19:55.6397167Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6397701Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6398116Z     def test_numpy_embedding_metadata_preserves_large_integers(
+2026-11-13T12:19:55.6398460Z         handler_type, route, tmp_path
+2026-11-13T12:19:55.6398723Z     ):
+2026-11-13T12:19:55.6398981Z         values = [[2**53 + 1, -(2**53) - 3], [2**63 - 1, -(2**63)]]
+2026-11-13T12:19:55.6399334Z         array = np.array(values, dtype=">i8")
+2026-11-13T12:19:55.6399686Z >       actual = _load_array(handler_type(), array, route, tmp_path)
+2026-11-13T12:19:55.6400041Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6400245Z 
+2026-11-13T12:19:55.6400396Z tests/renderers/test_numpy_embedding_byteorder.py:65: 
+2026-11-13T12:19:55.6400752Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6401163Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6401634Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6402045Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6402385Z vllm/multimodal/media/image.py:168: in load_base64
+2026-11-13T12:19:55.6402758Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6403246Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6403569Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6403872Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6404133Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6404426Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6404660Z 
+2026-11-13T12:19:55.6404912Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfecf380>
+2026-11-13T12:19:55.6405787Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>i8', 'fortran_order': False, 'shape': (2, 2), }                                   ...00\x00\x00\x00\x00\x01\xff\xdf\xff\xff\xff\xff\xff\xfd\x7f\xff\xff\xff\xff\xff\xff\xff\x80\x00\x00\x00\x00\x00\x00\x00"
+2026-11-13T12:19:55.6406591Z 
+2026-11-13T12:19:55.6406733Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6407056Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6407357Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6407666Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6408257Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6408766Z 
+2026-11-13T12:19:55.6408893Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6409342Z _ test_numpy_embedding_metadata_preserves_large_integers[base64-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6409687Z 
+2026-11-13T12:19:55.6409913Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6410300Z route = 'base64'
+2026-11-13T12:19:55.6410659Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_3')
+2026-11-13T12:19:55.6410985Z 
+2026-11-13T12:19:55.6411245Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6411754Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6412173Z     def test_numpy_embedding_metadata_preserves_large_integers(
+2026-11-13T12:19:55.6412516Z         handler_type, route, tmp_path
+2026-11-13T12:19:55.6412766Z     ):
+2026-11-13T12:19:55.6413020Z         values = [[2**53 + 1, -(2**53) - 3], [2**63 - 1, -(2**63)]]
+2026-11-13T12:19:55.6413351Z         array = np.array(values, dtype=">i8")
+2026-11-13T12:19:55.6413709Z >       actual = _load_array(handler_type(), array, route, tmp_path)
+2026-11-13T12:19:55.6414065Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6414274Z 
+2026-11-13T12:19:55.6414416Z tests/renderers/test_numpy_embedding_byteorder.py:65: 
+2026-11-13T12:19:55.6414786Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6415188Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6415662Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6416152Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6416614Z vllm/multimodal/media/video.py:263: in load_base64
+2026-11-13T12:19:55.6417008Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6417378Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6417715Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6418019Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6418275Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6418581Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6418812Z 
+2026-11-13T12:19:55.6419060Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfecd9a0>
+2026-11-13T12:19:55.6420057Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>i8', 'fortran_order': False, 'shape': (2, 2), }                                   ...00\x00\x00\x00\x00\x01\xff\xdf\xff\xff\xff\xff\xff\xfd\x7f\xff\xff\xff\xff\xff\xff\xff\x80\x00\x00\x00\x00\x00\x00\x00"
+2026-11-13T12:19:55.6420713Z 
+2026-11-13T12:19:55.6420847Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6421165Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6421462Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6421759Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6422361Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6422931Z 
+2026-11-13T12:19:55.6423053Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6423496Z _ test_numpy_embedding_metadata_preserves_large_integers[file-ImageEmbeddingMediaIO] _
+2026-11-13T12:19:55.6423831Z 
+2026-11-13T12:19:55.6424055Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6424449Z route = 'file'
+2026-11-13T12:19:55.6424804Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_4')
+2026-11-13T12:19:55.6425131Z 
+2026-11-13T12:19:55.6425388Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6425914Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6426437Z     def test_numpy_embedding_metadata_preserves_large_integers(
+2026-11-13T12:19:55.6426787Z         handler_type, route, tmp_path
+2026-11-13T12:19:55.6427039Z     ):
+2026-11-13T12:19:55.6427287Z         values = [[2**53 + 1, -(2**53) - 3], [2**63 - 1, -(2**63)]]
+2026-11-13T12:19:55.6427627Z         array = np.array(values, dtype=">i8")
+2026-11-13T12:19:55.6427982Z >       actual = _load_array(handler_type(), array, route, tmp_path)
+2026-11-13T12:19:55.6428352Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6428550Z 
+2026-11-13T12:19:55.6428708Z tests/renderers/test_numpy_embedding_byteorder.py:65: 
+2026-11-13T12:19:55.6429079Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6429494Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6429858Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6430153Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6430448Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6430682Z 
+2026-11-13T12:19:55.6430926Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfecf200>
+2026-11-13T12:19:55.6431569Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_4/embeddings.npy')
+2026-11-13T12:19:55.6431953Z 
+2026-11-13T12:19:55.6432094Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6432425Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6432720Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6433037Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6434046Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6434817Z 
+2026-11-13T12:19:55.6434983Z vllm/multimodal/media/image.py:172: ValueError
+2026-11-13T12:19:55.6435558Z _ test_numpy_embedding_metadata_preserves_large_integers[file-VideoEmbeddingMediaIO] _
+2026-11-13T12:19:55.6435921Z 
+2026-11-13T12:19:55.6436436Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6436879Z route = 'file'
+2026-11-13T12:19:55.6437256Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_5')
+2026-11-13T12:19:55.6437595Z 
+2026-11-13T12:19:55.6437869Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6438399Z     @pytest.mark.parametrize("route", ["bytes", "base64", "file"])
+2026-11-13T12:19:55.6439121Z     def test_numpy_embedding_metadata_preserves_large_integers(
+2026-11-13T12:19:55.6439501Z         handler_type, route, tmp_path
+2026-11-13T12:19:55.6439767Z     ):
+2026-11-13T12:19:55.6440044Z         values = [[2**53 + 1, -(2**53) - 3], [2**63 - 1, -(2**63)]]
+2026-11-13T12:19:55.6440386Z         array = np.array(values, dtype=">i8")
+2026-11-13T12:19:55.6440748Z >       actual = _load_array(handler_type(), array, route, tmp_path)
+2026-11-13T12:19:55.6441114Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6441389Z 
+2026-11-13T12:19:55.6441548Z tests/renderers/test_numpy_embedding_byteorder.py:65: 
+2026-11-13T12:19:55.6441937Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6442366Z tests/renderers/test_numpy_embedding_byteorder.py:26: in _load_array
+2026-11-13T12:19:55.6442735Z     result = handler.load_file(path)
+2026-11-13T12:19:55.6443006Z              ^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6443313Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6443555Z 
+2026-11-13T12:19:55.6443816Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfd785f0>
+2026-11-13T12:19:55.6444467Z filepath = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_metadata_5/embeddings.npy')
+2026-11-13T12:19:55.6444904Z 
+2026-11-13T12:19:55.6445054Z     def load_file(self, filepath: Path) -> torch.Tensor:
+2026-11-13T12:19:55.6445410Z         if filepath.suffix == ".npy":
+2026-11-13T12:19:55.6445730Z >           return torch.from_numpy(np.load(filepath))
+2026-11-13T12:19:55.6446180Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6446806Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6447329Z 
+2026-11-13T12:19:55.6447466Z vllm/multimodal/media/video.py:267: ValueError
+2026-11-13T12:19:55.6447897Z __________ test_numpy_embedding_empty_shape[>-ImageEmbeddingMediaIO] ___________
+2026-11-13T12:19:55.6448217Z 
+2026-11-13T12:19:55.6448442Z handler_type = <class 'vllm.multimodal.media.image.ImageEmbeddingMediaIO'>
+2026-11-13T12:19:55.6448864Z byteorder = '>'
+2026-11-13T12:19:55.6449226Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_empty_sha2')
+2026-11-13T12:19:55.6449567Z 
+2026-11-13T12:19:55.6449843Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6450345Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6450766Z     def test_numpy_embedding_empty_shape(handler_type, byteorder, tmp_path):
+2026-11-13T12:19:55.6451255Z         array = np.empty((2, 0, 4), dtype=np.dtype("f4").newbyteorder(byteorder))
+2026-11-13T12:19:55.6451695Z >       actual = _load_array(handler_type(), array, "bytes", tmp_path)
+2026-11-13T12:19:55.6452066Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6452275Z 
+2026-11-13T12:19:55.6452427Z tests/renderers/test_numpy_embedding_byteorder.py:74: 
+2026-11-13T12:19:55.6452791Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6453201Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6453581Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6453864Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6454162Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6454488Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6454744Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6455031Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6455269Z 
+2026-11-13T12:19:55.6455531Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dfd79520>
+2026-11-13T12:19:55.6456614Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f4', 'fortran_order': False, 'shape': (2, 0, 4), }                                                       \n"
+2026-11-13T12:19:55.6457059Z 
+2026-11-13T12:19:55.6457206Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6457542Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6457855Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6458179Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6458797Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6459376Z 
+2026-11-13T12:19:55.6459509Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6459939Z __________ test_numpy_embedding_empty_shape[>-VideoEmbeddingMediaIO] ___________
+2026-11-13T12:19:55.6460243Z 
+2026-11-13T12:19:55.6460472Z handler_type = <class 'vllm.multimodal.media.video.VideoEmbeddingMediaIO'>
+2026-11-13T12:19:55.6460872Z byteorder = '>'
+2026-11-13T12:19:55.6461236Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_embedding_empty_sha3')
+2026-11-13T12:19:55.6461567Z 
+2026-11-13T12:19:55.6461840Z     @pytest.mark.parametrize("handler_type", [ImageEmbeddingMediaIO, VideoEmbeddingMediaIO])
+2026-11-13T12:19:55.6462333Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6462756Z     def test_numpy_embedding_empty_shape(handler_type, byteorder, tmp_path):
+2026-11-13T12:19:55.6463222Z         array = np.empty((2, 0, 4), dtype=np.dtype("f4").newbyteorder(byteorder))
+2026-11-13T12:19:55.6463669Z >       actual = _load_array(handler_type(), array, "bytes", tmp_path)
+2026-11-13T12:19:55.6464045Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6464254Z 
+2026-11-13T12:19:55.6464400Z tests/renderers/test_numpy_embedding_byteorder.py:74: 
+2026-11-13T12:19:55.6464779Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6465200Z tests/renderers/test_numpy_embedding_byteorder.py:20: in _load_array
+2026-11-13T12:19:55.6465589Z     result = handler.load_bytes(payload)
+2026-11-13T12:19:55.6465861Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6466247Z vllm/multimodal/media/video.py:258: in load_bytes
+2026-11-13T12:19:55.6466570Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6466820Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6467117Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6467353Z 
+2026-11-13T12:19:55.6467614Z self = <vllm.multimodal.media.video.VideoEmbeddingMediaIO object at 0x7fc9dfd791c0>
+2026-11-13T12:19:55.6468297Z data = b"\x93NUMPY\x01\x00v\x00{'descr': '>f4', 'fortran_order': False, 'shape': (2, 0, 4), }                                                       \n"
+2026-11-13T12:19:55.6468730Z 
+2026-11-13T12:19:55.6468874Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6469187Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6469498Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6469808Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6470404Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6470905Z 
+2026-11-13T12:19:55.6471034Z vllm/multimodal/media/video.py:254: ValueError
+2026-11-13T12:19:55.6471441Z __________ test_numpy_image_embedding_is_consumed_by_native_llava[>] ___________
+2026-11-13T12:19:55.6471749Z 
+2026-11-13T12:19:55.6471984Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_numpy_image_embedding_is_1')
+2026-11-13T12:19:55.6472496Z vllm_runner = <class 'tests.conftest.VllmRunner'>, byteorder = '>'
+2026-11-13T12:19:55.6472766Z 
+2026-11-13T12:19:55.6472909Z     @pytest.mark.parametrize("byteorder", ["=", ">"])
+2026-11-13T12:19:55.6473278Z     def test_numpy_image_embedding_is_consumed_by_native_llava(
+2026-11-13T12:19:55.6473720Z         tmp_path, vllm_runner, byteorder
+2026-11-13T12:19:55.6474002Z     ):
+2026-11-13T12:19:55.6474258Z         from safetensors.torch import load_file, save_file
+2026-11-13T12:19:55.6474618Z         from tokenizers import AddedToken, Tokenizer
+2026-11-13T12:19:55.6474939Z         from tokenizers.models import WordLevel
+2026-11-13T12:19:55.6475279Z         from tokenizers.pre_tokenizers import Whitespace
+2026-11-13T12:19:55.6475610Z         from transformers import (
+2026-11-13T12:19:55.6475885Z             CLIPImageProcessor,
+2026-11-13T12:19:55.6476433Z             CLIPVisionConfig,
+2026-11-13T12:19:55.6476687Z             LlamaConfig,
+2026-11-13T12:19:55.6476916Z             LlavaConfig,
+2026-11-13T12:19:55.6477178Z             LlavaForConditionalGeneration,
+2026-11-13T12:19:55.6477464Z             LlavaProcessor,
+2026-11-13T12:19:55.6477711Z             TokenizersBackend,
+2026-11-13T12:19:55.6477960Z         )
+2026-11-13T12:19:55.6478140Z     
+2026-11-13T12:19:55.6478348Z         from vllm import SamplingParams
+2026-11-13T12:19:55.6478618Z     
+2026-11-13T12:19:55.6478812Z         text_config = LlamaConfig(
+2026-11-13T12:19:55.6479080Z             vocab_size=32,
+2026-11-13T12:19:55.6479309Z             hidden_size=64,
+2026-11-13T12:19:55.6479547Z             intermediate_size=128,
+2026-11-13T12:19:55.6479807Z             num_hidden_layers=1,
+2026-11-13T12:19:55.6480053Z             num_attention_heads=2,
+2026-11-13T12:19:55.6480297Z             num_key_value_heads=2,
+2026-11-13T12:19:55.6480404Z             max_position_embeddings=128,
+2026-11-13T12:19:55.6480500Z             bos_token_id=1,
+2026-11-13T12:19:55.6480587Z             eos_token_id=2,
+2026-11-13T12:19:55.6480672Z             pad_token_id=0,
+2026-11-13T12:19:55.6480753Z         )
+2026-11-13T12:19:55.6480862Z         vision_config = CLIPVisionConfig(
+2026-11-13T12:19:55.6480945Z             hidden_size=32,
+2026-11-13T12:19:55.6481042Z             intermediate_size=64,
+2026-11-13T12:19:55.6481135Z             num_hidden_layers=1,
+2026-11-13T12:19:55.6481234Z             num_attention_heads=1,
+2026-11-13T12:19:55.6481323Z             image_size=32,
+2026-11-13T12:19:55.6481412Z             patch_size=16,
+2026-11-13T12:19:55.6481489Z         )
+2026-11-13T12:19:55.6481579Z         config = LlavaConfig(
+2026-11-13T12:19:55.6481682Z             text_config=text_config,
+2026-11-13T12:19:55.6481791Z             vision_config=vision_config,
+2026-11-13T12:19:55.6481880Z             image_token_index=31,
+2026-11-13T12:19:55.6481973Z             image_seq_length=4,
+2026-11-13T12:19:55.6482054Z         )
+2026-11-13T12:19:55.6482150Z         model_path = tmp_path / "model"
+2026-11-13T12:19:55.6482274Z         with torch.random.fork_rng(devices=[]):
+2026-11-13T12:19:55.6482374Z             torch.manual_seed(79)
+2026-11-13T12:19:55.6482604Z             LlavaForConditionalGeneration(config).eval().save_pretrained(model_path)
+2026-11-13T12:19:55.6482678Z     
+2026-11-13T12:19:55.6482891Z         # Keep the saved fixture in the CLIP wrapper format accepted by this model.
+2026-11-13T12:19:55.6483030Z         checkpoint = model_path / "model.safetensors"
+2026-11-13T12:19:55.6483110Z         state = {}
+2026-11-13T12:19:55.6483256Z         for name, tensor in load_file(checkpoint).items():
+2026-11-13T12:19:55.6483414Z             for prefix in ("model.vision_tower.", "vision_tower."):
+2026-11-13T12:19:55.6483574Z                 if name.startswith(prefix) and not name.startswith(
+2026-11-13T12:19:55.6483678Z                     prefix + "vision_model."
+2026-11-13T12:19:55.6483762Z                 ):
+2026-11-13T12:19:55.6483924Z                     name = prefix + "vision_model." + name[len(prefix) :]
+2026-11-13T12:19:55.6484008Z                     break
+2026-11-13T12:19:55.6484105Z             state[name] = tensor
+2026-11-13T12:19:55.6484270Z         save_file(state, checkpoint, metadata={"format": "pt"})
+2026-11-13T12:19:55.6484363Z         vocabulary = {
+2026-11-13T12:19:55.6484449Z             "[PAD]": 0,
+2026-11-13T12:19:55.6484535Z             "[BOS]": 1,
+2026-11-13T12:19:55.6484738Z             "[EOS]": 2,
+2026-11-13T12:19:55.6484822Z             "[UNK]": 3,
+2026-11-13T12:19:55.6484918Z             "alpha": 4,
+2026-11-13T12:19:55.6485005Z             "beta": 5,
+2026-11-13T12:19:55.6485105Z             "<image>": 31,
+2026-11-13T12:19:55.6485181Z         }
+2026-11-13T12:19:55.6485354Z         vocabulary.update({f"unused{i}": i for i in range(6, 31)})
+2026-11-13T12:19:55.6485532Z         backend = Tokenizer(WordLevel(vocabulary, unk_token="[UNK]"))
+2026-11-13T12:19:55.6485644Z         backend.pre_tokenizer = Whitespace()
+2026-11-13T12:19:55.6485823Z         tokenizer = TokenizersBackend(
+2026-11-13T12:19:55.6485927Z             tokenizer_object=backend,
+2026-11-13T12:19:55.6486128Z             unk_token="[UNK]",
+2026-11-13T12:19:55.6486230Z             pad_token="[PAD]",
+2026-11-13T12:19:55.6486324Z             bos_token="[BOS]",
+2026-11-13T12:19:55.6486416Z             eos_token="[EOS]",
+2026-11-13T12:19:55.6486605Z             additional_special_tokens=[AddedToken("<image>", special=True)],
+2026-11-13T12:19:55.6486692Z         )
+2026-11-13T12:19:55.6486804Z         processor = LlavaProcessor(
+2026-11-13T12:19:55.6486942Z             image_processor=CLIPImageProcessor(
+2026-11-13T12:19:55.6487057Z                 size={"shortest_edge": 32},
+2026-11-13T12:19:55.6487189Z                 crop_size={"height": 32, "width": 32},
+2026-11-13T12:19:55.6487279Z             ),
+2026-11-13T12:19:55.6487374Z             tokenizer=tokenizer,
+2026-11-13T12:19:55.6487472Z             patch_size=16,
+2026-11-13T12:19:55.6487583Z             num_additional_image_tokens=1,
+2026-11-13T12:19:55.6487705Z             vision_feature_select_strategy="default",
+2026-11-13T12:19:55.6487787Z         )
+2026-11-13T12:19:55.6487903Z         processor.save_pretrained(model_path)
+2026-11-13T12:19:55.6487976Z     
+2026-11-13T12:19:55.6488062Z         values = (
+2026-11-13T12:19:55.6488188Z             np.linspace(-0.5, 0.5, 256)
+2026-11-13T12:19:55.6488281Z             .reshape(4, 64)
+2026-11-13T12:19:55.6488421Z             .astype(np.dtype("f4").newbyteorder(byteorder))
+2026-11-13T12:19:55.6488499Z         )
+2026-11-13T12:19:55.6488710Z >       loaded = _load_array(ImageEmbeddingMediaIO(), values, "base64", tmp_path)
+2026-11-13T12:19:55.6488832Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6488845Z 
+2026-11-13T12:19:55.6488988Z tests/renderers/test_numpy_embedding_byteorder.py:187: 
+2026-11-13T12:19:55.6489129Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6489328Z tests/renderers/test_numpy_embedding_byteorder.py:22: in _load_array
+2026-11-13T12:19:55.6489530Z     result = handler.load_base64("", pybase64.b64encode(payload).decode("ascii"))
+2026-11-13T12:19:55.6489657Z              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6489788Z vllm/multimodal/media/image.py:168: in load_base64
+2026-11-13T12:19:55.6489968Z     return self.load_bytes(pybase64.b64decode(data, validate=True))
+2026-11-13T12:19:55.6490077Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6490210Z vllm/multimodal/media/image.py:163: in load_bytes
+2026-11-13T12:19:55.6490315Z     return self._load_numpy(data)
+2026-11-13T12:19:55.6490398Z            ^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6490544Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-11-13T12:19:55.6490550Z 
+2026-11-13T12:19:55.6490803Z self = <vllm.multimodal.media.image.ImageEmbeddingMediaIO object at 0x7fc9dcd30830>
+2026-11-13T12:19:55.6491376Z data = b'\x93NUMPY\x01\x00v\x00{\'descr\': \'>f4\', \'fortran_order\': False, \'shape\': (4, 64), }                          ...e>\xef\xef\xf0>\xf1\xf1\xf2>\xf3\xf3\xf4>\xf5\xf5\xf6>\xf7\xf7\xf8>\xf9\xf9\xfa>\xfb\xfb\xfc>\xfd\xfd\xfe?\x00\x00\x00'
+2026-11-13T12:19:55.6491382Z 
+2026-11-13T12:19:55.6491520Z     def _load_numpy(self, data: bytes) -> torch.Tensor:
+2026-11-13T12:19:55.6491624Z         with BytesIO(data) as buffer:
+2026-11-13T12:19:55.6491816Z >           return torch.from_numpy(np.load(buffer))
+2026-11-13T12:19:55.6491920Z                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-11-13T12:19:55.6492342Z E           ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6492348Z 
+2026-11-13T12:19:55.6492476Z vllm/multimodal/media/image.py:159: ValueError
+2026-11-13T12:19:55.6492664Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T12:19:55.6492729Z 
+2026-11-13T12:19:55.6492884Z Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+2026-11-13T12:19:55.6493357Z Writing model shards: 100%|██████████| 1/1 [00:00<00:00, 705.04it/s]
+2026-11-13T12:19:55.6493508Z =============================== warnings summary ===============================
+2026-11-13T12:19:55.6493603Z vllm/__init__.py:7
+2026-11-13T12:19:55.6493880Z   /home/runner/work/vllm/vllm/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+2026-11-13T12:19:55.6493976Z   No module named 'vllm._version'
+2026-11-13T12:19:55.6494161Z     from .version import __version__, __version_tuple__  # isort:skip
+2026-11-13T12:19:55.6494166Z 
+2026-11-13T12:19:55.6494393Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-13T12:19:55.6494540Z =========================== short test summary info ============================
+2026-11-13T12:19:55.6495455Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f2-bytes-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6496585Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f2-bytes-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6497464Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f2-base64-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6498318Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f2-base64-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6499176Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f2-file-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6500015Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f2-file-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6500860Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f4-bytes-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6501717Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f4-bytes-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6502679Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f4-base64-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6503527Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f4-base64-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6504414Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f4-file-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6505305Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f4-file-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6506236Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f8-bytes-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6507091Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f8-bytes-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6507950Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f8-base64-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6508807Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f8-base64-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6509644Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f8-file-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6510493Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_values_preserve_byteorder[>-f8-file-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6511357Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_metadata_preserves_large_integers[bytes-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6512216Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_metadata_preserves_large_integers[bytes-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6513076Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_metadata_preserves_large_integers[base64-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6514008Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_metadata_preserves_large_integers[base64-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6514863Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_metadata_preserves_large_integers[file-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6515708Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_metadata_preserves_large_integers[file-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6516693Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_empty_shape[>-ImageEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6517467Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_embedding_empty_shape[>-VideoEmbeddingMediaIO] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6518229Z FAILED tests/renderers/test_numpy_embedding_byteorder.py::test_numpy_image_embedding_is_consumed_by_native_llava[>] - ValueError: given numpy array has byte order different from the native byte order. Conversion between byte orders is currently not supported.
+2026-11-13T12:19:55.6518368Z 27 failed, 23 passed, 1 warning in 88.34s (0:01:28)
+2026-11-13T12:19:55.6518384Z 
+2026-11-13T12:19:55.6518651Z numpy_mm_before {"returncode": 1, "tests": 50, "failures": 27, "errors": 0, "skipped": 0, "passed": 23}
+2026-11-13T12:21:49.0579427Z /home/runner/work/vllm/vllm/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:306: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+2026-11-13T12:21:49.0584194Z The event loop scope for asynchronous fixtures will default to the fixture scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session". Set it to "fixture-scope" to keep the current behavior.
+2026-11-13T12:21:49.0587834Z 
+2026-11-13T12:21:49.0588400Z   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+2026-11-13T12:21:49.0589521Z ..................................................                       [100%]
+2026-11-13T12:21:49.0590268Z =============================== warnings summary ===============================
+2026-11-13T12:21:49.0590890Z vllm/__init__.py:7
+2026-11-13T12:21:49.0591627Z   /home/runner/work/vllm/vllm/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+2026-11-13T12:21:49.0592532Z   No module named 'vllm._version'
+2026-11-13T12:21:49.0593304Z     from .version import __version__, __version_tuple__  # isort:skip
+2026-11-13T12:21:49.0593900Z 
+2026-11-13T12:21:49.0594371Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-13T12:21:49.0595215Z 50 passed, 1 warning in 95.15s (0:01:35)
+2026-11-13T12:21:49.0595544Z 
+2026-11-13T12:21:49.0595983Z numpy_mm_after {"returncode": 0, "tests": 50, "failures": 0, "errors": 0, "skipped": 0, "passed": 50}
+2026-11-13T12:22:15.8881794Z /home/runner/work/vllm/vllm/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:306: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+2026-11-13T12:22:15.8885163Z The event loop scope for asynchronous fixtures will default to the fixture scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session". Set it to "fixture-scope" to keep the current behavior.
+2026-11-13T12:22:15.8887861Z 
+2026-11-13T12:22:15.8888108Z   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+2026-11-13T12:22:15.8888845Z ...............................                                          [100%]
+2026-11-13T12:22:15.8889297Z =============================== warnings summary ===============================
+2026-11-13T12:22:15.8889821Z vllm/__init__.py:7
+2026-11-13T12:22:15.8890218Z   /home/runner/work/vllm/vllm/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+2026-11-13T12:22:15.8890683Z   No module named 'vllm._version'
+2026-11-13T12:22:15.8891033Z     from .version import __version__, __version_tuple__  # isort:skip
+2026-11-13T12:22:15.8891301Z 
+2026-11-13T12:22:15.8891560Z tests/utils_/test_serial_utils.py::test_encode_and_decode_floats[float32-native]
+2026-11-13T12:22:15.8893373Z   /home/runner/work/vllm/vllm/vllm/utils/serial_utils.py:122: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+2026-11-13T12:22:15.8895110Z     return torch.from_numpy(np_array).view(dtype_info.torch_dtype)
+2026-11-13T12:22:15.8895362Z 
+2026-11-13T12:22:15.8895528Z tests/utils_/test_serial_utils.py: 15 warnings
+2026-11-13T12:22:15.8896747Z   /home/runner/work/vllm/vllm/tests/models/utils.py:407: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+2026-11-13T12:22:15.8897765Z     torch.tensor(embeddings_0), torch.tensor(embeddings_1), dim=0
+2026-11-13T12:22:15.8898030Z 
+2026-11-13T12:22:15.8898256Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-13T12:22:15.8898696Z 31 passed, 39 deselected, 17 warnings in 8.25s
+2026-11-13T12:22:15.8898893Z 
+2026-11-13T12:22:15.8899189Z numpy_mm_existing {"returncode": 0, "tests": 31, "failures": 0, "errors": 0, "skipped": 0, "passed": 31}
+2026-11-13T12:22:15.9011334Z ##[group]Run lscpu
+2026-11-13T12:22:15.9011606Z [36;1mlscpu[0m
+2026-11-13T12:22:15.9011833Z [36;1mfree -m[0m
+2026-11-13T12:22:15.9012210Z [36;1mif [ -r /sys/fs/cgroup/memory.events ]; then cat /sys/fs/cgroup/memory.events; fi[0m
+2026-11-13T12:22:15.9026236Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:22:15.9026547Z env:
+2026-11-13T12:22:15.9026759Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:22:15.9027020Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:22:15.9027275Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:22:15.9027550Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:22:15.9027828Z   OMP_NUM_THREADS: 2
+2026-11-13T12:22:15.9028064Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:22:15.9028394Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9028826Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:22:15.9029252Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9029706Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9030095Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9030494Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:22:15.9030876Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:22:15.9031181Z ##[endgroup]
+2026-11-13T12:22:15.9091232Z Architecture:                            x86_64
+2026-11-13T12:22:15.9091798Z CPU op-mode(s):                          32-bit, 64-bit
+2026-11-13T12:22:15.9092228Z Address sizes:                           46 bits physical, 57 bits virtual
+2026-11-13T12:22:15.9092646Z Byte Order:                              Little Endian
+2026-11-13T12:22:15.9092959Z CPU(s):                                  4
+2026-11-13T12:22:15.9093247Z On-line CPU(s) list:                     0-3
+2026-11-13T12:22:15.9093574Z Vendor ID:                               GenuineIntel
+2026-11-13T12:22:15.9093982Z Model name:                              Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz
+2026-11-13T12:22:15.9094352Z CPU family:                              6
+2026-11-13T12:22:15.9094927Z Model:                                   106
+2026-11-13T12:22:15.9095215Z Thread(s) per core:                      2
+2026-11-13T12:22:15.9095500Z Core(s) per socket:                      2
+2026-11-13T12:22:15.9095788Z Socket(s):                               1
+2026-11-13T12:22:15.9096281Z Stepping:                                6
+2026-11-13T12:22:15.9096693Z CPU(s) scaling MHz:                      123%
+2026-11-13T12:22:15.9096995Z CPU max MHz:                             2800.0000
+2026-11-13T12:22:15.9097312Z CPU min MHz:                             800.0000
+2026-11-13T12:22:15.9097625Z BogoMIPS:                                5586.87
+2026-11-13T12:22:15.9100095Z Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch tpr_shadow ept vpid ept_ad fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves vnmi avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid fsrm arch_capabilities
+2026-11-13T12:22:15.9102558Z Virtualization:                          VT-x
+2026-11-13T12:22:15.9102885Z Hypervisor vendor:                       Microsoft
+2026-11-13T12:22:15.9103196Z Virtualization type:                     full
+2026-11-13T12:22:15.9103535Z L1d cache:                               96 KiB (2 instances)
+2026-11-13T12:22:15.9103903Z L1i cache:                               64 KiB (2 instances)
+2026-11-13T12:22:15.9104494Z L2 cache:                                2.5 MiB (2 instances)
+2026-11-13T12:22:15.9104883Z L3 cache:                                48 MiB (1 instance)
+2026-11-13T12:22:15.9105208Z NUMA node(s):                            1
+2026-11-13T12:22:15.9105511Z NUMA node0 CPU(s):                       0-3
+2026-11-13T12:22:15.9105841Z Vulnerability Gather data sampling:      Not affected
+2026-11-13T12:22:15.9106411Z Vulnerability Ghostwrite:                Not affected
+2026-11-13T12:22:15.9106873Z Vulnerability Indirect target selection: Mitigation; Aligned branch/return thunks
+2026-11-13T12:22:15.9107330Z Vulnerability Itlb multihit:             Not affected
+2026-11-13T12:22:15.9107678Z Vulnerability L1tf:                      Not affected
+2026-11-13T12:22:15.9108034Z Vulnerability Mds:                       Not affected
+2026-11-13T12:22:15.9108372Z Vulnerability Meltdown:                  Not affected
+2026-11-13T12:22:15.9109094Z Vulnerability Mmio stale data:           Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+2026-11-13T12:22:15.9110010Z Vulnerability Old microcode:             Not affected
+2026-11-13T12:22:15.9110431Z Vulnerability Reg file data sampling:    Not affected
+2026-11-13T12:22:15.9110765Z Vulnerability Retbleed:                  Vulnerable
+2026-11-13T12:22:15.9111099Z Vulnerability Spec rstack overflow:      Not affected
+2026-11-13T12:22:15.9111440Z Vulnerability Spec store bypass:         Vulnerable
+2026-11-13T12:22:15.9111928Z Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+2026-11-13T12:22:15.9112783Z Vulnerability Spectre v2:                Mitigation; Retpolines; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Retpoline
+2026-11-13T12:22:15.9113985Z Vulnerability Srbds:                     Not affected
+2026-11-13T12:22:15.9114577Z Vulnerability Tsa:                       Not affected
+2026-11-13T12:22:15.9114980Z Vulnerability Tsx async abort:           Not affected
+2026-11-13T12:22:15.9115328Z Vulnerability Vmscape:                   Not affected
+2026-11-13T12:22:15.9115746Z                total        used        free      shared  buff/cache   available
+2026-11-13T12:22:15.9116578Z Mem:           15982        1011       10041          49        5325       14971
+2026-11-13T12:22:15.9116934Z Swap:           3071           0        3071
+2026-11-13T12:22:15.9176909Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T12:22:15.9177219Z with:
+2026-11-13T12:22:15.9177481Z   name: native-numpy-mm-checkpoint-9199802eb3
+2026-11-13T12:22:15.9178173Z   path: numpy_mm_before.log
+numpy_mm_before.xml
+numpy_mm_after.log
+numpy_mm_after.xml
+numpy_mm_existing.log
+numpy_mm_existing.xml
+numpy_mm_validation_result.json
+
+2026-11-13T12:22:15.9178828Z   if-no-files-found: warn
+2026-11-13T12:22:15.9179080Z   compression-level: 6
+2026-11-13T12:22:15.9179310Z   overwrite: false
+2026-11-13T12:22:15.9179543Z   include-hidden-files: false
+2026-11-13T12:22:15.9179788Z env:
+2026-11-13T12:22:15.9179998Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T12:22:15.9180248Z   PYTHONFAULTHANDLER: 1
+2026-11-13T12:22:15.9180487Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T12:22:15.9180780Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T12:22:15.9181045Z   OMP_NUM_THREADS: 2
+2026-11-13T12:22:15.9181276Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T12:22:15.9181644Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9182063Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:22:15.9182486Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9182875Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9183248Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:15.9183642Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:22:15.9184017Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:22:15.9184320Z ##[endgroup]
+2026-11-13T12:22:16.0931834Z (node:3371) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:22:16.0933100Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:22:16.1157444Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-13T12:22:16.1239671Z The least common ancestor is /home/runner/work/vllm/vllm. This will be the root directory of the artifact
+2026-11-13T12:22:16.1240813Z With the provided path, there will be 7 files uploaded
+2026-11-13T12:22:16.1241987Z Artifact name is valid!
+2026-11-13T12:22:16.1242587Z Root directory input is valid!
+2026-11-13T12:22:16.3666847Z Beginning upload of artifact content to blob storage
+2026-11-13T12:22:16.4003987Z (node:3371) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T12:22:16.4880153Z Uploaded bytes 12987
+2026-11-13T12:22:16.5164125Z Finished uploading artifact content to blob storage!
+2026-11-13T12:22:16.5165030Z SHA256 digest of uploaded artifact zip is ea280290f069b8131ace8fda38b2955e6703fcd48e1ed3e455271c1ea30b3210
+2026-11-13T12:22:16.5168077Z Finalizing artifact upload
+2026-11-13T12:22:16.8892360Z Artifact native-numpy-mm-checkpoint-9199802eb3.zip successfully finalized. Artifact ID 14035213663
+2026-11-13T12:22:16.8893447Z Artifact native-numpy-mm-checkpoint-9199802eb3 has been successfully uploaded! Final size is 12987 bytes. Artifact ID is 14035213663
+2026-11-13T12:22:16.8900173Z Artifact download URL: https://github.com/Afloat16/vllm/actions/runs/43423892421/artifacts/14035213663
+2026-11-13T12:22:16.9110868Z Post job cleanup.
+2026-11-13T12:22:17.0452514Z Cache hit occurred on key setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9, not saving cache.
+2026-11-13T12:22:17.0455697Z (node:3383) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:22:17.0457898Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:22:17.0560015Z Post job cleanup.
+2026-11-13T12:22:17.1875961Z (node:3391) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:22:17.1877365Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:22:17.2074242Z Post job cleanup.
+2026-11-13T12:22:17.3183222Z [command]/usr/bin/git version
+2026-11-13T12:22:17.3238262Z git version 2.56.1
+2026-11-13T12:22:17.3286396Z Temporarily overriding HOME='/home/runner/work/_temp/d3615063-36d1-4db0-8e88-97353bb5a3c2' before making global git config changes
+2026-11-13T12:22:17.3287977Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T12:22:17.3293495Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vllm/vllm
+2026-11-13T12:22:17.3341832Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T12:22:17.3385778Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T12:22:17.3638535Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T12:22:17.3689302Z http.https://github.com/.extraheader
+2026-11-13T12:22:17.3700592Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T12:22:17.3746697Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T12:22:17.4028152Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T12:22:17.4076843Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T12:22:17.4486686Z Cleaning up orphan processes
+2026-11-13T12:22:17.4752290Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4, astral-sh/setup-uv@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

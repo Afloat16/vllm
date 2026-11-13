@@ -1,0 +1,49 @@
+{
+  "repository": "vllm-project/vllm",
+  "stars": 96867,
+  "title": "[Bugfix][Multimodal] Preserve values from non-native-endian NumPy embeddings",
+  "base": "main",
+  "base_commit": "191e5d5df2ec693d5536a635079d58864dfacebb",
+  "branch": "fix/numpy-multimodal-embedding-byteorder-20261113",
+  "commit": "e4ffb1f7a6e2f582cf62d567753b7a658ca86354",
+  "commit_url": "https://github.com/Afloat16/vllm/commit/e4ffb1f7a6e2f582cf62d567753b7a658ca86354",
+  "validated_head": "50abe3b5a09cd3e505762c92f2fceccf3ebdd38d",
+  "signed_head": "e4ffb1f7a6e2f582cf62d567753b7a658ca86354",
+  "validated_tree": "542a3a5d7d7675f1f129427aa781243ab5151645",
+  "signed_tree": "542a3a5d7d7675f1f129427aa781243ab5151645",
+  "tree_identity_verified": true,
+  "sign_off": "Afloat <ShuffleMonkey@163.com>",
+  "body": "## Overview\n\nAllow image and video embedding readers to consume NumPy `.npy` arrays whose byte order differs from the host, preserving their values and dtype.\n\n## Claims\n\n- Normalize a non-native NumPy dtype to native byte order before constructing a Torch tensor.\n- Use the same conversion for image/video bytes, base64, and file loading.\n- Keep the native-endian `torch.from_numpy` path and the existing `allow_pickle=False` behavior.\n\n## Validation\n\n- [Native CPU validation](https://github.com/Afloat16/vllm/actions/runs/43423892421): **27 failures / 23 passes on the original source**, then **50 passes with this change**.\n- **31 existing serialization and embedding tests pass.**\n- [Repository pre-commit hooks and Ruff](https://github.com/Afloat16/vllm/actions/runs/43423896475) pass.\n- Both native-endian and big-endian input arrays are tested through the real bytes, base64, and file readers. Floating-point values and large int64 metadata are compared with independent Python-value references.\n- Two saved tiny Llava cases run the actual public `LLM.generate` path. The directly constructed and decoded image embeddings produce matching token IDs and all 32 vocabulary log probabilities.\n\n```bash\npytest tests/renderers/test_numpy_embedding_byteorder.py\n```\n\n## Details\n\nA `.npy` file carries its dtype and byte order. `np.load` correctly reads a big-endian array, but passing that array directly to `torch.from_numpy` raises an unsupported-byte-order error on a little-endian host. Re-encoding with `astype(dtype.newbyteorder('='))` converts the numerical representation instead of merely relabeling the bytes.\n\nThe regression cases cover FP16/FP32/FP64, transposed/strided inputs, empty shapes, large int64 values, and object-array rejection. A saved tiny Llava model consumes an image embedding loaded through the real base64 handler and produces the same tokens and logprobs as the equivalent directly constructed tensor. Its test checkpoint uses the CLIP wrapper names supported by the native loader; the tensors and model execution are real.\n\nThe official C++ and Rust CPU runtime was built from base `191e5d5` and reused for this Python-only change. The tests run on CPU; they do not claim GPU coverage or a model-quality increase. Native-endian arrays keep the existing `torch.from_numpy` path. Foreign-endian arrays require one value-preserving conversion.\n\nThe signed commit has the identical Git tree as validated commit `50abe3b5a09cd3e505762c92f2fceccf3ebdd38d`; only commit history and the sign-off changed.\n",
+  "pr_created": true,
+  "pr_status": "open",
+  "pr_url": "https://github.com/vllm-project/vllm/pull/67479",
+  "pr_number": 67479,
+  "merged_at": null,
+  "counts_as_merged": false,
+  "counts_as_new_submitted": true,
+  "validation": {
+    "native_run": 43423892421,
+    "native_url": "https://github.com/Afloat16/vllm/actions/runs/43423892421",
+    "job_id": 131880347039,
+    "validation_head": "d0659a8c17549ec767a8e18172ad8138083b0982",
+    "status": "success",
+    "before": {
+      "failed": 27,
+      "passed": 23
+    },
+    "after": {
+      "passed": 50
+    },
+    "broader": {
+      "passed": 31
+    },
+    "native_build_run": 43408947521,
+    "native_build_status": "compile-and-cache-success; that original run's later model probe was separate and failed",
+    "style_run": 43423896475,
+    "style_status": "success",
+    "style_head": "5e35502cd732dc553321cee7897abb2c49eb1257",
+    "peer": "existing_prs",
+    "scope": "Real image/video embedding reader routes and two real saved tiny Llava LLM.generate comparisons on the official C++/Rust CPU runtime built from base191e5d5. No GPU coverage claim."
+  },
+  "observed_at": "2026-11-13T12:24:08Z"
+}

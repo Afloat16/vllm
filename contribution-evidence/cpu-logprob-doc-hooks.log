@@ -1,0 +1,369 @@
+﻿2026-11-13T12:20:18.9421662Z Current runner version: '2.338.2'
+2026-11-13T12:20:18.9450017Z ##[group]Runner Image Provisioner
+2026-11-13T12:20:18.9451334Z Hosted Compute Agent
+2026-11-13T12:20:18.9452269Z Version: 20261103.629
+2026-11-13T12:20:18.9453030Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-13T12:20:18.9453880Z Build Date: 2026-11-03T17:26:59Z
+2026-11-13T12:20:18.9454710Z Worker ID: {dbbd3a5e-6410-43cf-a3e5-bcb656ce44d3}
+2026-11-13T12:20:18.9455497Z Region: westcentralus
+2026-11-13T12:20:18.9456193Z Cloud: Azure
+2026-11-13T12:20:18.9456854Z ##[endgroup]
+2026-11-13T12:20:18.9458893Z ##[group]Operating System
+2026-11-13T12:20:18.9459629Z Ubuntu
+2026-11-13T12:20:18.9460225Z 24.04.5
+2026-11-13T12:20:18.9460840Z LTS
+2026-11-13T12:20:18.9461747Z ##[endgroup]
+2026-11-13T12:20:18.9462348Z ##[group]Runner Image
+2026-11-13T12:20:18.9463271Z Image: ubuntu-24.04
+2026-11-13T12:20:18.9463902Z Version: 20261111.370.1
+2026-11-13T12:20:18.9465377Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-13T12:20:18.9467093Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-13T12:20:18.9468163Z ##[endgroup]
+2026-11-13T12:20:18.9469323Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T12:20:18.9471770Z Contents: read
+2026-11-13T12:20:18.9472436Z Metadata: read
+2026-11-13T12:20:18.9473160Z ##[endgroup]
+2026-11-13T12:20:18.9475949Z Secret source: Actions
+2026-11-13T12:20:18.9477128Z Cache mode: write
+2026-11-13T12:20:18.9478084Z Prepare workflow directory
+2026-11-13T12:20:18.9881377Z Prepare all required actions
+2026-11-13T12:20:18.9930524Z Getting action download info
+2026-11-13T12:20:19.2980475Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T12:20:19.4836845Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-13T12:20:19.6452350Z Download action repository 'astral-sh/setup-uv@v6' (SHA:d0cc045d04ccac9d8b7881df0226f9e82c39688e)
+2026-11-13T12:20:20.3754073Z Complete job name: style
+2026-11-13T12:20:20.4724265Z ##[group]Run actions/checkout@v4
+2026-11-13T12:20:20.4725419Z with:
+2026-11-13T12:20:20.4725925Z   fetch-depth: 4
+2026-11-13T12:20:20.4726492Z   repository: Afloat16/vllm
+2026-11-13T12:20:20.4731308Z   token: ***
+2026-11-13T12:20:20.4731805Z   ssh-strict: true
+2026-11-13T12:20:20.4732308Z   ssh-user: git
+2026-11-13T12:20:20.4732811Z   persist-credentials: true
+2026-11-13T12:20:20.4733364Z   clean: true
+2026-11-13T12:20:20.4733868Z   sparse-checkout-cone-mode: true
+2026-11-13T12:20:20.4734459Z   fetch-tags: false
+2026-11-13T12:20:20.4734954Z   show-progress: true
+2026-11-13T12:20:20.4735454Z   lfs: false
+2026-11-13T12:20:20.4735933Z   submodules: false
+2026-11-13T12:20:20.4736460Z   set-safe-directory: true
+2026-11-13T12:20:20.4737023Z   allow-unsafe-pr-checkout: false
+2026-11-13T12:20:20.4737863Z ##[endgroup]
+2026-11-13T12:20:20.6884055Z Syncing repository: Afloat16/vllm
+2026-11-13T12:20:20.6886064Z ##[group]Getting Git version info
+2026-11-13T12:20:20.6886954Z Working directory is '/home/runner/work/vllm/vllm'
+2026-11-13T12:20:20.6888119Z [command]/usr/bin/git version
+2026-11-13T12:20:20.7177987Z git version 2.56.1
+2026-11-13T12:20:20.7198211Z ##[endgroup]
+2026-11-13T12:20:20.7215441Z Temporarily overriding HOME='/home/runner/work/_temp/f8311375-6d88-444f-95bd-664561ecd19c' before making global git config changes
+2026-11-13T12:20:20.7218094Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T12:20:20.7221742Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vllm/vllm
+2026-11-13T12:20:20.7273222Z Deleting the contents of '/home/runner/work/vllm/vllm'
+2026-11-13T12:20:20.7279311Z ##[group]Initializing the repository
+2026-11-13T12:20:20.7283906Z [command]/usr/bin/git init /home/runner/work/vllm/vllm
+2026-11-13T12:20:20.7383991Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T12:20:20.7386547Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T12:20:20.7388623Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T12:20:20.7389895Z hint: call:
+2026-11-13T12:20:20.7390813Z hint:
+2026-11-13T12:20:20.7392348Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T12:20:20.7393712Z hint:
+2026-11-13T12:20:20.7394637Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T12:20:20.7395904Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T12:20:20.7397207Z hint:
+2026-11-13T12:20:20.7397916Z hint: 	git branch -m <name>
+2026-11-13T12:20:20.7398737Z hint:
+2026-11-13T12:20:20.7399781Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T12:20:20.7401397Z Initialized empty Git repository in /home/runner/work/vllm/vllm/.git/
+2026-11-13T12:20:20.7405445Z [command]/usr/bin/git remote add origin https://github.com/Afloat16/vllm
+2026-11-13T12:20:20.7485403Z ##[endgroup]
+2026-11-13T12:20:20.7487298Z ##[group]Disabling automatic garbage collection
+2026-11-13T12:20:20.7488824Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T12:20:20.7519245Z ##[endgroup]
+2026-11-13T12:20:20.7520759Z ##[group]Setting up auth
+2026-11-13T12:20:20.7528095Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T12:20:20.7572122Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T12:20:20.7973591Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T12:20:20.8018803Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T12:20:20.8327955Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T12:20:20.8388635Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T12:20:20.8706659Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T12:20:20.8766940Z ##[endgroup]
+2026-11-13T12:20:20.8768295Z ##[group]Fetching the repository
+2026-11-13T12:20:20.8780013Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=4 origin +02c8016dde5af96c36aa98fe7b3fb584073cf066:refs/remotes/origin/validation/cpu-logprob-precision-style-20261113
+2026-11-13T12:20:27.5197808Z From https://github.com/Afloat16/vllm
+2026-11-13T12:20:27.5200174Z  * [new ref]         02c8016dde5af96c36aa98fe7b3fb584073cf066 -> origin/validation/cpu-logprob-precision-style-20261113
+2026-11-13T12:20:27.5205293Z ##[endgroup]
+2026-11-13T12:20:27.5206938Z ##[group]Determining the checkout info
+2026-11-13T12:20:27.5208671Z ##[endgroup]
+2026-11-13T12:20:27.5210556Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T12:20:27.5279673Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T12:20:27.5326942Z ##[group]Checking out the ref
+2026-11-13T12:20:27.5331501Z [command]/usr/bin/git checkout --progress --force -B validation/cpu-logprob-precision-style-20261113 refs/remotes/origin/validation/cpu-logprob-precision-style-20261113
+2026-11-13T12:20:28.4226106Z Switched to a new branch 'validation/cpu-logprob-precision-style-20261113'
+2026-11-13T12:20:28.4230191Z branch 'validation/cpu-logprob-precision-style-20261113' set up to track 'origin/validation/cpu-logprob-precision-style-20261113'.
+2026-11-13T12:20:28.4259054Z ##[endgroup]
+2026-11-13T12:20:28.4330568Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T12:20:28.4370220Z 02c8016dde5af96c36aa98fe7b3fb584073cf066
+2026-11-13T12:20:28.4786363Z ##[group]Run actions/setup-python@v5
+2026-11-13T12:20:28.4786988Z with:
+2026-11-13T12:20:28.4787202Z   python-version: 3.12
+2026-11-13T12:20:28.4787449Z   check-latest: false
+2026-11-13T12:20:28.4790180Z   token: ***
+2026-11-13T12:20:28.4790431Z   update-environment: true
+2026-11-13T12:20:28.4790697Z   allow-prereleases: false
+2026-11-13T12:20:28.4791115Z   freethreaded: false
+2026-11-13T12:20:28.4791351Z ##[endgroup]
+2026-11-13T12:20:28.6281488Z ##[group]Installed versions
+2026-11-13T12:20:28.7417599Z (node:2399) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:20:28.7418375Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:20:28.7419158Z Successfully set up CPython (3.12.16)
+2026-11-13T12:20:28.7419898Z ##[endgroup]
+2026-11-13T12:20:28.7685570Z ##[group]Run astral-sh/setup-uv@v6
+2026-11-13T12:20:28.7685912Z with:
+2026-11-13T12:20:28.7686170Z   activate-environment: false
+2026-11-13T12:20:28.7686474Z   working-directory: /home/runner/work/vllm/vllm
+2026-11-13T12:20:28.7686856Z   server-url: https://github.com
+2026-11-13T12:20:28.7689569Z   github-token: ***
+2026-11-13T12:20:28.7689819Z   enable-cache: auto
+2026-11-13T12:20:28.7690410Z   cache-dependency-glob: **/*requirements*.txt
+**/*requirements*.in
+**/*constraints*.txt
+**/*constraints*.in
+**/pyproject.toml
+**/uv.lock
+**/*.py.lock
+
+2026-11-13T12:20:28.7691291Z   restore-cache: true
+2026-11-13T12:20:28.7691519Z   save-cache: true
+2026-11-13T12:20:28.7691742Z   prune-cache: true
+2026-11-13T12:20:28.7691980Z   ignore-nothing-to-cache: false
+2026-11-13T12:20:28.7692262Z   ignore-empty-workdir: false
+2026-11-13T12:20:28.7692526Z   add-problem-matchers: true
+2026-11-13T12:20:28.7692762Z env:
+2026-11-13T12:20:28.7693079Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:28.7693556Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:20:28.7693995Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:28.7694382Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:28.7694778Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:28.7695163Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:20:28.7695495Z ##[endgroup]
+2026-11-13T12:20:28.9870133Z (node:2407) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:20:29.0032194Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:20:29.0033149Z Trying to find version for uv in: /home/runner/work/vllm/vllm/uv.toml
+2026-11-13T12:20:29.0062170Z Could not find file: /home/runner/work/vllm/vllm/uv.toml
+2026-11-13T12:20:29.0072107Z Trying to find version for uv in: /home/runner/work/vllm/vllm/pyproject.toml
+2026-11-13T12:20:29.0122624Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-11-13T12:20:29.0125354Z Getting latest version from GitHub API...
+2026-11-13T12:20:29.3782228Z manifest-file not provided, reading from local file.
+2026-11-13T12:20:29.3825698Z manifest-file does not contain version 0.13.8, arch x86_64, platform unknown-linux-gnu. Falling back to GitHub releases.
+2026-11-13T12:20:29.3826756Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.13.8/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-11-13T12:20:29.8287326Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/9dfe8483-85b3-4b55-ab85-f507e4984963 -f /home/runner/work/_temp/b8be9c53-f260-4515-890f-1a2d2cc35775
+2026-11-13T12:20:30.1608325Z Added /home/runner/.local/bin to the path
+2026-11-13T12:20:30.1611470Z Added /opt/hostedtoolcache/uv/0.13.8/x86_64 to the path
+2026-11-13T12:20:30.1629959Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:20:30.1630741Z Successfully installed uv version 0.13.8
+2026-11-13T12:20:30.1633408Z Searching files using cache dependency glob: /home/runner/work/vllm/vllm/**/*requirements*.txt,/home/runner/work/vllm/vllm/**/*requirements*.in,/home/runner/work/vllm/vllm/**/*constraints*.txt,/home/runner/work/vllm/vllm/**/*constraints*.in,/home/runner/work/vllm/vllm/**/pyproject.toml,/home/runner/work/vllm/vllm/**/uv.lock,/home/runner/work/vllm/vllm/**/*.py.lock
+2026-11-13T12:20:30.2414639Z /home/runner/work/vllm/vllm/benchmarks/kernels/requirements.txt
+2026-11-13T12:20:30.2444568Z /home/runner/work/vllm/vllm/benchmarks/multi_turn/requirements.txt
+2026-11-13T12:20:30.3396963Z /home/runner/work/vllm/vllm/examples/features/structured_outputs/pyproject.toml
+2026-11-13T12:20:30.3573849Z /home/runner/work/vllm/vllm/pyproject.toml
+2026-11-13T12:20:30.7057293Z /home/runner/work/vllm/vllm/tools/recipes/requirements.txt
+2026-11-13T12:20:31.0980694Z Found 5 files to hash.
+2026-11-13T12:20:32.2674511Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T12:20:32.4262611Z Cache hit for: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T12:20:32.4372521Z (node:2407) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T12:20:32.9955160Z Received 1100365 of 1100365 (100.0%), 2.8 MBs/sec
+2026-11-13T12:20:32.9955755Z Cache Size: ~1 MB (1100365 B)
+2026-11-13T12:20:32.9980289Z [command]/usr/bin/tar -xf /home/runner/work/_temp/c8b61e2f-cc5c-413d-9864-f3b62f853f47/cache.tzst -P -C /home/runner/work/vllm/vllm --use-compress-program unzstd
+2026-11-13T12:20:33.0127780Z Cache restored successfully
+2026-11-13T12:20:33.0134049Z uv cache restored from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T12:20:33.0332588Z ##[group]Run uvx ruff==0.17.2 check --diff vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py
+2026-11-13T12:20:33.0333484Z [36;1muvx ruff==0.17.2 check --diff vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py[0m
+2026-11-13T12:20:33.0361451Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:20:33.0361737Z env:
+2026-11-13T12:20:33.0362032Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.0362505Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:20:33.0362971Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.0363372Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.0363769Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.0364168Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:20:33.0364563Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:20:33.0364952Z ##[endgroup]
+2026-11-13T12:20:33.3384827Z Downloading ruff (10.0MiB)
+2026-11-13T12:20:33.5294283Z  Downloaded ruff
+2026-11-13T12:20:33.5312216Z Installed 1 package in 1ms
+2026-11-13T12:20:33.6003655Z ##[group]Run uvx ruff==0.17.2 format --diff vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py
+2026-11-13T12:20:33.6004449Z [36;1muvx ruff==0.17.2 format --diff vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py[0m
+2026-11-13T12:20:33.6027511Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:20:33.6027777Z env:
+2026-11-13T12:20:33.6028062Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6028533Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:20:33.6028990Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6029386Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6029769Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6030159Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:20:33.6030724Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:20:33.6031380Z ##[endgroup]
+2026-11-13T12:20:33.6312784Z 2 files already formatted
+2026-11-13T12:20:33.6371653Z ##[group]Run uvx pre-commit run --files vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py docs/models/generative_models.md
+2026-11-13T12:20:33.6372702Z [36;1muvx pre-commit run --files vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py docs/models/generative_models.md[0m
+2026-11-13T12:20:33.6373302Z [36;1mgit diff --exit-code[0m
+2026-11-13T12:20:33.6396005Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:20:33.6396268Z env:
+2026-11-13T12:20:33.6396559Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6397016Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:20:33.6397468Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6397864Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6398279Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:20:33.6398710Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:20:33.6399097Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:20:33.6399409Z ##[endgroup]
+2026-11-13T12:20:33.9815107Z Downloading virtualenv (5.4MiB)
+2026-11-13T12:20:34.1025703Z  Downloaded virtualenv
+2026-11-13T12:20:34.1088323Z Installed 11 packages in 5ms
+2026-11-13T12:20:35.6581845Z [INFO] Initializing environment for https://github.com/astral-sh/ruff-pre-commit.
+2026-11-13T12:20:36.0970086Z [INFO] Initializing environment for https://github.com/crate-ci/typos.
+2026-11-13T12:20:38.7686190Z [INFO] Initializing environment for https://github.com/pre-commit/mirrors-clang-format.
+2026-11-13T12:20:39.1163711Z [INFO] Initializing environment for https://github.com/DavidAnson/markdownlint-cli2.
+2026-11-13T12:20:39.7334969Z [INFO] Initializing environment for https://github.com/rhysd/actionlint.
+2026-11-13T12:20:40.4318476Z [INFO] Initializing environment for https://github.com/shellcheck-py/shellcheck-py.
+2026-11-13T12:20:40.8171762Z [INFO] Initializing environment for https://github.com/astral-sh/uv-pre-commit.
+2026-11-13T12:20:41.2101151Z [INFO] Initializing environment for https://github.com/pre-commit/pre-commit-hooks.
+2026-11-13T12:20:41.6696042Z [INFO] Initializing environment for local:PyYAML,regex.
+2026-11-13T12:20:41.6841607Z [INFO] Initializing environment for local.
+2026-11-13T12:20:41.6875023Z [INFO] Initializing environment for local:PyYAML.
+2026-11-13T12:20:41.6907643Z [INFO] Initializing environment for local:mypy==1.20.2,regex,types-cachetools,types-setuptools,types-PyYAML,types-requests,types-torch,pydantic==2.13.5.
+2026-11-13T12:20:41.6939879Z [INFO] Initializing environment for local:regex.
+2026-11-13T12:20:41.6973232Z [INFO] Initializing environment for local:dockerfile-parse.
+2026-11-13T12:20:41.7009938Z [INFO] Initializing environment for local:packaging.
+2026-11-13T12:20:41.7048832Z [INFO] Installing environment for https://github.com/astral-sh/ruff-pre-commit.
+2026-11-13T12:20:41.7049625Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:20:41.7049994Z [INFO] This may take a few minutes...
+2026-11-13T12:20:48.0788026Z [INFO] Installing environment for https://github.com/crate-ci/typos.
+2026-11-13T12:20:48.0788797Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:20:48.0789310Z [INFO] This may take a few minutes...
+2026-11-13T12:20:52.3446263Z [INFO] Installing environment for https://github.com/pre-commit/mirrors-clang-format.
+2026-11-13T12:20:52.3446864Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:20:52.3447393Z [INFO] This may take a few minutes...
+2026-11-13T12:20:56.3909070Z [INFO] Installing environment for https://github.com/DavidAnson/markdownlint-cli2.
+2026-11-13T12:20:56.3909659Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:20:56.3910032Z [INFO] This may take a few minutes...
+2026-11-13T12:21:04.0823480Z [INFO] Installing environment for https://github.com/rhysd/actionlint.
+2026-11-13T12:21:04.0824452Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:04.0824835Z [INFO] This may take a few minutes...
+2026-11-13T12:21:31.2132583Z [INFO] Installing environment for https://github.com/shellcheck-py/shellcheck-py.
+2026-11-13T12:21:31.2133180Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:31.2133549Z [INFO] This may take a few minutes...
+2026-11-13T12:21:36.7588589Z [INFO] Installing environment for https://github.com/astral-sh/uv-pre-commit.
+2026-11-13T12:21:36.7589420Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:36.7589867Z [INFO] This may take a few minutes...
+2026-11-13T12:21:40.5597338Z [INFO] Installing environment for https://github.com/pre-commit/pre-commit-hooks.
+2026-11-13T12:21:40.5597919Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:40.5598277Z [INFO] This may take a few minutes...
+2026-11-13T12:21:43.8212051Z [INFO] Installing environment for local.
+2026-11-13T12:21:43.8212721Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:43.8213322Z [INFO] This may take a few minutes...
+2026-11-13T12:21:47.6993458Z [INFO] Installing environment for local.
+2026-11-13T12:21:47.6994094Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:47.6994571Z [INFO] This may take a few minutes...
+2026-11-13T12:21:50.3462051Z [INFO] Installing environment for local.
+2026-11-13T12:21:50.3462509Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:50.3462875Z [INFO] This may take a few minutes...
+2026-11-13T12:21:53.1073680Z [INFO] Installing environment for local.
+2026-11-13T12:21:53.1074326Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:21:53.1074871Z [INFO] This may take a few minutes...
+2026-11-13T12:22:01.0277847Z [INFO] Installing environment for local.
+2026-11-13T12:22:01.0278495Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:22:01.0279072Z [INFO] This may take a few minutes...
+2026-11-13T12:22:04.1552064Z [INFO] Installing environment for local.
+2026-11-13T12:22:04.1552710Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:22:04.1553087Z [INFO] This may take a few minutes...
+2026-11-13T12:22:07.0270168Z [INFO] Installing environment for local.
+2026-11-13T12:22:07.0270776Z [INFO] Once installed this environment will be reused.
+2026-11-13T12:22:07.0271446Z [INFO] This may take a few minutes...
+2026-11-13T12:22:10.5670878Z ruff check..........................................................................................Passed
+2026-11-13T12:22:10.8263160Z ruff format.........................................................................................Passed
+2026-11-13T12:22:11.1098646Z typos...............................................................................................Passed
+2026-11-13T12:22:11.1099310Z clang-format....................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6507445Z markdownlint-cli2...................................................................................Passed
+2026-11-13T12:22:11.6508553Z Lint GitHub Actions workflow files..............................................(no files to check)Skipped
+2026-11-13T12:22:11.6509510Z shellcheck......................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6510097Z pip-compile.....................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6510696Z pip-compile-kv-connectors.......................................................(no files to check)Skipped
+2026-11-13T12:22:11.6511572Z pip-compile-rocm................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6512196Z pip-compile-xpu.................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6513294Z pip-compile-cpu.................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6514109Z pip-compile-docs................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6514663Z check json......................................................................(no files to check)Skipped
+2026-11-13T12:22:11.6515247Z Check GitHub Actions use immutable references...................................(no files to check)Skipped
+2026-11-13T12:22:11.6515916Z reformat test/nightly-torch.txt to be in sync with test/cuda.in.................(no files to check)Skipped
+2026-11-13T12:22:11.6516593Z Check auto-label rules still match real files...................................(no files to check)Skipped
+2026-11-13T12:22:11.6517211Z Check agent instruction files and skills........................................(no files to check)Skipped
+2026-11-13T12:22:11.6517670Z - hook id: check-agent-files
+2026-11-13T12:22:11.6518206Z Check every Buildkite step declares an explicit key.............................(no files to check)Skipped
+2026-11-13T12:22:14.3575187Z Check new tests are wired into Buildkite CI.........................................................Passed
+2026-11-13T12:22:14.3575857Z - hook id: check-test-tethering
+2026-11-13T12:22:14.3576154Z - duration: 2.46s
+2026-11-13T12:22:31.4509665Z Run mypy for the oldest supported Python version....................................................Passed
+2026-11-13T12:22:31.4510463Z Lint PNG exports from excalidraw................................................(no files to check)Skipped
+2026-11-13T12:22:31.7429320Z Check SPDX headers..................................................................................Passed
+2026-11-13T12:22:32.0286870Z Check root lazy imports.............................................................................Passed
+2026-11-13T12:22:32.2812700Z Check for spaces in all filenames...................................................................Passed
+2026-11-13T12:22:32.5324416Z Update Dockerfile dependency graph..................................................................Passed
+2026-11-13T12:22:32.5325423Z Test non-root entrypoint wrapper................................................(no files to check)Skipped
+2026-11-13T12:22:32.8435737Z Check for forbidden imports.........................................................................Passed
+2026-11-13T12:22:33.1275600Z Prevent new 'torch.cuda' APIs call..................................................................Passed
+2026-11-13T12:22:33.4268961Z Validate configuration has default values and that each field has a docstring.......................Passed
+2026-11-13T12:22:33.4270196Z Validate docker/versions.json matches Dockerfile................................(no files to check)Skipped
+2026-11-13T12:22:33.4271532Z Check the CI KV connector lock matches requirements/kv_connectors.txt...........(no files to check)Skipped
+2026-11-13T12:22:33.7153130Z Check .dockerignore does not exclude tracked files..................................................Passed
+2026-11-13T12:22:34.0050112Z Check for boolean ops in with-statements............................................................Passed
+2026-11-13T12:22:34.3175440Z Check docstring Markdown style......................................................................Passed
+2026-11-13T12:22:34.6003089Z Check for hardcoded trust_remote_code=True..........................................................Passed
+2026-11-13T12:22:34.6004269Z Rust - Normalize Cargo manifests with autoinherit...............................(no files to check)Skipped
+2026-11-13T12:22:34.6005329Z Rust - Sort Cargo manifest sections.............................................(no files to check)Skipped
+2026-11-13T12:22:34.6006284Z Rust - Format code..............................................................(no files to check)Skipped
+2026-11-13T12:22:34.8507363Z Suggestion..........................................................................................Passed
+2026-11-13T12:22:34.8508823Z - hook id: suggestion
+2026-11-13T12:22:34.8509183Z - duration: 0s
+2026-11-13T12:22:34.8509382Z 
+2026-11-13T12:22:34.8510272Z To bypass all the pre-commit hooks, add --no-verify to git commit. To skip a specific hook, prefix the commit command with SKIP=<hook-id>.
+2026-11-13T12:22:34.8511272Z 
+2026-11-13T12:22:35.1264974Z ##[group]Run test "success" = success
+2026-11-13T12:22:35.1265338Z [36;1mtest "success" = success[0m
+2026-11-13T12:22:35.1265621Z [36;1mtest "success" = success[0m
+2026-11-13T12:22:35.1265875Z [36;1mtest "success" = success[0m
+2026-11-13T12:22:35.1288035Z shell: /usr/bin/bash -e {0}
+2026-11-13T12:22:35.1288311Z env:
+2026-11-13T12:22:35.1288594Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:35.1289065Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T12:22:35.1289508Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:35.1289910Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:35.1290317Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T12:22:35.1290695Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T12:22:35.1291333Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T12:22:35.1291696Z ##[endgroup]
+2026-11-13T12:22:35.1445107Z Post job cleanup.
+2026-11-13T12:22:35.2866252Z (node:6099) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:22:35.2867778Z Cache hit occurred on key setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9, not saving cache.
+2026-11-13T12:22:35.2869133Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:22:35.3008786Z Post job cleanup.
+2026-11-13T12:22:35.4313615Z (node:6108) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T12:22:35.4315052Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T12:22:35.4507788Z Post job cleanup.
+2026-11-13T12:22:35.5530243Z [command]/usr/bin/git version
+2026-11-13T12:22:35.5566476Z git version 2.56.1
+2026-11-13T12:22:35.5611606Z Temporarily overriding HOME='/home/runner/work/_temp/f3b54225-4f6b-4c2e-ab79-98906e22f864' before making global git config changes
+2026-11-13T12:22:35.5613062Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T12:22:35.5617887Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vllm/vllm
+2026-11-13T12:22:35.5666784Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T12:22:35.5710833Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T12:22:35.6011492Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T12:22:35.6053105Z http.https://github.com/.extraheader
+2026-11-13T12:22:35.6056853Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T12:22:35.6108351Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T12:22:35.6430122Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T12:22:35.6500796Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T12:22:35.6989820Z Cleaning up orphan processes
+2026-11-13T12:22:35.7361485Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, astral-sh/setup-uv@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
