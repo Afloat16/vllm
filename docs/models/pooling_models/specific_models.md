@@ -500,3 +500,4 @@ vllm serve /path/to/splade-checkpoint \
 When `tie_word_embeddings` is enabled, a missing decoder weight is restored from
 the checkpoint's full input embedding weight. An explicitly saved decoder weight takes precedence.
 The loader accepts both `cls.predictions.bias` and the decoder bias alias.
+If both are present, the explicit decoder bias takes precedence, regardless of checkpoint key order.

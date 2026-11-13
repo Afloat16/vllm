@@ -5,16 +5,39 @@ import pytest
 import torch
 
 
-@pytest.mark.parametrize("tie_word_embeddings", [False, True])
+class SpladeCheckpointInspectionWorker:
+    def inspect_splade_head_state(self):
+        return {
+            name: value.detach().cpu()
+            for name, value in self.model_runner.model.mlm_head.state_dict().items()
+        }
+
+    def reload_splade_bias_aliases(self, canonical_first):
+        model = self.model_runner.model
+        decoder_bias = model.mlm_head.decoder.bias.detach().clone()
+        weights = [
+            ("cls.predictions.bias", torch.full_like(decoder_bias, -3)),
+            ("cls.predictions.decoder.bias", decoder_bias),
+        ]
+        if not canonical_first:
+            weights.reverse()
+        model.load_weights(weights)
+
+
 @pytest.mark.parametrize(
-    "checkpoint_layout",
+    ("tie_word_embeddings", "checkpoint_layout"),
     [
-        "hf_safetensors",
-        "hf_sharded",
-        "explicit_aliases",
-        "decoder_names",
-        "canonical_bias",
-    ],
+        (tied, layout)
+        for tied in (False, True)
+        for layout in (
+            "hf_safetensors",
+            "hf_sharded",
+            "explicit_aliases",
+            "decoder_names",
+            "canonical_bias",
+        )
+    ]
+    + [(False, "canonical_first"), (False, "decoder_first")],
 )
 def test_splade_checkpoint_aliases(
     tmp_path, vllm_runner, tie_word_embeddings, checkpoint_layout
@@ -43,7 +66,9 @@ def test_splade_checkpoint_aliases(
         )
         reference = BertForMaskedLM(config).eval()
         with torch.no_grad():
-            reference.cls.predictions.bias.copy_(torch.linspace(-0.4, 0.7, 16))
+            bias = torch.linspace(-0.4, 0.7, 16)
+            reference.cls.predictions.bias.copy_(bias)
+            reference.cls.predictions.decoder.bias.copy_(bias)
 
     if checkpoint_layout.startswith("hf_"):
         reference.save_pretrained(
@@ -59,7 +84,7 @@ def test_splade_checkpoint_aliases(
         if checkpoint_layout == "decoder_names":
             del state["cls.predictions.bias"]
         elif checkpoint_layout == "canonical_bias":
-            del state["cls.predictions.decoder.bias"]
+            state["cls.predictions.bias"] = state.pop("cls.predictions.decoder.bias")
         save_file(state, tmp_path / "model.safetensors", metadata={"format": "pt"})
 
     vocabulary = {
@@ -93,6 +118,17 @@ def test_splade_checkpoint_aliases(
             logits = reference(**tokenizer(text, return_tensors="pt")).logits[0]
             expected.append(torch.log1p(torch.relu(logits[1:-1])).amax(dim=0))
 
+    expected_head = {
+        "dense.weight": reference.cls.predictions.transform.dense.weight.detach(),
+        "dense.bias": reference.cls.predictions.transform.dense.bias.detach(),
+        "layer_norm.weight": (
+            reference.cls.predictions.transform.LayerNorm.weight.detach()
+        ),
+        "layer_norm.bias": reference.cls.predictions.transform.LayerNorm.bias.detach(),
+        "decoder.weight": reference.cls.predictions.decoder.weight.detach(),
+        "decoder.bias": reference.cls.predictions.decoder.bias.detach(),
+    }
+
     with vllm_runner(
         str(tmp_path),
         runner="pooling",
@@ -104,8 +140,21 @@ def test_splade_checkpoint_aliases(
         kv_cache_memory_bytes=16 * 1024 * 1024,
         enable_prefix_caching=False,
         enforce_eager=True,
+        worker_extension_cls=(
+            "tests.models.language.pooling.test_splade_checkpoint_loading."
+            "SpladeCheckpointInspectionWorker"
+        ),
     ) as model:
+        if checkpoint_layout in ("canonical_first", "decoder_first"):
+            model.llm.collective_rpc(
+                "reload_splade_bias_aliases",
+                args=(checkpoint_layout == "canonical_first",),
+            )
         actual = model.embed(texts)
+        loaded_heads = model.llm.collective_rpc("inspect_splade_head_state")
+
+    for loaded_head in loaded_heads:
+        torch.testing.assert_close(loaded_head, expected_head, rtol=0, atol=0)
 
     assert len(actual) == len(expected)
     for vector, target in zip(actual, expected):
