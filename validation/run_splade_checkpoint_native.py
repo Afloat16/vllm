@@ -6,7 +6,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 BASE = "191e5d5df2ec693d5536a635079d58864dfacebb"
-SOURCE = Path("vllm/v1/pool/late_interaction.py")
+SOURCE = Path("vllm/model_executor/models/bert.py")
 FIXED = SOURCE.read_bytes()
 ENV = os.environ.copy()
 ENV["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -27,25 +27,21 @@ def execute(name, targets):
     return summary
 
 def main():
-    target = [
-        "tests/v1/worker/test_late_interaction_runner.py",
-        "tests/models/language/pooling/test_colbert.py::test_colbert_long_pair_worker_maxsim",
-        "-k", "single_pair or chunked_scores or equal_maximum_gradient or long_pair_worker",
-    ]
+    target = ["tests/models/language/pooling/test_splade_checkpoint_loading.py"]
     try:
         SOURCE.write_bytes(subprocess.check_output(["git", "show", BASE + ":" + str(SOURCE)]))
-        before = execute("maxsim_before", target)
+        before = execute("splade_before", target)
     finally:
         SOURCE.write_bytes(FIXED)
-    after = execute("maxsim_after", target)
-    existing = execute("maxsim_existing", [
-        "tests/v1/worker/test_late_interaction_runner.py",
-        "-k", "not (single_pair or chunked_scores or equal_maximum_gradient)",
+    after = execute("splade_after", target)
+    existing = execute("splade_existing", [
+        "tests/model_executor/layers/test_pooler_heads.py",
+        "tests/model_executor/layers/test_pooler_activations.py",
     ])
-    evidence = {"base": BASE, "source_sha": "08027f7d6f11b0761a4511b2dd1122c7a0235035", "before": before, "after": after, "existing": existing}
-    Path("maxsim_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
-    assert before.get("failures") == 2 and before.get("passed") == 20 and before.get("errors") == 0, before
-    assert after.get("passed") == 22 and after.get("returncode") == 0 and after.get("skipped") == 0, after
+    evidence = {"base": BASE, "source_sha": "9199802eb3182c793d5b3478319b5f4751a7f324", "before": before, "after": after, "existing": existing}
+    Path("splade_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    assert before.get("failures") == 4 and before.get("passed") == 4 and before.get("errors") == 0, before
+    assert after.get("passed") == 8 and after.get("returncode") == 0 and after.get("skipped") == 0, after
     assert existing["returncode"] == 0, existing
 
 if __name__ == "__main__":
