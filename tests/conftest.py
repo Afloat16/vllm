@@ -1309,11 +1309,7 @@ class VllmRunner:
 
         outputs = self.llm.beam_search(
             inputs,
-            BeamSearchParams(
-                beam_width=beam_width,
-                max_tokens=max_tokens,
-                include_stop_str_in_output=True,
-            ),
+            BeamSearchParams(beam_width=beam_width, max_tokens=max_tokens),
             concurrency_limit=concurrency_limit,
         )
         returned_outputs = []

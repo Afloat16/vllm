@@ -7,10 +7,10 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 BASE = "c74cab9b33659e92de9ca9c35eb949c78ebbe64c"
-HEAD = "17743dbff5b96c393f297a2ce0bc086f72680f22"
-FILES = ["vllm/entrypoints/generate/beam_search/offline.py","vllm/entrypoints/generate/beam_search/online.py","vllm/sampling_params.py","tests/conftest.py","tests/samplers/test_beam_search.py","docs/serving/offline_inference.md",".buildkite/test_areas/samplers.yaml"]
+HEAD = "cdb0c41d1359a92664e017544cb0ef272f1875ae"
+FILES = ["vllm/entrypoints/generate/beam_search/offline.py", "tests/samplers/test_beam_search_batch.py"]
 SOURCE_FILES = [path for path in FILES if path.startswith("vllm/entrypoints/")]
-TEST = "tests/samplers/test_beam_search.py"
+TEST = "tests/samplers/test_beam_search_batch.py"
 subprocess.run(["git", "fetch", "--no-tags", "--depth=1", "origin", BASE, HEAD], check=True)
 for path in FILES:
     assert Path(path).read_bytes() == subprocess.check_output(["git", "show", f"{HEAD}:{path}"]), path
@@ -43,14 +43,14 @@ fixed = {path: Path(path).read_bytes() for path in SOURCE_FILES}
 try:
     for path in SOURCE_FILES:
         Path(path).write_bytes(subprocess.check_output(["git", "show", f"{BASE}:{path}"]))
-    before = run("before", TEST, "test_beam_eos_offline_output or test_beam_eos_online_output")
+    before = run("before", TEST, None)
 finally:
     for path, content in fixed.items():
         Path(path).write_bytes(content)
-assert before["tests"] == 12 and before["errors"] == before["skipped"] == 0, before
+assert before["tests"] == 26 and before["errors"] == before["skipped"] == 0, before
 assert before["returncode"] == 1 and before["failures"] > 0, before
-after = run("after", TEST, "test_beam_eos_offline_output or test_beam_eos_online_output")
-assert after == {"tests": 12, "failures": 0, "errors": 0, "skipped": 0, "returncode": 0}, after
+after = run("after", TEST, None)
+assert after == {"tests": 26, "failures": 0, "errors": 0, "skipped": 0, "returncode": 0}, after
 existing = run("existing", "tests/samplers/test_beam_search_online.py")
 assert existing["returncode"] == existing["failures"] == existing["errors"] == 0, existing
 for path in FILES:

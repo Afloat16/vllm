@@ -76,10 +76,16 @@ class BeamSearchOfflineMixin(OfflineInferenceMixin):
             use_tqdm: Whether to use tqdm to display the progress bar.
             concurrency_limit: The maximum number of concurrent requests.
                 If None, the number of concurrent requests is unlimited.
+                Otherwise, must be greater than zero.
             priority: Scheduling priority, either shared or one per prompt.
                 Lower values have higher priority. Defaults to 0.
 
         """
+        if concurrency_limit is not None and concurrency_limit <= 0:
+            raise ValueError("concurrency_limit must be greater than zero")
+        if not prompts:
+            return []
+
         # TODO: how does beam search work together with length penalty,
         # frequency, penalty, and stopping criteria, etc.?
         beam_width = params.beam_width
@@ -203,11 +209,6 @@ class BeamSearchOfflineMixin(OfflineInferenceMixin):
             best_beams = sorted_completed[:beam_width]
 
             for beam in best_beams:
-                if (
-                    beam.stop_reason in eos_token_ids
-                    and not params.include_stop_str_in_output
-                ):
-                    beam.tokens = beam.tokens[:-1]
                 beam.text = tokenizer.decode(
                     beam.tokens, skip_special_tokens=params.skip_special_tokens
                 )
@@ -371,8 +372,6 @@ class BeamSearchOfflineMixin(OfflineInferenceMixin):
                         )
 
                         if token_id in eos_token_ids and not ignore_eos:
-                            new_beam.finish_reason = "stop"
-                            new_beam.stop_reason = token_id
                             instance.completed.append(new_beam)
                         else:
                             instance_new_beams.append(new_beam)

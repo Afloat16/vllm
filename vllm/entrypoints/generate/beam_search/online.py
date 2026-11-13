@@ -225,7 +225,11 @@ class BeamSearchOnlineMixin(ABC):
         best_beams = sorted_completed[:beam_width]
 
         for beam in best_beams:
-            tokens = beam.tokens[tokenized_length:]
+            if beam.tokens[-1] in eos_token_ids and not ignore_eos:
+                # Skip the eos token in the text.
+                tokens = beam.tokens[tokenized_length:-1]
+            else:
+                tokens = beam.tokens[tokenized_length:]
             beam.text = tokenizer.decode(
                 tokens, skip_special_tokens=params.skip_special_tokens
             )

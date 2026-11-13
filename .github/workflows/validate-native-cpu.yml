@@ -1,4 +1,4 @@
-name: Validate native CPU beam EOS output
+name: Validate native CPU beam batch contract
 on:
   push:
     branches: [validation/native-cpu-environment-20261112]
@@ -38,18 +38,18 @@ jobs:
           fail-on-cache-miss: true
       - name: Install standard test dependencies
         run: uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema
-      - name: Check real offline and HTTP beam generation before and after
+      - name: Check actual beam batches before and after
         run: |
           source .venv/bin/activate
           IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
           TC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')
           if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
-          python validation/run_beam_eos_native.py
+          python validation/run_beam_batch_native.py
       - name: Save native model evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-beam-eos-17743dbff5b9
+          name: native-beam-batch-cdb0c41d1359
           path: |
             before.log
             before.xml
