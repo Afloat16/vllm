@@ -1,0 +1,316 @@
+{
+  "checked_at": "2026-11-13 12:47:30 UTC",
+  "splade": [
+    {
+      "number": 62018,
+      "title": "[Perf] Fuse admission-time staged writes into fewer kernel calls",
+      "url": "https://github.com/vllm-project/vllm/pull/62018"
+    },
+    {
+      "number": 62250,
+      "title": "[Pooling] Improve SPLADE throughput 3.6% to 7.8% ",
+      "url": "https://github.com/vllm-project/vllm/pull/62250"
+    },
+    {
+      "number": 53464,
+      "title": "[Pooling] Improve BGE-M3 sync pooling throughput by up to 3.13%",
+      "url": "https://github.com/vllm-project/vllm/pull/53464"
+    },
+    {
+      "number": 50931,
+      "title": "[ModelRunner v2] Enable decoder token-wise pooling",
+      "url": "https://github.com/vllm-project/vllm/pull/50931"
+    },
+    {
+      "number": 50661,
+      "title": "[Model Runner v2] Enable BGE M3 pooling embed token_classify",
+      "url": "https://github.com/vllm-project/vllm/pull/50661"
+    },
+    {
+      "number": 56639,
+      "title": "[Pooling] Support prompt embeddings in MRV2 decoder pooling",
+      "url": "https://github.com/vllm-project/vllm/pull/56639"
+    },
+    {
+      "number": 48791,
+      "title": "[ModelRunner V2] Enable sequence pooling for embedding and classification models",
+      "url": "https://github.com/vllm-project/vllm/pull/48791"
+    },
+    {
+      "number": 50574,
+      "title": "[Model Runner V2] Enable encoder token embedding",
+      "url": "https://github.com/vllm-project/vllm/pull/50574"
+    },
+    {
+      "number": 50293,
+      "title": "[Model Runner V2] Enable encoder token classification",
+      "url": "https://github.com/vllm-project/vllm/pull/50293"
+    },
+    {
+      "number": 51648,
+      "title": "Kvserve fusion",
+      "url": "https://github.com/vllm-project/vllm/pull/51648"
+    },
+    {
+      "number": 48737,
+      "title": "[Perf] Vectorize pooling prompt-token padding in InputBatch",
+      "url": "https://github.com/vllm-project/vllm/pull/48737"
+    },
+    {
+      "number": 35001,
+      "title": "feat(model): add embed_sparse task for BGE-M3 server-side sparse aggr…",
+      "url": "https://github.com/vllm-project/vllm/pull/35001"
+    },
+    {
+      "number": 38495,
+      "title": "[CI] Fix SPLADE pooler test broken by #38139",
+      "url": "https://github.com/vllm-project/vllm/pull/38495"
+    },
+    {
+      "number": 38490,
+      "title": "Revert \"[Perf] Remove redundant device copies for CPU-only pooling token IDs, 48.9% E2E throughput improvement\" (#38139)",
+      "url": "https://github.com/vllm-project/vllm/pull/38490"
+    },
+    {
+      "number": 32119,
+      "title": "[Model] Avoid hardcoding pooling type",
+      "url": "https://github.com/vllm-project/vllm/pull/32119"
+    },
+    {
+      "number": 31973,
+      "title": "[Model] Reorganize pooling layers",
+      "url": "https://github.com/vllm-project/vllm/pull/31973"
+    },
+    {
+      "number": 26339,
+      "title": "[Feature] Add support for naver/splade-v3 (BERT-based sparse embedding model)",
+      "url": "https://github.com/vllm-project/vllm/pull/26339"
+    },
+    {
+      "number": 29659,
+      "title": "[Docs] Add SPLADE and Ultravox models to supported models documentation",
+      "url": "https://github.com/vllm-project/vllm/pull/29659"
+    },
+    {
+      "number": 25370,
+      "title": "[Model][2/N] Improve all pooling task | Support multi-vector retrieval",
+      "url": "https://github.com/vllm-project/vllm/pull/25370"
+    },
+    {
+      "number": 25817,
+      "title": "[Model][0/N] Improve all pooling task | clean up",
+      "url": "https://github.com/vllm-project/vllm/pull/25817"
+    },
+    {
+      "number": 26335,
+      "title": "[Feature] Add support for naver/splade-v3 (BERT-based sparse embedding model)",
+      "url": "https://github.com/vllm-project/vllm/pull/26335"
+    }
+  ],
+  "head_dtype": [
+    {
+      "number": 66157,
+      "title": "[Frontend] Serve PelaAI/KnowLine-35B-A3B-Gen1.5 on /v1/systemone",
+      "url": "https://github.com/vllm-project/vllm/pull/66157"
+    },
+    {
+      "number": 67435,
+      "title": "[Perf][DSv4.1] Low-batch LM head GEMM on the default decode path",
+      "url": "https://github.com/vllm-project/vllm/pull/67435"
+    },
+    {
+      "number": 66985,
+      "title": "[CI][Qwen3.5] Score Qwen3.5-35B-A3B-FP8 GSM8K on MI355 with an empty think block",
+      "url": "https://github.com/vllm-project/vllm/pull/66985"
+    },
+    {
+      "number": 67212,
+      "title": "[Bugfix] build with param.dtype when one is not specified",
+      "url": "https://github.com/vllm-project/vllm/pull/67212"
+    },
+    {
+      "number": 61815,
+      "title": "[Quantization] Allow online per-channel fp8 quantization of an unquantized lm_head",
+      "url": "https://github.com/vllm-project/vllm/pull/61815"
+    },
+    {
+      "number": 59206,
+      "title": "[Transformers backend] Migrate ModernBERT embedding, reranker and token classification models",
+      "url": "https://github.com/vllm-project/vllm/pull/59206"
+    },
+    {
+      "number": 66601,
+      "title": "[Bugfix][Spec Decode] Fix DSpark top-k drafting with FP32 head logits",
+      "url": "https://github.com/vllm-project/vllm/pull/66601"
+    },
+    {
+      "number": 60047,
+      "title": "[Bugfix] Register the aten::mm out_dtype overloads for batch invariance",
+      "url": "https://github.com/vllm-project/vllm/pull/60047"
+    },
+    {
+      "number": 64368,
+      "title": "[Spec Decode][ROCm] draft_lm_head_quantization for DSpark drafters",
+      "url": "https://github.com/vllm-project/vllm/pull/64368"
+    },
+    {
+      "number": 62365,
+      "title": "[DSv4.1][BI] Bitwise batch invariance for DeepSeek-V4.1-Flash with CUDA graphs",
+      "url": "https://github.com/vllm-project/vllm/pull/62365"
+    },
+    {
+      "number": 55494,
+      "title": "[Kernel] Add losslessly packed BF16 lm_head backend",
+      "url": "https://github.com/vllm-project/vllm/pull/55494"
+    },
+    {
+      "number": 62938,
+      "title": "[Model] Add Flint (RecursiveSI/flint)",
+      "url": "https://github.com/vllm-project/vllm/pull/62938"
+    },
+    {
+      "number": 63172,
+      "title": "[Perf] Pad one-row BF16 lm_head GEMMs to two rows on GB10",
+      "url": "https://github.com/vllm-project/vllm/pull/63172"
+    },
+    {
+      "number": 61279,
+      "title": "[Model][LoRA] Enable LoRA support for BERT cross-encoders",
+      "url": "https://github.com/vllm-project/vllm/pull/61279"
+    },
+    {
+      "number": 60676,
+      "title": "[Frontend] Serve LiquidAI/d1-3B on /v1/systemone",
+      "url": "https://github.com/vllm-project/vllm/pull/60676"
+    },
+    {
+      "number": 40337,
+      "title": "[Perf] Integrate flash-maxsim Triton kernels for late-interaction scoring",
+      "url": "https://github.com/vllm-project/vllm/pull/40337"
+    },
+    {
+      "number": 53651,
+      "title": "[Bugfix] Handle excluded lm_head re-tying and unavailable cast weights",
+      "url": "https://github.com/vllm-project/vllm/pull/53651"
+    },
+    {
+      "number": 36182,
+      "title": "[Performance] Add CUDA\n   graph optimization for classify pooler",
+      "url": "https://github.com/vllm-project/vllm/pull/36182"
+    },
+    {
+      "number": 55918,
+      "title": "[Bugfix] Fix logprobs Triton kernel JIT-compiling mid-request for uncommon topk widths",
+      "url": "https://github.com/vllm-project/vllm/pull/55918"
+    },
+    {
+      "number": 54897,
+      "title": "[Kernel][Spec Decode] Add hybrid NVFP4 LM-head sampling support",
+      "url": "https://github.com/vllm-project/vllm/pull/54897"
+    },
+    {
+      "number": 52883,
+      "title": "[Bugfix][Spec Decode] DFlash2: accept unquantized linear LM heads in the candidate selector",
+      "url": "https://github.com/vllm-project/vllm/pull/52883"
+    },
+    {
+      "number": 49120,
+      "title": "[Model] Honor fp32 head_dtype in Inkling muP logits (target + MTP draft)",
+      "url": "https://github.com/vllm-project/vllm/pull/49120"
+    },
+    {
+      "number": 52816,
+      "title": "[Spec Decode] DFlash2: local convolution + candidate selector",
+      "url": "https://github.com/vllm-project/vllm/pull/52816"
+    },
+    {
+      "number": 51823,
+      "title": "fix(pooling): validate BGE-M3 combined task ownership",
+      "url": "https://github.com/vllm-project/vllm/pull/51823"
+    },
+    {
+      "number": 50910,
+      "title": "[Model Runner V2] Cache draft logits in model's LM head dtype",
+      "url": "https://github.com/vllm-project/vllm/pull/50910"
+    },
+    {
+      "number": 48641,
+      "title": "[Sampler] Stop upcasting logits to fp32 in apply_sampling_params",
+      "url": "https://github.com/vllm-project/vllm/pull/48641"
+    },
+    {
+      "number": 24567,
+      "title": "[Model] Systematic support for fp32 head, generation models part",
+      "url": "https://github.com/vllm-project/vllm/pull/24567"
+    },
+    {
+      "number": 48688,
+      "title": "[ROCm][Bugfix] Enable the fp32 head_dtype torch.mm fast path on ROCm",
+      "url": "https://github.com/vllm-project/vllm/pull/48688"
+    },
+    {
+      "number": 48525,
+      "title": "[Core][LoRA] Support fp32 lm_head (head_dtype) on the LoRA path",
+      "url": "https://github.com/vllm-project/vllm/pull/48525"
+    },
+    {
+      "number": 48654,
+      "title": "[Bugfix][CI] Fix test_head_dtype quant_method test on ROCm",
+      "url": "https://github.com/vllm-project/vllm/pull/48654"
+    },
+    {
+      "number": 48390,
+      "title": "[Core] Support fp32 lm_head for generation models via head_dtype (RFC #48305 §3.6)",
+      "url": "https://github.com/vllm-project/vllm/pull/48390"
+    },
+    {
+      "number": 30315,
+      "title": "Generalize pooling model support with multi-task, multi-layer, multi-label classification that can be pooled from both hidden states and LM head's logits.",
+      "url": "https://github.com/vllm-project/vllm/pull/30315"
+    },
+    {
+      "number": 44805,
+      "title": "Added extra_repr() to pooler classes to improve debuggability",
+      "url": "https://github.com/vllm-project/vllm/pull/44805"
+    },
+    {
+      "number": 35351,
+      "title": "[XPU] special handle for pooler models w8a16 gemm",
+      "url": "https://github.com/vllm-project/vllm/pull/35351"
+    },
+    {
+      "number": 33548,
+      "title": "use ORJSONResponse when available to improve the efficiency of request process",
+      "url": "https://github.com/vllm-project/vllm/pull/33548"
+    },
+    {
+      "number": 24775,
+      "title": "[Bugfix] Dtype error with sequence classification model and lora.",
+      "url": "https://github.com/vllm-project/vllm/pull/24775"
+    },
+    {
+      "number": 32148,
+      "title": "[Model] Standardize pooling heads",
+      "url": "https://github.com/vllm-project/vllm/pull/32148"
+    },
+    {
+      "number": 25817,
+      "title": "[Model][0/N] Improve all pooling task | clean up",
+      "url": "https://github.com/vllm-project/vllm/pull/25817"
+    },
+    {
+      "number": 23810,
+      "title": "[Model] Systematic support for fp32 head, pooling models part",
+      "url": "https://github.com/vllm-project/vllm/pull/23810"
+    },
+    {
+      "number": 24630,
+      "title": "[CI] Add ci_envs for convenient local testing",
+      "url": "https://github.com/vllm-project/vllm/pull/24630"
+    }
+  ],
+  "newest_exclusions": {
+    "66157": "Six frontend files, no bert.py changes.",
+    "67435": "Six files, DeepSeek generative LM head path, no bert.py changes."
+  }
+}

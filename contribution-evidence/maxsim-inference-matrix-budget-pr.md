@@ -36,4 +36,4 @@ Reducing the number of pairs in a batch cannot shrink the matrix once only one p
 
 The budget covers the temporary similarity matrix, not model weights, token embeddings, attention memory, or the fused GPU implementation. Gradient-tracked calls keep the original path; this change does not repair the existing backward limitation caused by the original in-place masking.
 
-The final signed commit has exactly the same Git tree as validated commit `ebdd3f7a92c51731a07adc5a3e90a5af6e0ba3b4`; only commit history and the sign-off changed.
+The final commit carrying the DCO sign-off has exactly the same Git tree as validated commit `ebdd3f7a92c51731a07adc5a3e90a5af6e0ba3b4`; only commit history and the sign-off changed.

@@ -1,0 +1,53 @@
+{
+  "repository": "vllm-project/vllm",
+  "stars": 96867,
+  "title": "[Bugfix][Pooling] Honor configured precision in BERT MLM and SPLADE heads",
+  "base": "main",
+  "base_commit": "191e5d5df2ec693d5536a635079d58864dfacebb",
+  "branch": "fix/bert-mlm-head-precision-20261113",
+  "commit": "06988e1701c08a617a19a582bb58d0915f9db2b9",
+  "commit_url": "https://github.com/Afloat16/vllm/commit/06988e1701c08a617a19a582bb58d0915f9db2b9",
+  "validated_head": "a3af37f3e544a4434a52f75414731a10ae176303",
+  "signed_head": "06988e1701c08a617a19a582bb58d0915f9db2b9",
+  "validated_tree": "8782f4129c42be2e35ab03ce75a6aa7de3b26e38",
+  "signed_tree": "8782f4129c42be2e35ab03ce75a6aa7de3b26e38",
+  "tree_identity_verified": true,
+  "sign_off": "Afloat <ShuffleMonkey@163.com>",
+  "body": "## Overview\n\nApply the configured `head_dtype` to BERT masked-language-model and SPLADE heads instead of silently constructing those heads in the encoder's default dtype.\n\n## Claims\n\n- Pass the resolved head dtype to the MLM transform, LayerNorm, and vocabulary decoder.\n- Convert hidden states to the live transform weight dtype before applying the MLM head.\n- Preserve the default dtype behavior when `BertMLMHead` is constructed directly without an explicit dtype.\n\n## Validation\n\n- [Native before/after comparison](https://github.com/Afloat16/vllm/actions/runs/43424033592): **6 failures / 8 passes on the original source**, then **14 passes with this change**.\n- [Final exact-source native validation](https://github.com/Afloat16/vllm/actions/runs/43426040940): **14 new tests and 76 existing pooler tests pass**.\n- [Repository pre-commit hooks and Ruff](https://github.com/Afloat16/vllm/actions/runs/43424810234) pass.\n- The tests save and load real small BERT checkpoints, then call public `LLM.encode` for both MLM token classification and SPLADE sparse embeddings.\n- FP32 and BF16 encoders are combined with default, explicit FP32, `model`, and explicit BF16 head settings. Exact output references and native worker parameter-dtype inspection distinguish the head precision from the encoder precision.\n\n```bash\npytest tests/models/language/pooling/test_head_dtype.py -k mlm_head_dtype\n```\n\n## Details\n\nThe model configuration already resolves `head_dtype`, with FP32 as the default, but these native MLM heads were constructed without it. A BF16 encoder therefore also rounded the MLM weights and bias to BF16, despite a configured FP32 head. Explicit lower-precision heads likewise did not follow the requested setting.\n\nThe saved-checkpoint tests use exact bias values and an independent dtype-rounding reference to distinguish encoder precision from head precision, as well as inspecting the loaded parameter dtypes. They exercise both model architectures and their actual public pooling APIs. This change does not alter checkpoint alias handling or claim to recover precision already lost through an existing tied-weight fallback.\n\nThe official C++ and Rust CPU runtime was compiled from the unchanged base `191e5d5` and reused for the Python-only change. Native execution was on CPU; no GPU or multi-rank execution is claimed.\n\nThe final commit carrying the DCO sign-off has the identical Git tree as validated commit `a3af37f3e544a4434a52f75414731a10ae176303`; only commit history and the sign-off changed.\n",
+  "pr_created": false,
+  "pr_status": "ready-api-forbidden",
+  "pr_url": null,
+  "pr_number": null,
+  "merged_at": null,
+  "counts_as_merged": false,
+  "counts_as_new_submitted": false,
+  "creation_error": "403 Resource not accessible by integration",
+  "prefilled_pr_url": "https://github.com/vllm-project/vllm/compare/main...Afloat16:fix/bert-mlm-head-precision-20261113?expand=1&title=%5BBugfix%5D%5BPooling%5D%20Honor%20configured%20precision%20in%20BERT%20MLM%20and%20SPLADE%20heads&body=%23%23%20Overview%0A%0AApply%20the%20configured%20%60head_dtype%60%20to%20BERT%20masked-language-model%20and%20SPLADE%20heads%20instead%20of%20silently%20constructing%20those%20heads%20in%20the%20encoder's%20default%20dtype.%0A%0A%23%23%20Claims%0A%0A-%20Pass%20the%20resolved%20head%20dtype%20to%20the%20MLM%20transform%2C%20LayerNorm%2C%20and%20vocabulary%20decoder.%0A-%20Convert%20hidden%20states%20to%20the%20live%20transform%20weight%20dtype%20before%20applying%20the%20MLM%20head.%0A-%20Preserve%20the%20default%20dtype%20behavior%20when%20%60BertMLMHead%60%20is%20constructed%20directly%20without%20an%20explicit%20dtype.%0A%0A%23%23%20Validation%0A%0A-%20%5BNative%20before%2Fafter%20comparison%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fvllm%2Factions%2Fruns%2F43424033592)%3A%20**6%20failures%20%2F%208%20passes%20on%20the%20original%20source**%2C%20then%20**14%20passes%20with%20this%20change**.%0A-%20%5BFinal%20exact-source%20native%20validation%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fvllm%2Factions%2Fruns%2F43426040940)%3A%20**14%20new%20tests%20and%2076%20existing%20pooler%20tests%20pass**.%0A-%20%5BRepository%20pre-commit%20hooks%20and%20Ruff%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fvllm%2Factions%2Fruns%2F43424810234)%20pass.%0A-%20The%20tests%20save%20and%20load%20real%20small%20BERT%20checkpoints%2C%20then%20call%20public%20%60LLM.encode%60%20for%20both%20MLM%20token%20classification%20and%20SPLADE%20sparse%20embeddings.%0A-%20FP32%20and%20BF16%20encoders%20are%20combined%20with%20default%2C%20explicit%20FP32%2C%20%60model%60%2C%20and%20explicit%20BF16%20head%20settings.%20Exact%20output%20references%20and%20native%20worker%20parameter-dtype%20inspection%20distinguish%20the%20head%20precision%20from%20the%20encoder%20precision.%0A%0A%60%60%60bash%0Apytest%20tests%2Fmodels%2Flanguage%2Fpooling%2Ftest_head_dtype.py%20-k%20mlm_head_dtype%0A%60%60%60%0A%0A%23%23%20Details%0A%0AThe%20model%20configuration%20already%20resolves%20%60head_dtype%60%2C%20with%20FP32%20as%20the%20default%2C%20but%20these%20native%20MLM%20heads%20were%20constructed%20without%20it.%20A%20BF16%20encoder%20therefore%20also%20rounded%20the%20MLM%20weights%20and%20bias%20to%20BF16%2C%20despite%20a%20configured%20FP32%20head.%20Explicit%20lower-precision%20heads%20likewise%20did%20not%20follow%20the%20requested%20setting.%0A%0AThe%20saved-checkpoint%20tests%20use%20exact%20bias%20values%20and%20an%20independent%20dtype-rounding%20reference%20to%20distinguish%20encoder%20precision%20from%20head%20precision%2C%20as%20well%20as%20inspecting%20the%20loaded%20parameter%20dtypes.%20They%20exercise%20both%20model%20architectures%20and%20their%20actual%20public%20pooling%20APIs.%20This%20change%20does%20not%20alter%20checkpoint%20alias%20handling%20or%20claim%20to%20recover%20precision%20already%20lost%20through%20an%20existing%20tied-weight%20fallback.%0A%0AThe%20official%20C%2B%2B%20and%20Rust%20CPU%20runtime%20was%20compiled%20from%20the%20unchanged%20base%20%60191e5d5%60%20and%20reused%20for%20the%20Python-only%20change.%20Native%20execution%20was%20on%20CPU%3B%20no%20GPU%20or%20multi-rank%20execution%20is%20claimed.%0A%0AThe%20final%20commit%20carrying%20the%20DCO%20sign-off%20has%20the%20identical%20Git%20tree%20as%20validated%20commit%20%60a3af37f3e544a4434a52f75414731a10ae176303%60%3B%20only%20commit%20history%20and%20the%20sign-off%20changed.%0A",
+  "validation": {
+    "native_run": 43426040940,
+    "native_url": "https://github.com/Afloat16/vllm/actions/runs/43426040940",
+    "job_id": 131887570674,
+    "validation_head": "ff49dae4818bc45ca58447dc4827fd7e9c36be99",
+    "status": "success",
+    "before_run": 43424033592,
+    "before_validation_head": "48e7e079f32181647cecf8a5dbb14eb4e6c7416a",
+    "before": {
+      "failed": 6,
+      "passed": 8
+    },
+    "after": {
+      "passed": 14
+    },
+    "broader": {
+      "passed": 76
+    },
+    "native_build_run": 43408947521,
+    "native_build_status": "compile-and-cache-success; original run's later model probe failed separately",
+    "style_run": 43424810234,
+    "style_head": "69c43bc61c634cf149d8f4a058bcc9dd134beb6b",
+    "style_status": "success",
+    "peer": "existing_prs",
+    "scope": "Official native CPU runtime, two real saved BERT architectures and public LLM.encode; real worker dtype inspection; FP32/BF16. No GPU or multi-rank claim. The existing external-network classifier case is deselected by the explicit mlm_head_dtype selector."
+  },
+  "observed_at": "2026-11-13T12:44:27Z"
+}

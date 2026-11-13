@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-13T12:25:00Z",
+  "updated_at": "2026-11-13 12:47:30 UTC",
   "base": "191e5d5df2ec693d5536a635079d58864dfacebb",
   "shared_validation_branch": "validation/native-cpu-environment-20261112",
-  "shared_head": "62ab11b2f720b9ad30f4e9ea6c2b5c1a8ef84bda",
+  "shared_head": "92d1c0d39b150ea66b93d34adb3692be50603137",
   "published": [
     {
       "item": 5,
@@ -36,23 +36,36 @@
   "remaining": [
     {
       "item": 7,
+      "head": "05595006ff65cec9c2a831db0224e12f40502f08",
       "branch": "fix/splade-hf-checkpoint-aliases-20261113",
-      "head": "a95f253161941f963b3ca345bca404530cba3670",
-      "tree": "1c2c3788a4e18060bca5d6ff1c174e8bfc70dd99",
+      "tree": "b48ef5fb33049808b40e9c29f39ccda07da42227",
       "status": "native-validation-in-progress",
-      "native_validation_head": "62ab11b2f720b9ad30f4e9ea6c2b5c1a8ef84bda",
-      "native_run": 43424202700,
-      "latest_style_head": "6355b152fb99ea892ab2d2448af2283f6ec34035"
+      "native_run": 43426563639,
+      "native_validation_head": "92d1c0d39b150ea66b93d34adb3692be50603137",
+      "style_run": 43426569716,
+      "style_status": "success"
     },
     {
       "item": 10,
+      "head": "06988e1701c08a617a19a582bb58d0915f9db2b9",
       "branch": "fix/bert-mlm-head-precision-20261113",
-      "head": "a3af37f3e544a4434a52f75414731a10ae176303",
       "tree": "8782f4129c42be2e35ab03ce75a6aa7de3b26e38",
-      "status": "native-validation-in-progress",
-      "native_validation_head": "48e7e079f32181647cecf8a5dbb14eb4e6c7416a",
-      "native_run": 43424033592,
-      "latest_style_head": "69c43bc61c634cf149d8f4a058bcc9dd134beb6b"
+      "status": "ready-api-forbidden-parent-ui-publishing",
+      "native_run": 43426040940,
+      "native_validation_head": "ff49dae4818bc45ca58447dc4827fd7e9c36be99",
+      "native_status": "success",
+      "before": {
+        "failed": 6,
+        "passed": 8
+      },
+      "after": {
+        "passed": 14
+      },
+      "existing": {
+        "passed": 76
+      },
+      "style_run": 43424810234,
+      "style_status": "success"
     }
   ],
   "diagnostics": {
@@ -74,6 +87,18 @@
       "result": "All 14 new cases rejected function serialization during model inspection; 76 existing passed",
       "resolution": "Use a named importable worker extension and string RPC, keeping the default serialization policy; preserve both HF bias values in the test checkpoint",
       "style_followup": "Only test type annotation and string formatting after run source 3824fc0a"
+    }
+  },
+  "latest_styles": {
+    "v7": {
+      "run": 43424804138,
+      "head": "6355b152fb99ea892ab2d2448af2283f6ec34035",
+      "status": "success"
+    },
+    "v10": {
+      "run": 43424810234,
+      "head": "69c43bc61c634cf149d8f4a058bcc9dd134beb6b",
+      "status": "success"
     }
   }
 }

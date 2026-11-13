@@ -28,4 +28,4 @@ The regression cases cover FP16/FP32/FP64, transposed/strided inputs, empty shap
 
 The official C++ and Rust CPU runtime was built from base `191e5d5` and reused for this Python-only change. The tests run on CPU; they do not claim GPU coverage or a model-quality increase. Native-endian arrays keep the existing `torch.from_numpy` path. Foreign-endian arrays require one value-preserving conversion.
 
-The signed commit has the identical Git tree as validated commit `50abe3b5a09cd3e505762c92f2fceccf3ebdd38d`; only commit history and the sign-off changed.
+The commit carrying the DCO sign-off has the identical Git tree as validated commit `50abe3b5a09cd3e505762c92f2fceccf3ebdd38d`; only commit history and the sign-off changed.

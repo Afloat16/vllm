@@ -28,4 +28,4 @@ The child constructor initialized the ColBERT projection before the parent initi
 
 The projection is also registered through the pooler. Its successful checkpoint load now reports both aliases, so the loaded-parameter check agrees with the actual shared module. The inference-dimension path remains covered.
 
-The final signed commit has exactly the same Git tree as validated commit `edb858436acebd612073a859cfd3ea6bb5cf2a48`; only commit history and the sign-off changed.
+The final commit carrying the DCO sign-off has exactly the same Git tree as validated commit `edb858436acebd612073a859cfd3ea6bb5cf2a48`; only commit history and the sign-off changed.
