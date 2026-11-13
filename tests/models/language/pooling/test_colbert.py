@@ -363,7 +363,9 @@ def test_colbert_hf_comparison(vllm_runner, backend):
     _assert_embeddings_close(vllm_outputs, hf_embeddings)
 
 
-@pytest.mark.parametrize("dimension_field", [None, "colbert_dim", "dim", "projection_dim"])
+@pytest.mark.parametrize(
+    "dimension_field", [None, "colbert_dim", "dim", "projection_dim"]
+)
 @pytest.mark.parametrize("projection_name", ["linear.weight", "colbert_linear.weight"])
 def test_colbert_configured_projection(
     tmp_path, vllm_runner, dimension_field, projection_name
@@ -374,7 +376,7 @@ def test_colbert_configured_projection(
     from tokenizers.models import WordLevel
     from tokenizers.pre_tokenizers import Whitespace
     from tokenizers.processors import TemplateProcessing
-    from transformers import BertConfig, BertModel, PreTrainedTokenizerFast
+    from transformers import BertConfig, BertModel, TokenizersBackend
 
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(19)
@@ -418,7 +420,7 @@ def test_colbert_configured_projection(
         pair="[CLS] $A [SEP] $B:1 [SEP]:1",
         special_tokens=[("[CLS]", 2), ("[SEP]", 3)],
     )
-    tokenizer = PreTrainedTokenizerFast(
+    tokenizer = TokenizersBackend(
         tokenizer_object=backend,
         unk_token="[UNK]",
         pad_token="[PAD]",
