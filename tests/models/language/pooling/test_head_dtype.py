@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+from typing import Any
+
 import pytest
 import torch
 from transformers import AutoModelForSequenceClassification
@@ -48,6 +50,8 @@ def test_classify_models(
 
 
 class MLMHeadDtypeInspectionWorker:
+    model_runner: Any
+
     def inspect_mlm_head_dtypes(self):
         return sorted(
             {
@@ -150,8 +154,7 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
         enable_prefix_caching=False,
         enforce_eager=True,
         worker_extension_cls=(
-            "tests.models.language.pooling.test_head_dtype."
-            "MLMHeadDtypeInspectionWorker"
+            "tests.models.language.pooling.test_head_dtype.MLMHeadDtypeInspectionWorker"
         ),
     ) as model:
         outputs = model.llm.encode(
