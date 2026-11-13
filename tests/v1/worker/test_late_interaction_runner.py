@@ -362,36 +362,31 @@ def test_maxsim_single_pair_score_matrix_allocation_is_bounded(
     assert max(allocations) <= budget * query.element_size()
 
 
-def test_maxsim_chunked_scores_preserve_input_gradients():
-    generator = torch.Generator().manual_seed(43)
-    query = torch.randn(11, 7, generator=generator, requires_grad=True)
-    document = torch.randn(17, 7, generator=generator, requires_grad=True)
-    reference = (query @ document.T).amax(-1).sum()
-    expected = torch.autograd.grad(reference, (query, document))
-
-    (score,) = compute_maxsim_score_batched(
-        [query], [document], max_score_matrix_elements=19
-    )
-    actual = torch.autograd.grad(score, (query, document))
-    torch.testing.assert_close(score, reference, rtol=1e-5, atol=1e-5)
-    for result, target in zip(actual, expected):
-        torch.testing.assert_close(result, target, rtol=1e-5, atol=1e-5)
-
-
 @pytest.mark.parametrize(
-    "query_grad,doc_grad", [(True, False), (False, True), (True, True)]
+    "query_grad,doc_grad,tied",
+    [(True, True, False), (True, False, True), (False, True, True), (True, True, True)],
 )
-def test_maxsim_budget_keeps_equal_maximum_gradient_weights(query_grad, doc_grad):
-    query = torch.ones(1, 1, requires_grad=query_grad)
-    document = torch.ones(3, 1, requires_grad=doc_grad)
-    inputs = tuple(x for x in (query, document) if x.requires_grad)
-    reference = (query @ document.T).amax(dim=-1).sum()
-    expected = torch.autograd.grad(reference, inputs)
+def test_maxsim_single_pair_keeps_existing_autograd_path(query_grad, doc_grad, tied):
+    from torch.profiler import ProfilerActivity, profile
 
-    (score,) = compute_maxsim_score_batched(
-        [query], [document], max_score_matrix_elements=1
-    )
-    actual = torch.autograd.grad(score, inputs)
-    torch.testing.assert_close(score, reference, rtol=0, atol=0)
-    for result, target in zip(actual, expected):
-        torch.testing.assert_close(result, target, rtol=0, atol=0)
+    if tied:
+        query = torch.ones(1, 1, requires_grad=query_grad)
+        document = torch.ones(3, 1, requires_grad=doc_grad)
+    else:
+        generator = torch.Generator().manual_seed(43)
+        query = torch.randn(11, 7, generator=generator, requires_grad=query_grad)
+        document = torch.randn(17, 7, generator=generator, requires_grad=doc_grad)
+    reference = (query @ document.T).amax(dim=-1).sum()
+
+    with profile(activities=[ProfilerActivity.CPU], profile_memory=True) as trace:
+        (score,) = compute_maxsim_score_batched(
+            [query], [document], max_score_matrix_elements=1
+        )
+
+    torch.testing.assert_close(score, reference, rtol=1e-5, atol=1e-5)
+    assert score.requires_grad
+    # The inference budget must not replace the existing autograd reduction.
+    allocations = [
+        event.cpu_memory_usage for event in trace.events() if event.name == "aten::bmm"
+    ]
+    assert allocations == [len(query) * len(document) * query.element_size()]
