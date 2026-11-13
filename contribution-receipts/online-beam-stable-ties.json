@@ -1,0 +1,47 @@
+{
+  "repository": "vllm-project/vllm",
+  "fork": "Afloat16/vllm",
+  "base": "c74cab9b33659e92de9ca9c35eb949c78ebbe64c",
+  "branch": "fix/online-beam-stable-ties-20261113",
+  "head": "cbffffcca072ed912a38981f0c5571e46804548e",
+  "title": "[Bugfix] Preserve stable candidate ordering for online beam ties",
+  "body": "## Problem\n\nOnline beam search selects active candidates with `argpartition` and an unstable sort. When multiple candidates have the same cumulative score at the beam cutoff, this can retain a different candidate or reorder equal-scoring candidates compared with the stable ordering used by offline beam search.\n\n## Change\n\nKeep partial selection, but determine the cutoff score first, retain all strictly better candidates, and fill the remaining slots with tied candidates in their original order. Stable sorting is then limited to the selected candidates. The small-candidate path also uses stable sorting.\n\n## Validation\n\nExact production head: `cbffffcca072ed912a38981f0c5571e46804548e`.\n\n- 24 async cases compare the actual online selection path with the actual offline beam step across four beam widths, one/three generation steps, flat distributions, cutoff ties, and distinct token scores that produce cumulative ties.\n- The original source fails one regression case; the patched source passes all 24.\n- An additional native test runs a locally saved zero-weight GPT-2 through both the offline engine and an actual OpenAI-compatible HTTP server for six beam-width/length configurations. This is a passing compatibility control on both versions.\n- All 64 existing online beam tests pass.\n- All applicable repository pre-commit hooks pass.\n\nNative CPU validation: https://github.com/Afloat16/vllm/actions/runs/43405764771\nRepository hooks: https://github.com/Afloat16/vllm/actions/runs/43405770814\n\nThe native test uses PyTorch 2.14.0+cpu and source-built CPU extensions from the unchanged native base.",
+  "publication": "pull_request_created",
+  "pull_request": {
+    "number": 67450,
+    "url": "https://github.com/vllm-project/vllm/pull/67450",
+    "state": "open",
+    "draft": false,
+    "head": "cbffffcca072ed912a38981f0c5571e46804548e",
+    "merged_at": null,
+    "maintainer_can_modify": false
+  },
+  "validation": {
+    "native_run": 43405764771,
+    "native_job": 131819613688,
+    "validation_head": "7a4b3d9fc52b52fde118027be07021b8b6aa70ad",
+    "hook_run": 43405770814,
+    "hook_head": "63782f69604dac097853d6c64232c3cfb6cba344",
+    "new_tests": 25,
+    "baseline_failed": 1,
+    "baseline_passed": 24,
+    "patched_passed": 25,
+    "existing_passed": 64,
+    "native_model_configurations": 6,
+    "status": "success",
+    "torch": "2.14.0+cpu"
+  },
+  "review": "Independent full source and test review passed at exact cbffffcca head.",
+  "deduplication": {
+    "related_prs": [
+      19347,
+      31101,
+      47126,
+      66841,
+      64862
+    ],
+    "distinction": "Python online active-candidate stable tie selection, distinct from index mapping, completed-hypothesis bounds, and the Rust implementation."
+  },
+  "merged_at": null,
+  "counts_for_merged": false
+}
