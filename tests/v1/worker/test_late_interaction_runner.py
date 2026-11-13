@@ -378,7 +378,9 @@ def test_maxsim_chunked_scores_preserve_input_gradients():
         torch.testing.assert_close(result, target, rtol=1e-5, atol=1e-5)
 
 
-@pytest.mark.parametrize("query_grad,doc_grad", [(True, False), (False, True), (True, True)])
+@pytest.mark.parametrize(
+    "query_grad,doc_grad", [(True, False), (False, True), (True, True)]
+)
 def test_maxsim_budget_keeps_equal_maximum_gradient_weights(query_grad, doc_grad):
     query = torch.ones(1, 1, requires_grad=query_grad)
     document = torch.ones(3, 1, requires_grad=doc_grad)
