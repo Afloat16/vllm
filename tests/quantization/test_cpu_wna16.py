@@ -1,9 +1,16 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+import numpy as np
 import pytest
 import torch
 
+from vllm.model_executor.layers.quantization.utils.quant_utils import (
+    pack_cols,
+    pack_quantized_values_into_int32,
+    unpack_quantized_values_into_int32,
+)
 from vllm.platforms import CpuArchEnum, current_platform
+from vllm.scalar_type import scalar_types
 
 if not current_platform.is_cpu():
     pytest.skip("skipping CPU-only tests", allow_module_level=True)
@@ -84,3 +91,80 @@ def test_cpu_quant(vllm_runner, model, dtype):
         output = llm.generate_greedy(["The capital of France is"], max_tokens=32)
     assert output
     print(output)
+
+
+@pytest.mark.cpu_test
+@pytest.mark.parametrize(
+    "dtype", [torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64]
+)
+@pytest.mark.parametrize("wtype", [scalar_types.uint4, scalar_types.uint8])
+@pytest.mark.parametrize("packed_dim", [0, 1])
+@pytest.mark.parametrize("transposed", [False, True])
+def test_quantized_packing_preserves_integer_lanes(
+    dtype, wtype, packed_dim, transposed
+):
+    """Packing must preserve every lane before widening to the output dtype."""
+    bits = wtype.size_bits
+    mask = (1 << bits) - 1
+    values = torch.arange(32 * 64).reshape(32, 64) % (mask + 1)
+    if dtype != torch.uint8:
+        values -= 1 << (bits - 1)
+    values = values.to(dtype)
+    if transposed:
+        values = values.t()
+    original = values.clone()
+
+    lanes = np.moveaxis(values.numpy().astype(np.int64), packed_dim, -1)
+    lanes = lanes.reshape(*lanes.shape[:-1], -1, 32 // bits)
+    shifts = np.arange(32 // bits, dtype=np.uint32) * bits
+    packed = np.bitwise_or.reduce((lanes.astype(np.uint32) & mask) << shifts, axis=-1)
+    expected = torch.from_numpy(
+        np.moveaxis(packed.view(np.int32), -1, packed_dim).copy()
+    )
+
+    actual = pack_quantized_values_into_int32(values, wtype, packed_dim)
+    torch.testing.assert_close(actual, expected, rtol=0, atol=0)
+    unpacked = unpack_quantized_values_into_int32(actual, wtype, packed_dim)
+    torch.testing.assert_close(unpacked, values.to(torch.int32) & mask, rtol=0, atol=0)
+    torch.testing.assert_close(values, original, rtol=0, atol=0)
+
+
+@pytest.mark.cpu_test
+@pytest.mark.parametrize(
+    "storage_dtype", [torch.uint8, torch.int8, torch.int16, torch.int32]
+)
+@pytest.mark.parametrize("dtype", [torch.float16, torch.bfloat16])
+def test_cpu_wna16_narrow_integer_weights(storage_dtype, dtype):
+    """Narrow checkpoint values must produce the same native GEMM outputs."""
+    torch.manual_seed(31)
+    k, n, group_size = 64, 64, 32
+    values = torch.randint(0, 16, (k, n), dtype=storage_dtype)
+    packed = pack_quantized_values_into_int32(values, scalar_types.uint4b8, 1)
+    packed = (
+        packed.view(k, n // 16, 2).permute(1, 0, 2).reshape(n // 16, -1).contiguous()
+    )
+    scales = torch.rand(k // group_size, n, dtype=dtype) / 16
+    inputs = torch.randn(2, 3, k, dtype=dtype)
+    reference = pack_cols(values, 4, k, n)
+    reference = (
+        reference.view(k, n // 16, 2).permute(1, 0, 2).reshape(n // 16, -1).contiguous()
+    )
+    expected = cpu_gemm_wna16(
+        input=inputs,
+        q_weight=reference,
+        scales=scales,
+        zeros=None,
+        bias=None,
+        pack_factor=8,
+        isa_hint=_get_isa_hint(dtype),
+    )
+    actual = cpu_gemm_wna16(
+        input=inputs,
+        q_weight=packed,
+        scales=scales,
+        zeros=None,
+        bias=None,
+        pack_factor=8,
+        isa_hint=_get_isa_hint(dtype),
+    )
+    torch.testing.assert_close(actual, expected, rtol=0, atol=0)
