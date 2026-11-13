@@ -199,6 +199,7 @@ def test_numpy_image_embedding_is_consumed_by_native_llava(
         enable_mm_embeds=True,
         mm_processor_cache_gb=0,
         limit_mm_per_prompt={"image": 1},
+        max_logprobs=32,
     ) as model:
         results = model.llm.generate(
             [
