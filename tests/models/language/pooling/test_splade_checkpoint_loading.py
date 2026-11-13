@@ -93,6 +93,15 @@ def test_splade_checkpoint_aliases(
             logits = reference(**tokenizer(text, return_tensors="pt")).logits[0]
             expected.append(torch.log1p(torch.relu(logits[1:-1])).amax(dim=0))
 
+    expected_head = {
+        "dense.weight": reference.cls.predictions.transform.dense.weight.detach(),
+        "dense.bias": reference.cls.predictions.transform.dense.bias.detach(),
+        "layer_norm.weight": reference.cls.predictions.transform.LayerNorm.weight.detach(),
+        "layer_norm.bias": reference.cls.predictions.transform.LayerNorm.bias.detach(),
+        "decoder.weight": reference.cls.predictions.decoder.weight.detach(),
+        "decoder.bias": reference.cls.predictions.bias.detach(),
+    }
+
     with vllm_runner(
         str(tmp_path),
         runner="pooling",
@@ -106,6 +115,15 @@ def test_splade_checkpoint_aliases(
         enforce_eager=True,
     ) as model:
         actual = model.embed(texts)
+        loaded_heads = model.llm.apply_model(
+            lambda module: {
+                name: value.detach().cpu()
+                for name, value in module.mlm_head.state_dict().items()
+            }
+        )
+
+    for loaded_head in loaded_heads:
+        torch.testing.assert_close(loaded_head, expected_head, rtol=0, atol=0)
 
     assert len(actual) == len(expected)
     for vector, target in zip(actual, expected):
