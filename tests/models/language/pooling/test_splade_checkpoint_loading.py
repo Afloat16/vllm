@@ -8,7 +8,13 @@ import torch
 @pytest.mark.parametrize("tie_word_embeddings", [False, True])
 @pytest.mark.parametrize(
     "checkpoint_layout",
-    ["hf_safetensors", "hf_sharded", "explicit_aliases", "decoder_names"],
+    [
+        "hf_safetensors",
+        "hf_sharded",
+        "explicit_aliases",
+        "decoder_names",
+        "canonical_bias",
+    ],
 )
 def test_splade_checkpoint_aliases(
     tmp_path, vllm_runner, tie_word_embeddings, checkpoint_layout
@@ -52,6 +58,8 @@ def test_splade_checkpoint_aliases(
         }
         if checkpoint_layout == "decoder_names":
             del state["cls.predictions.bias"]
+        elif checkpoint_layout == "canonical_bias":
+            del state["cls.predictions.decoder.bias"]
         save_file(state, tmp_path / "model.safetensors", metadata={"format": "pt"})
 
     vocabulary = {
