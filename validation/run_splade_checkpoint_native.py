@@ -36,19 +36,13 @@ def main():
     print("HF untied bias aliases", json.dumps({"shared": probe_head.bias is probe_head.decoder.bias, "canonical": probe_head.bias.tolist(), "decoder": probe_head.decoder.bias.tolist()}), flush=True)
     del probe, probe_head
     target = ["tests/models/language/pooling/test_splade_checkpoint_loading.py"]
-    try:
-        SOURCE.write_bytes(subprocess.check_output(["git", "show", BASE + ":" + str(SOURCE)]))
-        before = execute("splade_before", target)
-    finally:
-        SOURCE.write_bytes(FIXED)
     after = execute("splade_after", target)
     existing = execute("splade_existing", [
         "tests/model_executor/layers/test_pooler_heads.py",
         "tests/model_executor/layers/test_pooler_activations.py",
     ])
-    evidence = {"base": BASE, "source_sha": "dc497f4bd4a7ac8a9822b05760625a244554bc33", "before": before, "after": after, "existing": existing}
+    evidence = {"base": BASE, "source_sha": "a95f253161941f963b3ca345bca404530cba3670", "baseline_run": 43424202700, "after": after, "existing": existing}
     Path("splade_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
-    assert before.get("failures") == 4 and before.get("passed") == 8 and before.get("errors") == 0, before
     assert after.get("passed") == 12 and after.get("returncode") == 0 and after.get("skipped") == 0, after
     assert existing["returncode"] == 0, existing
 

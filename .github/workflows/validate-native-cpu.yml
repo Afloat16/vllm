@@ -1,4 +1,4 @@
-name: Validate native standard SPLADE checkpoint loading
+name: Verify final SPLADE checkpoint source on native CPU
 on:
   push:
     branches: [validation/native-cpu-environment-20261112]
@@ -55,7 +55,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-splade-checkpoint-9199802eb3
+          name: native-splade-final-a95f253161
           path: |
             splade_before.log
             splade_before.xml
