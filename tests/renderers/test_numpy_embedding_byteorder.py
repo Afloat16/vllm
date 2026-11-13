@@ -88,6 +88,7 @@ def test_numpy_embedding_rejects_object_arrays(handler_type):
 def test_numpy_image_embedding_is_consumed_by_native_llava(
     tmp_path, vllm_runner, byteorder
 ):
+    from safetensors.torch import load_file, save_file
     from tokenizers import AddedToken, Tokenizer
     from tokenizers.models import WordLevel
     from tokenizers.pre_tokenizers import Whitespace
@@ -133,6 +134,19 @@ def test_numpy_image_embedding_is_consumed_by_native_llava(
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(79)
         LlavaForConditionalGeneration(config).eval().save_pretrained(model_path)
+
+    # Keep the saved fixture in the CLIP wrapper format accepted by this model.
+    checkpoint = model_path / "model.safetensors"
+    state = {}
+    for name, tensor in load_file(checkpoint).items():
+        for prefix in ("model.vision_tower.", "vision_tower."):
+            if name.startswith(prefix) and not name.startswith(
+                prefix + "vision_model."
+            ):
+                name = prefix + "vision_model." + name[len(prefix) :]
+                break
+        state[name] = tensor
+    save_file(state, checkpoint, metadata={"format": "pt"})
     vocabulary = {
         "[PAD]": 0,
         "[BOS]": 1,
