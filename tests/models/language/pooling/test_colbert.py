@@ -380,15 +380,15 @@ def test_colbert_configured_projection(
         torch.manual_seed(19)
         config = BertConfig(
             vocab_size=16,
-            hidden_size=16,
+            hidden_size=64,
             num_hidden_layers=1,
             num_attention_heads=2,
-            intermediate_size=32,
+            intermediate_size=128,
             max_position_embeddings=64,
             pad_token_id=0,
         )
         reference = BertModel(config, add_pooling_layer=False).eval()
-        projection = torch.randn(8, 16) * 0.1
+        projection = torch.randn(8, 64) * 0.1
 
     config.architectures = ["HF_ColBERT"]
     if dimension_field is not None:
