@@ -1,11 +1,11 @@
-name: Validate native narrow integer weight packing
+name: Validate native configured ColBERT projections
 on:
   push:
     branches: [validation/native-cpu-environment-20261112]
 permissions:
   contents: read
 jobs:
-  native-cpu:
+  native-colbert:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
@@ -38,13 +38,13 @@ jobs:
           fail-on-cache-miss: true
       - name: Install standard test dependencies
         run: uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema
-      - name: Check actual quantized weights before and after
+      - name: Check real saved ColBERT models before and after
         run: |
           source .venv/bin/activate
           IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
           TC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')
           if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
-          python validation/run_narrow_packing_native.py
+          python validation/run_colbert_projection_native.py
       - name: Record native host resources
         if: always()
         run: |
@@ -55,12 +55,12 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-narrow-packing-9efe2567ef13
+          name: native-colbert-projection-edb858436a
           path: |
-            before.log
-            before.xml
-            after.log
-            after.xml
-            existing.log
-            existing.xml
-            validation_result.json
+            colbert_before.log
+            colbert_before.xml
+            colbert_after.log
+            colbert_after.xml
+            colbert_existing.log
+            colbert_existing.xml
+            colbert_validation_result.json
