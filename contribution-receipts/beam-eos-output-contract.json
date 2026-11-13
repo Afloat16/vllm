@@ -1,0 +1,34 @@
+{
+  "repository": "vllm-project/vllm",
+  "fork": "Afloat16/vllm",
+  "base": "c74cab9b33659e92de9ca9c35eb949c78ebbe64c",
+  "branch": "fix/beam-search-eos-output-contract-20261112",
+  "head": "17743dbff5b96c393f297a2ce0bc086f72680f22",
+  "title": "[Bugfix] Honor EOS inclusion consistently in beam-search outputs",
+  "body": "## Problem\n\nOffline beam search always retains a terminating EOS in returned token IDs, regardless of `include_stop_str_in_output`, and does not record its stop metadata. Online beam search already applies the inclusion flag when building completed candidates, but removes a final EOS again when decoding text. Consequently, requesting an included EOS can return token IDs and text that disagree.\n\n## Change\n\n- Record the EOS stop reason for completed offline beams.\n- Apply the offline inclusion flag after ranking, before decoding returned tokens.\n- Decode online text from the token IDs already selected by the inclusion flag.\n- Document the flag's token/text behavior and explicitly retain EOS in the Hugging Face comparison helper.\n\nBeam scores and length penalties continue to use the original log-probability history, including EOS. `ignore_eos=True` continues to treat EOS as an ordinary generated token; `skip_special_tokens` independently controls text decoding.\n\n## Validation\n\nExact production head: `17743dbff5b96c393f297a2ce0bc086f72680f22`.\n\n- 12 new native tests exercise 32 combinations of special and ordinary generation-config EOS tokens, inclusion, special-token decoding, and ignored EOS.\n- A locally saved tiny GPT-2 model runs through the actual offline engine and an actual OpenAI-compatible HTTP server, using source-built vLLM CPU extensions with PyTorch 2.14.0+cpu.\n- Original source: 7 failures and 5 passes. Patched source: all 12 pass; all 64 existing online beam-search unit tests also pass.\n- Tests check returned token IDs and decoded text, stop metadata, and retained cumulative EOS log probabilities.\n- Full repository pre-commit checks pass, including Ruff, formatting, mypy, documentation checks, and test-area coverage. The existing sampler Buildkite area includes the additional dependencies.\n\nNative execution: https://github.com/Afloat16/vllm/actions/runs/43310356124\nFull pre-commit: https://github.com/Afloat16/vllm/actions/runs/43308913489\n\nThe native execution reuses CPU extensions built from the unchanged C++/Rust base and verifies the exact changed Python files. GPU execution was not part of this validation.\n",
+  "validation": {
+    "native_run": 43310356124,
+    "hook_run": 43308913489,
+    "new_tests": 12,
+    "native_combinations": 32,
+    "baseline_failed": 7,
+    "baseline_passed": 5,
+    "patched_passed": 12,
+    "existing_passed": 64,
+    "status": "success",
+    "torch": "2.14.0+cpu",
+    "runtime_source_base": "c74cab9b33659e92de9ca9c35eb949c78ebbe64c"
+  },
+  "review": "Independent full-diff review completed",
+  "merged_at": null,
+  "publication": "pull_request_created",
+  "pull_request": {
+    "number": 67431,
+    "url": "https://github.com/vllm-project/vllm/pull/67431",
+    "state": "open",
+    "draft": false,
+    "head": "17743dbff5b96c393f297a2ce0bc086f72680f22",
+    "merged_at": null,
+    "maintainer_can_modify": false
+  }
+}
