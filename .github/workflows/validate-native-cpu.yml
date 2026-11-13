@@ -1,11 +1,11 @@
-name: Validate native configured ColBERT projections
+name: Validate native bounded MaxSim inference scores
 on:
   push:
     branches: [validation/native-cpu-environment-20261112]
 permissions:
   contents: read
 jobs:
-  native-colbert:
+  native-maxsim:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
@@ -38,13 +38,14 @@ jobs:
           fail-on-cache-miss: true
       - name: Install standard test dependencies
         run: uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema
-      - name: Check real saved ColBERT models before and after
+      - name: Check native MaxSim scoring before and after
         run: |
           source .venv/bin/activate
           IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
           TC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')
           if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
-          python validation/run_colbert_projection_native.py
+          python validation/run_maxsim_budget_native.py
+          python validation/benchmark_maxsim_budget.py
       - name: Record native host resources
         if: always()
         run: |
@@ -55,12 +56,14 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-colbert-projection-edb858436a
+          name: native-maxsim-budget-08027f7d6f
           path: |
-            colbert_before.log
-            colbert_before.xml
-            colbert_after.log
-            colbert_after.xml
-            colbert_existing.log
-            colbert_existing.xml
-            colbert_validation_result.json
+            maxsim_before.log
+            maxsim_before.xml
+            maxsim_after.log
+            maxsim_after.xml
+            maxsim_existing.log
+            maxsim_existing.xml
+            maxsim_validation_result.json
+            maxsim_benchmark.json
+            maxsim_benchmark_*.log
