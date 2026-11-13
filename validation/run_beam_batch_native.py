@@ -7,7 +7,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 BASE = "c74cab9b33659e92de9ca9c35eb949c78ebbe64c"
-HEAD = "d6bb1261e68b20fe8eb4c1a74860c17d3f6e452b"
+HEAD = "b7b7946da1ef215beb159cd1dd5434ea3018b80a"
 FILES = ["vllm/entrypoints/generate/beam_search/offline.py", "tests/samplers/test_beam_search_batch.py"]
 SOURCE_FILES = [path for path in FILES if path.startswith("vllm/entrypoints/")]
 TEST = "tests/samplers/test_beam_search_batch.py"
@@ -48,7 +48,7 @@ finally:
     for path, content in fixed.items():
         Path(path).write_bytes(content)
 assert before["tests"] == 26 and before["errors"] == before["skipped"] == 0, before
-assert before["returncode"] == 1 and before["failures"] > 0, before
+assert before["returncode"] == 1 and before["failures"] == 6, before
 after = run("after", TEST, None)
 assert after == {"tests": 26, "failures": 0, "errors": 0, "skipped": 0, "returncode": 0}, after
 existing = run("existing", "tests/samplers/test_beam_search_online.py")

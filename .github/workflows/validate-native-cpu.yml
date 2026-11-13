@@ -10,7 +10,8 @@ jobs:
     timeout-minutes: 45
     env:
       VLLM_TARGET_DEVICE: cpu
-      VLLM_CPU_KVCACHE_SPACE: "1"
+      VLLM_CPU_KVCACHE_SPACE: ""
+      PYTHONFAULTHANDLER: "1"
       VLLM_CPU_OMP_THREADS_BIND: nobind
       VLLM_WORKER_MULTIPROC_METHOD: spawn
       OMP_NUM_THREADS: "2"
@@ -45,11 +46,17 @@ jobs:
           TC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')
           if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
           python validation/run_beam_batch_native.py
+      - name: Record native host resources
+        if: always()
+        run: |
+          lscpu
+          free -m
+          if [ -r /sys/fs/cgroup/memory.events ]; then cat /sys/fs/cgroup/memory.events; fi
       - name: Save native model evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-beam-batch-d6bb1261e68b
+          name: native-beam-batch-b7b7946da1ef
           path: |
             before.log
             before.xml
