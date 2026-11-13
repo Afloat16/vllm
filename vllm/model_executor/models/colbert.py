@@ -181,7 +181,9 @@ class ColBERTMixin(nn.Module, SupportsLateInteraction):
 
                 weight = weight.to(self.colbert_linear.weight.device)
                 self.colbert_linear.weight.data.copy_(weight)
-                loaded.add("pooler.head.projector.weight")
+                loaded.update(
+                    {"colbert_linear.weight", "pooler.head.projector.weight"}
+                )
 
         return other_weights, loaded
 
