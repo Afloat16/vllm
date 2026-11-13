@@ -370,7 +370,7 @@ def test_colbert_long_pair_worker_maxsim(tmp_path, vllm_runner):
     from tokenizers.models import WordLevel
     from tokenizers.pre_tokenizers import Whitespace
     from tokenizers.processors import TemplateProcessing
-    from transformers import BertConfig, BertModel, PreTrainedTokenizerFast
+    from transformers import BertConfig, BertModel, TokenizersBackend
 
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(19)
@@ -412,7 +412,7 @@ def test_colbert_long_pair_worker_maxsim(tmp_path, vllm_runner):
         pair="[CLS] $A [SEP] $B:1 [SEP]:1",
         special_tokens=[("[CLS]", 2), ("[SEP]", 3)],
     )
-    tokenizer = PreTrainedTokenizerFast(
+    tokenizer = TokenizersBackend(
         tokenizer_object=backend,
         unk_token="[UNK]",
         pad_token="[PAD]",
@@ -447,9 +447,7 @@ def test_colbert_long_pair_worker_maxsim(tmp_path, vllm_runner):
             output.outputs.data for output in embeddings
         ]
         assert len(query_embedding) * len(document_embedding) > 64_000_000
-        expected = (
-            (query_embedding @ document_embedding.T).amax(dim=-1).sum().item()
-        )
+        expected = (query_embedding @ document_embedding.T).amax(dim=-1).sum().item()
         del embeddings, query_embedding, document_embedding
         model.llm.encode(
             [query],
@@ -473,6 +471,4 @@ def test_colbert_long_pair_worker_maxsim(tmp_path, vllm_runner):
             ),
             use_tqdm=False,
         )
-        assert result.outputs.data.item() == pytest.approx(
-            expected, rel=1e-5, abs=1e-5
-        )
+        assert result.outputs.data.item() == pytest.approx(expected, rel=1e-5, abs=1e-5)
