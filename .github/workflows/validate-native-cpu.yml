@@ -1,4 +1,4 @@
-name: Validate native CPU beam batch contract
+name: Validate native stable beam tie ordering
 on:
   push:
     branches: [validation/native-cpu-environment-20261112]
@@ -45,7 +45,7 @@ jobs:
           IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
           TC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')
           if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
-          python validation/run_beam_batch_native.py
+          python validation/run_beam_ties_native.py
       - name: Record native host resources
         if: always()
         run: |
@@ -56,7 +56,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-beam-batch-b7b7946da1ef
+          name: native-beam-ties-b81083bbff4c
           path: |
             before.log
             before.xml
