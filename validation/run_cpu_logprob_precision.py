@@ -38,7 +38,7 @@ def main():
         "tests/v1/worker/cpu/test_cpu_logprob.py", "-k",
         "not (preserve_common_offsets or uniform_large_offset or preserve_masked_and_nonfinite or empty_selected_tokens or topk_and_prompt_scores_with_common_offset or standalone_cpu_engine_logprobs)",
     ])
-    evidence = {"base": BASE, "source_sha": "4dc970b04ee4e0585a45d70bcde3521dd79ebde3", "before": before, "after": after, "existing": existing}
+    evidence = {"base": BASE, "source_sha": "8b376970f56d33e8a543ee90fa69978cffe0d5d0", "before": before, "after": after, "existing": existing}
     Path("cpu_logprob_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
     assert before.get("failures") > 0 and before.get("tests") == 28 and before.get("errors") == 0, before
     assert after.get("passed") == 28 and after.get("returncode") == 0 and after.get("skipped") == 0, after
