@@ -29,7 +29,7 @@ jobs:
         id: hooks
         continue-on-error: true
         run: |
-          uvx pre-commit run --files vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py
+          uvx pre-commit run --files vllm/v1/worker/cpu/logprob.py tests/v1/worker/cpu/test_cpu_logprob.py docs/models/generative_models.md
           git diff --exit-code
       - name: Require both checks
         run: |
