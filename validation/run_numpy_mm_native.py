@@ -41,7 +41,7 @@ def main():
         "tests/renderers/test_sparse_tensor_validation.py",
         "-k", "numpy or encode_and_decode",
     ])
-    evidence = {"base": BASE, "source_sha": "c736616c6a56a2d9f073fe6df952f179a114376e", "before": before, "after": after, "existing": existing}
+    evidence = {"base": BASE, "source_sha": "acea49ab8e05d6bd14e34ffa7831ee2434225e7f", "before": before, "after": after, "existing": existing}
     Path("numpy_mm_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
     assert before.get("failures") == 27 and before.get("passed") == 23 and before.get("errors") == 0, before
     assert after.get("passed") == 50 and after.get("returncode") == 0 and after.get("skipped") == 0, after
