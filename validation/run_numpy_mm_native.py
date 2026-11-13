@@ -6,8 +6,8 @@ import sys
 import xml.etree.ElementTree as ET
 
 BASE = "191e5d5df2ec693d5536a635079d58864dfacebb"
-SOURCE = Path("vllm/v1/pool/late_interaction.py")
-FIXED = SOURCE.read_bytes()
+SOURCES = [Path(name) for name in ("vllm/utils/serial_utils.py", "vllm/multimodal/media/image.py", "vllm/multimodal/media/video.py")]
+FIXED = {path: path.read_bytes() for path in SOURCES}
 ENV = os.environ.copy()
 ENV["PYTHONDONTWRITEBYTECODE"] = "1"
 ENV["TOKENIZERS_PARALLELISM"] = "false"
@@ -27,25 +27,24 @@ def execute(name, targets):
     return summary
 
 def main():
-    target = [
-        "tests/v1/worker/test_late_interaction_runner.py",
-        "tests/models/language/pooling/test_colbert.py::test_colbert_long_pair_worker_maxsim",
-        "-k", "single_pair or chunked_scores or equal_maximum_gradient or long_pair_worker",
-    ]
+    target = ["tests/renderers/test_numpy_embedding_byteorder.py"]
     try:
-        SOURCE.write_bytes(subprocess.check_output(["git", "show", BASE + ":" + str(SOURCE)]))
-        before = execute("maxsim_before", target)
+        for path in SOURCES:
+            path.write_bytes(subprocess.check_output(["git", "show", BASE + ":" + str(path)]))
+        before = execute("numpy_mm_before", target)
     finally:
-        SOURCE.write_bytes(FIXED)
-    after = execute("maxsim_after", target)
-    existing = execute("maxsim_existing", [
-        "tests/v1/worker/test_late_interaction_runner.py",
-        "-k", "not (single_pair or chunked_scores or equal_maximum_gradient)",
+        for path, content in FIXED.items():
+            path.write_bytes(content)
+    after = execute("numpy_mm_after", target)
+    existing = execute("numpy_mm_existing", [
+        "tests/utils_/test_serial_utils.py",
+        "tests/renderers/test_sparse_tensor_validation.py",
+        "-k", "numpy or encode_and_decode",
     ])
-    evidence = {"base": BASE, "source_sha": "ebdd3f7a92c51731a07adc5a3e90a5af6e0ba3b4", "before": before, "after": after, "existing": existing}
-    Path("maxsim_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
-    assert before.get("failures") == 2 and before.get("passed") == 20 and before.get("errors") == 0, before
-    assert after.get("passed") == 22 and after.get("returncode") == 0 and after.get("skipped") == 0, after
+    evidence = {"base": BASE, "source_sha": "0230a4cac3ce61b4c77b40e7e6b9c72359fad4dd", "before": before, "after": after, "existing": existing}
+    Path("numpy_mm_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    assert before.get("failures") == 27 and before.get("passed") == 23 and before.get("errors") == 0, before
+    assert after.get("passed") == 50 and after.get("returncode") == 0 and after.get("skipped") == 0, after
     assert existing["returncode"] == 0, existing
 
 if __name__ == "__main__":
