@@ -29,7 +29,7 @@ jobs:
         id: hooks
         continue-on-error: true
         run: |
-          uvx pre-commit run --files vllm/utils/serial_utils.py vllm/multimodal/media/image.py vllm/multimodal/media/video.py tests/renderers/test_numpy_embedding_byteorder.py
+          uvx pre-commit run --files vllm/utils/serial_utils.py vllm/multimodal/media/image.py vllm/multimodal/media/video.py tests/renderers/test_numpy_embedding_byteorder.py docs/features/multimodal_inputs.md
           git diff --exit-code
       - name: Require both checks
         run: |
