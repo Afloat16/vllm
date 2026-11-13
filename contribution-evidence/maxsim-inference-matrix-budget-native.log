@@ -1,0 +1,670 @@
+﻿2026-11-13T11:30:30.2216618Z Current runner version: '2.338.2'
+2026-11-13T11:30:30.2233055Z ##[group]Runner Image Provisioner
+2026-11-13T11:30:30.2233832Z Hosted Compute Agent
+2026-11-13T11:30:30.2234179Z Version: 20261028.624
+2026-11-13T11:30:30.2234579Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-13T11:30:30.2235053Z Build Date: 2026-10-28T21:51:42Z
+2026-11-13T11:30:30.2235451Z Worker ID: {7a8b3441-25a8-4b06-b8c1-54fef2720a45}
+2026-11-13T11:30:30.2235878Z Region: westus3
+2026-11-13T11:30:30.2236217Z Cloud: Azure
+2026-11-13T11:30:30.2236571Z ##[endgroup]
+2026-11-13T11:30:30.2237663Z ##[group]Operating System
+2026-11-13T11:30:30.2238020Z Ubuntu
+2026-11-13T11:30:30.2238383Z 24.04.5
+2026-11-13T11:30:30.2238733Z LTS
+2026-11-13T11:30:30.2239040Z ##[endgroup]
+2026-11-13T11:30:30.2239393Z ##[group]Runner Image
+2026-11-13T11:30:30.2239737Z Image: ubuntu-24.04
+2026-11-13T11:30:30.2240060Z Version: 20261101.360.1
+2026-11-13T11:30:30.2240868Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-13T11:30:30.2241754Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-13T11:30:30.2242296Z ##[endgroup]
+2026-11-13T11:30:30.2242994Z ##[group]GITHUB_TOKEN Permissions
+2026-11-13T11:30:30.2244387Z Contents: read
+2026-11-13T11:30:30.2244719Z Metadata: read
+2026-11-13T11:30:30.2245121Z ##[endgroup]
+2026-11-13T11:30:30.2246364Z Secret source: Actions
+2026-11-13T11:30:30.2246995Z Cache mode: write
+2026-11-13T11:30:30.2247401Z Prepare workflow directory
+2026-11-13T11:30:30.2478332Z Prepare all required actions
+2026-11-13T11:30:30.2508621Z Getting action download info
+2026-11-13T11:30:30.5790471Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-13T11:30:30.6824252Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-13T11:30:30.8349164Z Download action repository 'astral-sh/setup-uv@v6' (SHA:d0cc045d04ccac9d8b7881df0226f9e82c39688e)
+2026-11-13T11:30:31.5458310Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-11-13T11:30:31.6623011Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-13T11:30:31.8419420Z Complete job name: native-maxsim
+2026-11-13T11:30:31.8940557Z ##[group]Run actions/checkout@v4
+2026-11-13T11:30:31.8941062Z with:
+2026-11-13T11:30:31.8941454Z   fetch-depth: 64
+2026-11-13T11:30:31.8941797Z   repository: Afloat16/vllm
+2026-11-13T11:30:31.8944160Z   token: ***
+2026-11-13T11:30:31.8944487Z   ssh-strict: true
+2026-11-13T11:30:31.8944802Z   ssh-user: git
+2026-11-13T11:30:31.8945174Z   persist-credentials: true
+2026-11-13T11:30:31.8945529Z   clean: true
+2026-11-13T11:30:31.8945906Z   sparse-checkout-cone-mode: true
+2026-11-13T11:30:31.8946329Z   fetch-tags: false
+2026-11-13T11:30:31.8946650Z   show-progress: true
+2026-11-13T11:30:31.8947031Z   lfs: false
+2026-11-13T11:30:31.8947373Z   submodules: false
+2026-11-13T11:30:31.8947744Z   set-safe-directory: true
+2026-11-13T11:30:31.8948119Z   allow-unsafe-pr-checkout: false
+2026-11-13T11:30:31.8948570Z env:
+2026-11-13T11:30:31.8948914Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:30:31.8949267Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:30:31.8949648Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:30:31.8950156Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:30:31.8950524Z   OMP_NUM_THREADS: 2
+2026-11-13T11:30:31.8950933Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:30:31.8951321Z ##[endgroup]
+2026-11-13T11:30:32.1224265Z Syncing repository: Afloat16/vllm
+2026-11-13T11:30:32.1225621Z ##[group]Getting Git version info
+2026-11-13T11:30:32.1226300Z Working directory is '/home/runner/work/vllm/vllm'
+2026-11-13T11:30:32.1227412Z [command]/usr/bin/git version
+2026-11-13T11:30:32.1314632Z git version 2.56.0
+2026-11-13T11:30:32.1326226Z ##[endgroup]
+2026-11-13T11:30:32.1338555Z Temporarily overriding HOME='/home/runner/work/_temp/cead33d4-7066-4832-b345-0b3473dcb514' before making global git config changes
+2026-11-13T11:30:32.1344221Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T11:30:32.1348627Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vllm/vllm
+2026-11-13T11:30:32.1398384Z Deleting the contents of '/home/runner/work/vllm/vllm'
+2026-11-13T11:30:32.1469423Z ##[group]Initializing the repository
+2026-11-13T11:30:32.1470738Z [command]/usr/bin/git init /home/runner/work/vllm/vllm
+2026-11-13T11:30:32.1520512Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-13T11:30:32.1521199Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-13T11:30:32.1521805Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-13T11:30:32.1522273Z hint: call:
+2026-11-13T11:30:32.1522647Z hint:
+2026-11-13T11:30:32.1523114Z hint: 	git config --global init.defaultBranch <name>
+2026-11-13T11:30:32.1523470Z hint:
+2026-11-13T11:30:32.1524030Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-13T11:30:32.1524638Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-13T11:30:32.1525187Z hint:
+2026-11-13T11:30:32.1525430Z hint: 	git branch -m <name>
+2026-11-13T11:30:32.1525699Z hint:
+2026-11-13T11:30:32.1526065Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-13T11:30:32.1529690Z Initialized empty Git repository in /home/runner/work/vllm/vllm/.git/
+2026-11-13T11:30:32.1540123Z [command]/usr/bin/git remote add origin https://github.com/Afloat16/vllm
+2026-11-13T11:30:32.1584356Z ##[endgroup]
+2026-11-13T11:30:32.1585097Z ##[group]Disabling automatic garbage collection
+2026-11-13T11:30:32.1587950Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-13T11:30:32.1618831Z ##[endgroup]
+2026-11-13T11:30:32.1619358Z ##[group]Setting up auth
+2026-11-13T11:30:32.1625522Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T11:30:32.1656128Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T11:30:32.1967252Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T11:30:32.2002634Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T11:30:32.2196883Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T11:30:32.2232312Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T11:30:32.2412207Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-13T11:30:32.2451301Z ##[endgroup]
+2026-11-13T11:30:32.2451834Z ##[group]Fetching the repository
+2026-11-13T11:30:32.2460773Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=64 origin +79d6100e2dd9a5e80891766ad1419976aae87095:refs/remotes/origin/validation/native-cpu-environment-20261112
+2026-11-13T11:30:39.7442912Z From https://github.com/Afloat16/vllm
+2026-11-13T11:30:39.7444994Z  * [new ref]         79d6100e2dd9a5e80891766ad1419976aae87095 -> origin/validation/native-cpu-environment-20261112
+2026-11-13T11:30:39.7451579Z ##[endgroup]
+2026-11-13T11:30:39.7452649Z ##[group]Determining the checkout info
+2026-11-13T11:30:39.7454079Z ##[endgroup]
+2026-11-13T11:30:39.7454775Z [command]/usr/bin/git sparse-checkout disable
+2026-11-13T11:30:39.7506353Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-13T11:30:39.7540580Z ##[group]Checking out the ref
+2026-11-13T11:30:39.7543365Z [command]/usr/bin/git checkout --progress --force -B validation/native-cpu-environment-20261112 refs/remotes/origin/validation/native-cpu-environment-20261112
+2026-11-13T11:30:40.3543536Z Switched to a new branch 'validation/native-cpu-environment-20261112'
+2026-11-13T11:30:40.3550763Z branch 'validation/native-cpu-environment-20261112' set up to track 'origin/validation/native-cpu-environment-20261112'.
+2026-11-13T11:30:40.3585190Z ##[endgroup]
+2026-11-13T11:30:40.3634328Z [command]/usr/bin/git log -1 --format=%H
+2026-11-13T11:30:40.3663018Z 79d6100e2dd9a5e80891766ad1419976aae87095
+2026-11-13T11:30:40.3855863Z ##[group]Run actions/setup-python@v5
+2026-11-13T11:30:40.3856043Z with:
+2026-11-13T11:30:40.3856155Z   python-version: 3.12
+2026-11-13T11:30:40.3856278Z   check-latest: false
+2026-11-13T11:30:40.3857464Z   token: ***
+2026-11-13T11:30:40.3857590Z   update-environment: true
+2026-11-13T11:30:40.3857727Z   allow-prereleases: false
+2026-11-13T11:30:40.3857857Z   freethreaded: false
+2026-11-13T11:30:40.3857973Z env:
+2026-11-13T11:30:40.3858084Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:30:40.3858232Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:30:40.3858370Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:30:40.3858518Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:30:40.3858659Z   OMP_NUM_THREADS: 2
+2026-11-13T11:30:40.3858793Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:30:40.3858944Z ##[endgroup]
+2026-11-13T11:30:40.4700939Z ##[group]Installed versions
+2026-11-13T11:30:40.5285452Z (node:2118) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T11:30:40.5285932Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T11:30:40.5286452Z Successfully set up CPython (3.12.16)
+2026-11-13T11:30:40.5286883Z ##[endgroup]
+2026-11-13T11:30:40.5503177Z ##[group]Run astral-sh/setup-uv@v6
+2026-11-13T11:30:40.5503352Z with:
+2026-11-13T11:30:40.5503472Z   activate-environment: false
+2026-11-13T11:30:40.5503638Z   working-directory: /home/runner/work/vllm/vllm
+2026-11-13T11:30:40.5504040Z   server-url: https://github.com
+2026-11-13T11:30:40.5507418Z   github-token: ***
+2026-11-13T11:30:40.5507646Z   enable-cache: auto
+2026-11-13T11:30:40.5508267Z   cache-dependency-glob: **/*requirements*.txt
+**/*requirements*.in
+**/*constraints*.txt
+**/*constraints*.in
+**/pyproject.toml
+**/uv.lock
+**/*.py.lock
+
+2026-11-13T11:30:40.5508904Z   restore-cache: true
+2026-11-13T11:30:40.5509087Z   save-cache: true
+2026-11-13T11:30:40.5509265Z   prune-cache: true
+2026-11-13T11:30:40.5509459Z   ignore-nothing-to-cache: false
+2026-11-13T11:30:40.5509690Z   ignore-empty-workdir: false
+2026-11-13T11:30:40.5509872Z   add-problem-matchers: true
+2026-11-13T11:30:40.5510002Z env:
+2026-11-13T11:30:40.5510109Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:30:40.5510352Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:30:40.5510586Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:30:40.5510862Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:30:40.5511127Z   OMP_NUM_THREADS: 2
+2026-11-13T11:30:40.5511363Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:30:40.5511711Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:40.5512226Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T11:30:40.5512595Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:40.5512912Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:40.5513112Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:40.5513395Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T11:30:40.5513577Z ##[endgroup]
+2026-11-13T11:30:40.6732075Z (node:2126) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T11:30:40.6732613Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T11:30:40.6817389Z Trying to find version for uv in: /home/runner/work/vllm/vllm/uv.toml
+2026-11-13T11:30:40.6818158Z Could not find file: /home/runner/work/vllm/vllm/uv.toml
+2026-11-13T11:30:40.6819266Z Trying to find version for uv in: /home/runner/work/vllm/vllm/pyproject.toml
+2026-11-13T11:30:40.6839206Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-11-13T11:30:40.6854885Z Getting latest version from GitHub API...
+2026-11-13T11:30:41.0388545Z manifest-file not provided, reading from local file.
+2026-11-13T11:30:41.0419319Z manifest-file does not contain version 0.13.8, arch x86_64, platform unknown-linux-gnu. Falling back to GitHub releases.
+2026-11-13T11:30:41.0441305Z Downloading uv from "https://github.com/astral-sh/uv/releases/download/0.13.8/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-11-13T11:30:41.4111070Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/9e423c9a-6e42-4efa-8bc0-0f661d79cab0 -f /home/runner/work/_temp/d2d0e73e-16b9-4564-bdb0-8bfc5a8bd24d
+2026-11-13T11:30:41.7535259Z Added /home/runner/.local/bin to the path
+2026-11-13T11:30:41.7536719Z Added /opt/hostedtoolcache/uv/0.13.8/x86_64 to the path
+2026-11-13T11:30:41.7545598Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-11-13T11:30:41.7547194Z Successfully installed uv version 0.13.8
+2026-11-13T11:30:41.7548233Z Searching files using cache dependency glob: /home/runner/work/vllm/vllm/**/*requirements*.txt,/home/runner/work/vllm/vllm/**/*requirements*.in,/home/runner/work/vllm/vllm/**/*constraints*.txt,/home/runner/work/vllm/vllm/**/*constraints*.in,/home/runner/work/vllm/vllm/**/pyproject.toml,/home/runner/work/vllm/vllm/**/uv.lock,/home/runner/work/vllm/vllm/**/*.py.lock
+2026-11-13T11:30:41.8007352Z /home/runner/work/vllm/vllm/benchmarks/kernels/requirements.txt
+2026-11-13T11:30:41.8025496Z /home/runner/work/vllm/vllm/benchmarks/multi_turn/requirements.txt
+2026-11-13T11:30:41.8504450Z /home/runner/work/vllm/vllm/examples/features/structured_outputs/pyproject.toml
+2026-11-13T11:30:41.8607304Z /home/runner/work/vllm/vllm/pyproject.toml
+2026-11-13T11:30:42.0425294Z /home/runner/work/vllm/vllm/tools/recipes/requirements.txt
+2026-11-13T11:30:42.2588765Z Found 5 files to hash.
+2026-11-13T11:30:42.7964996Z Trying to restore uv cache from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T11:30:42.9949477Z Cache hit for: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T11:30:43.0020569Z (node:2126) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T11:30:43.6856228Z Received 2866372 of 2866372 (100.0%), 5.8 MBs/sec
+2026-11-13T11:30:43.6856554Z Cache Size: ~3 MB (2866372 B)
+2026-11-13T11:30:43.6874740Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f692e081-a340-4f18-9d62-262710a34adc/cache.tzst -P -C /home/runner/work/vllm/vllm --use-compress-program unzstd
+2026-11-13T11:30:43.7021279Z Cache restored successfully
+2026-11-13T11:30:43.7026370Z uv cache restored from GitHub Actions cache with key: setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9
+2026-11-13T11:30:43.7184675Z ##[group]Run sudo apt-get update -y
+2026-11-13T11:30:43.7184918Z [36;1msudo apt-get update -y[0m
+2026-11-13T11:30:43.7185123Z [36;1msudo apt-get install -y libnuma-dev libtcmalloc-minimal4[0m
+2026-11-13T11:30:43.7204601Z shell: /usr/bin/bash -e {0}
+2026-11-13T11:30:43.7204747Z env:
+2026-11-13T11:30:43.7204860Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:30:43.7204998Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:30:43.7205131Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:30:43.7205285Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:30:43.7205432Z   OMP_NUM_THREADS: 2
+2026-11-13T11:30:43.7205556Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:30:43.7205727Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:43.7206122Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T11:30:43.7206354Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:43.7206589Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:43.7206801Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:43.7207012Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T11:30:43.7207219Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T11:30:43.7207383Z ##[endgroup]
+2026-11-13T11:30:43.7836437Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-13T11:30:43.8238730Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-11-13T11:30:43.8319620Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-11-13T11:30:43.8340619Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-11-13T11:30:43.8380482Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-11-13T11:30:43.8390542Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-11-13T11:30:43.8781282Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [697 kB]
+2026-11-13T11:30:43.8902911Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.6 kB]
+2026-11-13T11:30:43.8944557Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [767 kB]
+2026-11-13T11:30:43.9537662Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1450 kB]
+2026-11-13T11:30:43.9609677Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [315 kB]
+2026-11-13T11:30:43.9625327Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1713 kB]
+2026-11-13T11:30:43.9676535Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [345 kB]
+2026-11-13T11:30:43.9700532Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1883 kB]
+2026-11-13T11:30:43.9759538Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [430 kB]
+2026-11-13T11:30:43.9781882Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [50.7 kB]
+2026-11-13T11:30:43.9788286Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.6 kB]
+2026-11-13T11:30:44.0357931Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1195 kB]
+2026-11-13T11:30:44.0401953Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [238 kB]
+2026-11-13T11:30:44.0858003Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1228 kB]
+2026-11-13T11:30:44.0900065Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [248 kB]
+2026-11-13T11:30:44.0915885Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1788 kB]
+2026-11-13T11:30:44.0974521Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [411 kB]
+2026-11-13T11:30:44.0992180Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [45.4 kB]
+2026-11-13T11:30:44.0999500Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [12.4 kB]
+2026-11-13T11:30:47.0321870Z Fetched 13.2 MB in 1s (13.4 MB/s)
+2026-11-13T11:30:47.7470068Z Reading package lists...
+2026-11-13T11:30:47.7779346Z Reading package lists...
+2026-11-13T11:30:47.9646638Z Building dependency tree...
+2026-11-13T11:30:47.9651784Z Reading state information...
+2026-11-13T11:30:48.0950651Z The following NEW packages will be installed:
+2026-11-13T11:30:48.0952493Z   libnuma-dev libtcmalloc-minimal4t64
+2026-11-13T11:30:48.1112222Z 0 upgraded, 2 newly installed, 0 to remove and 54 not upgraded.
+2026-11-13T11:30:48.1112581Z Need to get 126 kB of archives.
+2026-11-13T11:30:48.1113235Z After this operation, 508 kB of additional disk space will be used.
+2026-11-13T11:30:48.1114068Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-13T11:30:48.1816964Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 libtcmalloc-minimal4t64 amd64 2.15-3build1 [89.5 kB]
+2026-11-13T11:30:48.2351342Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 libnuma-dev amd64 2.0.18-1ubuntu0.24.04.1 [37.0 kB]
+2026-11-13T11:30:48.4218100Z Fetched 126 kB in 0s (942 kB/s)
+2026-11-13T11:30:48.4392243Z Selecting previously unselected package libtcmalloc-minimal4t64:amd64.
+2026-11-13T11:30:48.4634453Z (Reading database ... 
+2026-11-13T11:30:48.4634712Z (Reading database ... 5%
+2026-11-13T11:30:48.4634923Z (Reading database ... 10%
+2026-11-13T11:30:48.4635122Z (Reading database ... 15%
+2026-11-13T11:30:48.4635332Z (Reading database ... 20%
+2026-11-13T11:30:48.4635520Z (Reading database ... 25%
+2026-11-13T11:30:48.4635649Z (Reading database ... 30%
+2026-11-13T11:30:48.4635814Z (Reading database ... 35%
+2026-11-13T11:30:48.4635940Z (Reading database ... 40%
+2026-11-13T11:30:48.4636069Z (Reading database ... 45%
+2026-11-13T11:30:48.4636192Z (Reading database ... 50%
+2026-11-13T11:30:48.4676516Z (Reading database ... 55%
+2026-11-13T11:30:48.6499428Z (Reading database ... 60%
+2026-11-13T11:30:48.8001352Z (Reading database ... 65%
+2026-11-13T11:30:49.0448902Z (Reading database ... 70%
+2026-11-13T11:30:49.1979110Z (Reading database ... 75%
+2026-11-13T11:30:49.3895284Z (Reading database ... 80%
+2026-11-13T11:30:49.5972185Z (Reading database ... 85%
+2026-11-13T11:30:49.8098679Z (Reading database ... 90%
+2026-11-13T11:30:50.0006944Z (Reading database ... 95%
+2026-11-13T11:30:50.0007250Z (Reading database ... 100%
+2026-11-13T11:30:50.0007477Z (Reading database ... 215960 files and directories currently installed.)
+2026-11-13T11:30:50.0044317Z Preparing to unpack .../libtcmalloc-minimal4t64_2.15-3build1_amd64.deb ...
+2026-11-13T11:30:50.0159546Z Unpacking libtcmalloc-minimal4t64:amd64 (2.15-3build1) ...
+2026-11-13T11:30:50.0417562Z Selecting previously unselected package libnuma-dev:amd64.
+2026-11-13T11:30:50.0521807Z Preparing to unpack .../libnuma-dev_2.0.18-1ubuntu0.24.04.1_amd64.deb ...
+2026-11-13T11:30:50.0528832Z Unpacking libnuma-dev:amd64 (2.0.18-1ubuntu0.24.04.1) ...
+2026-11-13T11:30:50.0915934Z Setting up libnuma-dev:amd64 (2.0.18-1ubuntu0.24.04.1) ...
+2026-11-13T11:30:50.0938024Z Setting up libtcmalloc-minimal4t64:amd64 (2.15-3build1) ...
+2026-11-13T11:30:50.0956443Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-11-13T11:30:50.0976144Z Not building database; man-db/auto-update is not 'true'.
+2026-11-13T11:30:50.0984004Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+2026-11-13T11:30:52.0935164Z 
+2026-11-13T11:30:52.0935645Z Running kernel seems to be up-to-date.
+2026-11-13T11:30:52.0935868Z 
+2026-11-13T11:30:52.0935934Z No services need to be restarted.
+2026-11-13T11:30:52.0936035Z 
+2026-11-13T11:30:52.0936096Z No containers need to be restarted.
+2026-11-13T11:30:52.0936236Z 
+2026-11-13T11:30:52.0936317Z No user sessions are running outdated binaries.
+2026-11-13T11:30:52.0936433Z 
+2026-11-13T11:30:52.0936544Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-11-13T11:30:52.9495278Z ##[group]Run actions/cache/restore@v4
+2026-11-13T11:30:52.9495435Z with:
+2026-11-13T11:30:52.9495558Z   path: .venv
+vllm/*.so
+vllm/libs
+
+2026-11-13T11:30:52.9495735Z   key: vllm-native-191e5d5d-py312-torch214-ubuntu24-v1
+2026-11-13T11:30:52.9495914Z   fail-on-cache-miss: true
+2026-11-13T11:30:52.9496050Z   enableCrossOsArchive: false
+2026-11-13T11:30:52.9496184Z   lookup-only: false
+2026-11-13T11:30:52.9496299Z env:
+2026-11-13T11:30:52.9496407Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:30:52.9496535Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:30:52.9496668Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:30:52.9496815Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:30:52.9496957Z   OMP_NUM_THREADS: 2
+2026-11-13T11:30:52.9497082Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:30:52.9497375Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:52.9497604Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T11:30:52.9497846Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:52.9498052Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:52.9498255Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:30:52.9498465Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T11:30:52.9498665Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T11:30:52.9498829Z ##[endgroup]
+2026-11-13T11:30:53.0154100Z (node:2607) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T11:30:53.0154606Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T11:30:53.2164155Z Cache hit for: vllm-native-191e5d5d-py312-torch214-ubuntu24-v1
+2026-11-13T11:30:53.2267592Z (node:2607) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T11:30:54.4353477Z Received 83886080 of 875527660 (9.6%), 79.9 MBs/sec
+2026-11-13T11:30:55.4379746Z Received 276824064 of 875527660 (31.6%), 131.9 MBs/sec
+2026-11-13T11:30:56.4358687Z Received 524288000 of 875527660 (59.9%), 166.6 MBs/sec
+2026-11-13T11:30:57.4350665Z Received 738197504 of 875527660 (84.3%), 176.0 MBs/sec
+2026-11-13T11:30:58.2555896Z Received 875527660 of 875527660 (100.0%), 173.2 MBs/sec
+2026-11-13T11:30:58.2557337Z Cache Size: ~835 MB (875527660 B)
+2026-11-13T11:30:58.2585035Z [command]/usr/bin/tar -xf /home/runner/work/_temp/a1177ac6-8121-4e09-8d30-a756b7d06745/cache.tzst -P -C /home/runner/work/vllm/vllm --use-compress-program unzstd
+2026-11-13T11:31:11.6295608Z Cache restored successfully
+2026-11-13T11:31:11.6770742Z Cache restored from key: vllm-native-191e5d5d-py312-torch214-ubuntu24-v1
+2026-11-13T11:31:11.7206838Z ##[group]Run uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema
+2026-11-13T11:31:11.7207306Z [36;1muv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema[0m
+2026-11-13T11:31:11.7223452Z shell: /usr/bin/bash -e {0}
+2026-11-13T11:31:11.7223589Z env:
+2026-11-13T11:31:11.7223811Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:31:11.7223970Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:31:11.7224105Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:31:11.7224263Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:31:11.7224408Z   OMP_NUM_THREADS: 2
+2026-11-13T11:31:11.7224533Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:31:11.7224718Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:11.7224955Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T11:31:11.7225188Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:11.7225432Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:11.7225648Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:11.7225871Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T11:31:11.7226081Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T11:31:11.7226260Z ##[endgroup]
+2026-11-13T11:31:11.9571414Z Resolved 28 packages in 144ms
+2026-11-13T11:31:12.0999967Z Prepared 1 package in 142ms
+2026-11-13T11:31:12.1009098Z Installed 1 package in 0.88ms
+2026-11-13T11:31:12.1009390Z  + tblib==3.2.2
+2026-11-13T11:31:12.2375965Z ##[group]Run source .venv/bin/activate
+2026-11-13T11:31:12.2376281Z [36;1msource .venv/bin/activate[0m
+2026-11-13T11:31:12.2376629Z [36;1mIOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)[0m
+2026-11-13T11:31:12.2377092Z [36;1mTC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')[0m
+2026-11-13T11:31:12.2377752Z [36;1mif [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi[0m
+2026-11-13T11:31:12.2378070Z [36;1mpython validation/run_maxsim_budget_native.py[0m
+2026-11-13T11:31:12.2378267Z [36;1mpython validation/benchmark_maxsim_budget.py[0m
+2026-11-13T11:31:12.2394836Z shell: /usr/bin/bash -e {0}
+2026-11-13T11:31:12.2394979Z env:
+2026-11-13T11:31:12.2395095Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:31:12.2395231Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:31:12.2395363Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:31:12.2395518Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:31:12.2395714Z   OMP_NUM_THREADS: 2
+2026-11-13T11:31:12.2395838Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:31:12.2396013Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:12.2396246Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T11:31:12.2396475Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:12.2396691Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:12.2396896Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:31:12.2397108Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T11:31:12.2397309Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T11:31:12.2397476Z ##[endgroup]
+2026-11-13T11:31:12.4116728Z /home/runner/work/_temp/344bb503-9956-483d-a8a8-e9495ec1e7d2.sh: line 2: rg: command not found
+2026-11-13T11:31:12.4117584Z /home/runner/work/_temp/344bb503-9956-483d-a8a8-e9495ec1e7d2.sh: line 2: rg: command not found
+2026-11-13T11:32:26.9697135Z /home/runner/work/vllm/vllm/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:306: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+2026-11-13T11:32:26.9698903Z The event loop scope for asynchronous fixtures will default to the fixture scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session". Set it to "fixture-scope" to keep the current behavior.
+2026-11-13T11:32:26.9700138Z 
+2026-11-13T11:32:26.9700352Z   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+2026-11-13T11:32:26.9700748Z ...............FF.....                                                   [100%]
+2026-11-13T11:32:26.9701082Z =================================== FAILURES ===================================
+2026-11-13T11:32:26.9701450Z _____ test_maxsim_single_pair_score_matrix_allocation_is_bounded[256-1024] _____
+2026-11-13T11:32:26.9701706Z 
+2026-11-13T11:32:26.9701800Z query_length = 256, doc_length = 1024
+2026-11-13T11:32:26.9701953Z 
+2026-11-13T11:32:26.9702139Z     @pytest.mark.parametrize("query_length,doc_length", [(256, 1024), (1, 32769)])
+2026-11-13T11:32:26.9702567Z     def test_maxsim_single_pair_score_matrix_allocation_is_bounded(
+2026-11-13T11:32:26.9702917Z         query_length, doc_length
+2026-11-13T11:32:26.9703127Z     ):
+2026-11-13T11:32:26.9703404Z         from torch.profiler import ProfilerActivity, profile
+2026-11-13T11:32:26.9703669Z     
+2026-11-13T11:32:26.9703926Z         budget = 32768
+2026-11-13T11:32:26.9704166Z         query = torch.ones(query_length, 4, requires_grad=True)
+2026-11-13T11:32:26.9704538Z         document = -torch.ones(doc_length, 4, requires_grad=True)
+2026-11-13T11:32:26.9704822Z         with (
+2026-11-13T11:32:26.9704986Z             torch.no_grad(),
+2026-11-13T11:32:26.9705509Z             profile(activities=[ProfilerActivity.CPU], profile_memory=True) as trace,
+2026-11-13T11:32:26.9705722Z         ):
+2026-11-13T11:32:26.9705850Z             (score,) = compute_maxsim_score_batched(
+2026-11-13T11:32:26.9706050Z                 [query], [document], max_score_matrix_elements=budget
+2026-11-13T11:32:26.9706220Z             )
+2026-11-13T11:32:26.9706438Z     
+2026-11-13T11:32:26.9706561Z         assert score.item() == -4 * query_length
+2026-11-13T11:32:26.9706719Z         allocations = [
+2026-11-13T11:32:26.9706857Z             event.cpu_memory_usage
+2026-11-13T11:32:26.9707008Z             for event in trace.events()
+2026-11-13T11:32:26.9707227Z             if event.name in ("aten::matmul", "aten::mm", "aten::bmm")
+2026-11-13T11:32:26.9707403Z         ]
+2026-11-13T11:32:26.9707515Z         assert allocations
+2026-11-13T11:32:26.9707685Z >       assert max(allocations) <= budget * query.element_size()
+2026-11-13T11:32:26.9707873Z E       assert 1048576 <= (32768 * 4)
+2026-11-13T11:32:26.9708021Z E        +  where 1048576 = max([1048576])
+2026-11-13T11:32:26.9708243Z E        +  and   4 = <built-in method element_size of Tensor object at 0x7fb5b83d1c20>()
+2026-11-13T11:32:26.9708745Z E        +    where <built-in method element_size of Tensor object at 0x7fb5b83d1c20> = tensor([[1., 1., 1., 1.],\n        [1., 1., 1., 1.],\n        [1., 1., 1., 1.],\n        ...,\n        [1., 1., 1., 1.],\n        [1., 1., 1., 1.],\n        [1., 1., 1., 1.]], requires_grad=True).element_size
+2026-11-13T11:32:26.9709115Z 
+2026-11-13T11:32:26.9709222Z tests/v1/worker/test_late_interaction_runner.py:362: AssertionError
+2026-11-13T11:32:26.9709474Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T11:32:26.9709748Z USDT:2026-11-13 11:31:35 2665:2665 SyncActivityProfilerHandler.cpp:39] profiler_start
+2026-11-13T11:32:26.9710029Z USDT:2026-11-13 11:31:35 2665:2665 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2026-11-13T11:32:26.9710322Z _____ test_maxsim_single_pair_score_matrix_allocation_is_bounded[1-32769] ______
+2026-11-13T11:32:26.9710483Z 
+2026-11-13T11:32:26.9710540Z query_length = 1, doc_length = 32769
+2026-11-13T11:32:26.9710638Z 
+2026-11-13T11:32:26.9710755Z     @pytest.mark.parametrize("query_length,doc_length", [(256, 1024), (1, 32769)])
+2026-11-13T11:32:26.9711012Z     def test_maxsim_single_pair_score_matrix_allocation_is_bounded(
+2026-11-13T11:32:26.9711210Z         query_length, doc_length
+2026-11-13T11:32:26.9711343Z     ):
+2026-11-13T11:32:26.9711486Z         from torch.profiler import ProfilerActivity, profile
+2026-11-13T11:32:26.9711659Z     
+2026-11-13T11:32:26.9711762Z         budget = 32768
+2026-11-13T11:32:26.9711917Z         query = torch.ones(query_length, 4, requires_grad=True)
+2026-11-13T11:32:26.9712133Z         document = -torch.ones(doc_length, 4, requires_grad=True)
+2026-11-13T11:32:26.9712312Z         with (
+2026-11-13T11:32:26.9712427Z             torch.no_grad(),
+2026-11-13T11:32:26.9712634Z             profile(activities=[ProfilerActivity.CPU], profile_memory=True) as trace,
+2026-11-13T11:32:26.9712841Z         ):
+2026-11-13T11:32:26.9712965Z             (score,) = compute_maxsim_score_batched(
+2026-11-13T11:32:26.9713160Z                 [query], [document], max_score_matrix_elements=budget
+2026-11-13T11:32:26.9713331Z             )
+2026-11-13T11:32:26.9713436Z     
+2026-11-13T11:32:26.9713559Z         assert score.item() == -4 * query_length
+2026-11-13T11:32:26.9713891Z         allocations = [
+2026-11-13T11:32:26.9714055Z             event.cpu_memory_usage
+2026-11-13T11:32:26.9714203Z             for event in trace.events()
+2026-11-13T11:32:26.9714387Z             if event.name in ("aten::matmul", "aten::mm", "aten::bmm")
+2026-11-13T11:32:26.9714564Z         ]
+2026-11-13T11:32:26.9714848Z         assert allocations
+2026-11-13T11:32:26.9715049Z >       assert max(allocations) <= budget * query.element_size()
+2026-11-13T11:32:26.9715231Z E       assert 131076 <= (32768 * 4)
+2026-11-13T11:32:26.9715497Z E        +  where 131076 = max([131076])
+2026-11-13T11:32:26.9715706Z E        +  and   4 = <built-in method element_size of Tensor object at 0x7fb5b83e2d00>()
+2026-11-13T11:32:26.9716075Z E        +    where <built-in method element_size of Tensor object at 0x7fb5b83e2d00> = tensor([[1., 1., 1., 1.]], requires_grad=True).element_size
+2026-11-13T11:32:26.9716332Z 
+2026-11-13T11:32:26.9716519Z tests/v1/worker/test_late_interaction_runner.py:362: AssertionError
+2026-11-13T11:32:26.9716757Z ----------------------------- Captured stderr call -----------------------------
+2026-11-13T11:32:26.9717021Z USDT:2026-11-13 11:31:35 2665:2665 SyncActivityProfilerHandler.cpp:39] profiler_start
+2026-11-13T11:32:26.9717298Z USDT:2026-11-13 11:31:35 2665:2665 SyncActivityProfilerHandler.cpp:46] profiler_stop
+2026-11-13T11:32:26.9717539Z =============================== warnings summary ===============================
+2026-11-13T11:32:26.9717714Z vllm/__init__.py:7
+2026-11-13T11:32:26.9717930Z   /home/runner/work/vllm/vllm/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+2026-11-13T11:32:26.9718175Z   No module named 'vllm._version'
+2026-11-13T11:32:26.9718362Z     from .version import __version__, __version_tuple__  # isort:skip
+2026-11-13T11:32:26.9718679Z 
+2026-11-13T11:32:26.9718853Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-13T11:32:26.9719196Z =========================== short test summary info ============================
+2026-11-13T11:32:26.9719761Z FAILED tests/v1/worker/test_late_interaction_runner.py::test_maxsim_single_pair_score_matrix_allocation_is_bounded[256-1024] - assert 1048576 <= (32768 * 4)
+2026-11-13T11:32:26.9720276Z  +  where 1048576 = max([1048576])
+2026-11-13T11:32:26.9720565Z  +  and   4 = <built-in method element_size of Tensor object at 0x7fb5b83d1c20>()
+2026-11-13T11:32:26.9721283Z  +    where <built-in method element_size of Tensor object at 0x7fb5b83d1c20> = tensor([[1., 1., 1., 1.],\n        [1., 1., 1., 1.],\n        [1., 1., 1., 1.],\n        ...,\n        [1., 1., 1., 1.],\n        [1., 1., 1., 1.],\n        [1., 1., 1., 1.]], requires_grad=True).element_size
+2026-11-13T11:32:26.9722186Z FAILED tests/v1/worker/test_late_interaction_runner.py::test_maxsim_single_pair_score_matrix_allocation_is_bounded[1-32769] - assert 131076 <= (32768 * 4)
+2026-11-13T11:32:26.9722696Z  +  where 131076 = max([131076])
+2026-11-13T11:32:26.9722992Z  +  and   4 = <built-in method element_size of Tensor object at 0x7fb5b83e2d00>()
+2026-11-13T11:32:26.9723543Z  +    where <built-in method element_size of Tensor object at 0x7fb5b83e2d00> = tensor([[1., 1., 1., 1.]], requires_grad=True).element_size
+2026-11-13T11:32:26.9724199Z 2 failed, 20 passed, 11 deselected, 1 warning in 54.99s
+2026-11-13T11:32:26.9724400Z 
+2026-11-13T11:32:26.9724618Z maxsim_before {"returncode": 1, "tests": 22, "failures": 2, "errors": 0, "skipped": 0, "passed": 20}
+2026-11-13T11:33:23.7538707Z /home/runner/work/vllm/vllm/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:306: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+2026-11-13T11:33:23.7540223Z The event loop scope for asynchronous fixtures will default to the fixture scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session". Set it to "fixture-scope" to keep the current behavior.
+2026-11-13T11:33:23.7541020Z 
+2026-11-13T11:33:23.7541166Z   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+2026-11-13T11:33:23.7541424Z ......................                                                   [100%]
+2026-11-13T11:33:23.7541634Z =============================== warnings summary ===============================
+2026-11-13T11:33:23.7541816Z vllm/__init__.py:7
+2026-11-13T11:33:23.7542366Z   /home/runner/work/vllm/vllm/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+2026-11-13T11:33:23.7542617Z   No module named 'vllm._version'
+2026-11-13T11:33:23.7542813Z     from .version import __version__, __version_tuple__  # isort:skip
+2026-11-13T11:33:23.7542956Z 
+2026-11-13T11:33:23.7543083Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-13T11:33:23.7543311Z 22 passed, 11 deselected, 1 warning in 39.82s
+2026-11-13T11:33:23.7543527Z 
+2026-11-13T11:33:23.7543669Z maxsim_after {"returncode": 0, "tests": 22, "failures": 0, "errors": 0, "skipped": 0, "passed": 22}
+2026-11-13T11:33:39.7093900Z /home/runner/work/vllm/vllm/.venv/lib/python3.12/site-packages/pytest_asyncio/plugin.py:306: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+2026-11-13T11:33:39.7095785Z The event loop scope for asynchronous fixtures will default to the fixture scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to "function" scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session". Set it to "fixture-scope" to keep the current behavior.
+2026-11-13T11:33:39.7096956Z 
+2026-11-13T11:33:39.7097161Z   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+2026-11-13T11:33:39.7097568Z .....ss....                                                              [100%]
+2026-11-13T11:33:39.7097917Z =============================== warnings summary ===============================
+2026-11-13T11:33:39.7098221Z vllm/__init__.py:7
+2026-11-13T11:33:39.7098568Z   /home/runner/work/vllm/vllm/vllm/__init__.py:7: RuntimeWarning: Failed to read commit hash:
+2026-11-13T11:33:39.7098973Z   No module named 'vllm._version'
+2026-11-13T11:33:39.7099290Z     from .version import __version__, __version_tuple__  # isort:skip
+2026-11-13T11:33:39.7099527Z 
+2026-11-13T11:33:39.7099719Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-11-13T11:33:39.7100106Z =========================== short test summary info ============================
+2026-11-13T11:33:39.7100503Z SKIPPED [1] tests/v1/worker/test_late_interaction_runner.py:207: needs CUDA
+2026-11-13T11:33:39.7100915Z SKIPPED [1] tests/v1/worker/test_late_interaction_runner.py:231: needs CUDA
+2026-11-13T11:33:39.7101291Z 9 passed, 2 skipped, 21 deselected, 1 warning in 2.70s
+2026-11-13T11:33:39.7101492Z 
+2026-11-13T11:33:39.7101728Z maxsim_existing {"returncode": 0, "tests": 11, "failures": 0, "errors": 0, "skipped": 2, "passed": 9}
+2026-11-13T11:33:47.5770546Z {"query_len": 32, "doc_len": 512, "dimension": 16, "budget": 1048576, "score": 395.2967529296875, "median_ms": 0.07452400001284332, "peak_rss_kib": 507524, "incremental_peak_kib": 5708, "mode": "before", "repeat": 0}
+2026-11-13T11:33:55.4539553Z {"query_len": 32, "doc_len": 512, "dimension": 16, "budget": 1048576, "score": 395.2967529296875, "median_ms": 0.07323200000541874, "peak_rss_kib": 507528, "incremental_peak_kib": 5652, "mode": "before", "repeat": 1}
+2026-11-13T11:34:03.2990214Z {"query_len": 32, "doc_len": 512, "dimension": 16, "budget": 1048576, "score": 395.2967529296875, "median_ms": 0.07358100000942613, "peak_rss_kib": 507612, "incremental_peak_kib": 5708, "mode": "before", "repeat": 2}
+2026-11-13T11:34:11.4805021Z {"query_len": 4096, "doc_len": 8192, "dimension": 16, "budget": 1048576, "score": 61821.43359375, "median_ms": 46.08420599998908, "peak_rss_kib": 639016, "incremental_peak_kib": 137092, "mode": "before", "repeat": 0}
+2026-11-13T11:34:19.6236641Z {"query_len": 4096, "doc_len": 8192, "dimension": 16, "budget": 1048576, "score": 61821.43359375, "median_ms": 48.81408099998907, "peak_rss_kib": 639080, "incremental_peak_kib": 137224, "mode": "before", "repeat": 1}
+2026-11-13T11:34:27.7811996Z {"query_len": 4096, "doc_len": 8192, "dimension": 16, "budget": 1048576, "score": 61821.43359375, "median_ms": 48.9731039999981, "peak_rss_kib": 639080, "incremental_peak_kib": 137328, "mode": "before", "repeat": 2}
+2026-11-13T11:34:35.5942044Z {"query_len": 32, "doc_len": 512, "dimension": 16, "budget": 1048576, "score": 395.2967529296875, "median_ms": 0.07326100001137092, "peak_rss_kib": 507720, "incremental_peak_kib": 5708, "mode": "after", "repeat": 0}
+2026-11-13T11:34:43.3471064Z {"query_len": 32, "doc_len": 512, "dimension": 16, "budget": 1048576, "score": 395.2967529296875, "median_ms": 0.07448300004853081, "peak_rss_kib": 507568, "incremental_peak_kib": 5708, "mode": "after", "repeat": 1}
+2026-11-13T11:34:51.1259146Z {"query_len": 32, "doc_len": 512, "dimension": 16, "budget": 1048576, "score": 395.2967529296875, "median_ms": 0.07112800000186326, "peak_rss_kib": 507856, "incremental_peak_kib": 5652, "mode": "after", "repeat": 2}
+2026-11-13T11:34:59.0022497Z {"query_len": 4096, "doc_len": 8192, "dimension": 16, "budget": 1048576, "score": 61821.43359375, "median_ms": 9.400663999997505, "peak_rss_kib": 512004, "incremental_peak_kib": 9972, "mode": "after", "repeat": 0}
+2026-11-13T11:35:06.7264774Z {"query_len": 4096, "doc_len": 8192, "dimension": 16, "budget": 1048576, "score": 61821.43359375, "median_ms": 8.773953000002166, "peak_rss_kib": 511704, "incremental_peak_kib": 9780, "mode": "after", "repeat": 1}
+2026-11-13T11:35:14.5358438Z {"query_len": 4096, "doc_len": 8192, "dimension": 16, "budget": 1048576, "score": 61821.43359375, "median_ms": 9.160000000008495, "peak_rss_kib": 512056, "incremental_peak_kib": 9916, "mode": "after", "repeat": 2}
+2026-11-13T11:35:14.5441644Z ##[group]Run lscpu
+2026-11-13T11:35:14.5441807Z [36;1mlscpu[0m
+2026-11-13T11:35:14.5441921Z [36;1mfree -m[0m
+2026-11-13T11:35:14.5442129Z [36;1mif [ -r /sys/fs/cgroup/memory.events ]; then cat /sys/fs/cgroup/memory.events; fi[0m
+2026-11-13T11:35:14.5457995Z shell: /usr/bin/bash -e {0}
+2026-11-13T11:35:14.5458134Z env:
+2026-11-13T11:35:14.5458247Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:35:14.5458379Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:35:14.5458515Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:35:14.5458665Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:35:14.5458811Z   OMP_NUM_THREADS: 2
+2026-11-13T11:35:14.5458938Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:35:14.5459112Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5459348Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T11:35:14.5459574Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5459820Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5460029Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5460241Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T11:35:14.5460446Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T11:35:14.5460614Z ##[endgroup]
+2026-11-13T11:35:14.5513544Z Architecture:                            x86_64
+2026-11-13T11:35:14.5513949Z CPU op-mode(s):                          32-bit, 64-bit
+2026-11-13T11:35:14.5514256Z Address sizes:                           48 bits physical, 48 bits virtual
+2026-11-13T11:35:14.5514498Z Byte Order:                              Little Endian
+2026-11-13T11:35:14.5514762Z CPU(s):                                  4
+2026-11-13T11:35:14.5514996Z On-line CPU(s) list:                     0-3
+2026-11-13T11:35:14.5515266Z Vendor ID:                               AuthenticAMD
+2026-11-13T11:35:14.5515593Z Model name:                              AMD EPYC 9V45 96-Core Processor
+2026-11-13T11:35:14.5515902Z CPU family:                              26
+2026-11-13T11:35:14.5516152Z Model:                                   2
+2026-11-13T11:35:14.5516455Z Thread(s) per core:                      2
+2026-11-13T11:35:14.5516782Z Core(s) per socket:                      2
+2026-11-13T11:35:14.5517053Z Socket(s):                               1
+2026-11-13T11:35:14.5517273Z Stepping:                                1
+2026-11-13T11:35:14.5517506Z BogoMIPS:                                5192.19
+2026-11-13T11:35:14.5519765Z Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid extd_apicid aperfmperf tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves user_shstk avx_vnni avx512_bf16 clzero xsaveerptr rdpru arat npt nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold v_vmsave_vmload avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm avx512_vp2intersect
+2026-11-13T11:35:14.5521617Z Virtualization:                          AMD-V
+2026-11-13T11:35:14.5521795Z Hypervisor vendor:                       Microsoft
+2026-11-13T11:35:14.5521983Z Virtualization type:                     full
+2026-11-13T11:35:14.5522166Z L1d cache:                               96 KiB (2 instances)
+2026-11-13T11:35:14.5522367Z L1i cache:                               64 KiB (2 instances)
+2026-11-13T11:35:14.5522557Z L2 cache:                                2 MiB (2 instances)
+2026-11-13T11:35:14.5522875Z L3 cache:                                32 MiB (1 instance)
+2026-11-13T11:35:14.5523044Z NUMA node(s):                            1
+2026-11-13T11:35:14.5523198Z NUMA node0 CPU(s):                       0-3
+2026-11-13T11:35:14.5523378Z Vulnerability Gather data sampling:      Not affected
+2026-11-13T11:35:14.5523570Z Vulnerability Ghostwrite:                Not affected
+2026-11-13T11:35:14.5523932Z Vulnerability Indirect target selection: Not affected
+2026-11-13T11:35:14.5524230Z Vulnerability Itlb multihit:             Not affected
+2026-11-13T11:35:14.5524512Z Vulnerability L1tf:                      Not affected
+2026-11-13T11:35:14.5524781Z Vulnerability Mds:                       Not affected
+2026-11-13T11:35:14.5525057Z Vulnerability Meltdown:                  Not affected
+2026-11-13T11:35:14.5525333Z Vulnerability Mmio stale data:           Not affected
+2026-11-13T11:35:14.5525596Z Vulnerability Old microcode:             Not affected
+2026-11-13T11:35:14.5525781Z Vulnerability Reg file data sampling:    Not affected
+2026-11-13T11:35:14.5525964Z Vulnerability Retbleed:                  Not affected
+2026-11-13T11:35:14.5526183Z Vulnerability Spec rstack overflow:      Vulnerable: Safe RET, no microcode
+2026-11-13T11:35:14.5526413Z Vulnerability Spec store bypass:         Vulnerable
+2026-11-13T11:35:14.5526685Z Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+2026-11-13T11:35:14.5527077Z Vulnerability Spectre v2:                Mitigation; Retpolines; STIBP disabled; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected
+2026-11-13T11:35:14.5527385Z Vulnerability Srbds:                     Not affected
+2026-11-13T11:35:14.5527564Z Vulnerability Tsa:                       Not affected
+2026-11-13T11:35:14.5527747Z Vulnerability Tsx async abort:           Not affected
+2026-11-13T11:35:14.5527927Z Vulnerability Vmscape:                   Not affected
+2026-11-13T11:35:14.5529312Z                total        used        free      shared  buff/cache   available
+2026-11-13T11:35:14.5529653Z Mem:           15983         992       10115          48        5270       14991
+2026-11-13T11:35:14.5529935Z Swap:           3071           0        3071
+2026-11-13T11:35:14.5579400Z ##[group]Run actions/upload-artifact@v4
+2026-11-13T11:35:14.5579558Z with:
+2026-11-13T11:35:14.5579686Z   name: native-maxsim-budget-ebdd3f7a92
+2026-11-13T11:35:14.5580103Z   path: maxsim_before.log
+maxsim_before.xml
+maxsim_after.log
+maxsim_after.xml
+maxsim_existing.log
+maxsim_existing.xml
+maxsim_validation_result.json
+maxsim_benchmark.json
+maxsim_benchmark_*.log
+
+2026-11-13T11:35:14.5580512Z   if-no-files-found: warn
+2026-11-13T11:35:14.5580643Z   compression-level: 6
+2026-11-13T11:35:14.5580763Z   overwrite: false
+2026-11-13T11:35:14.5580886Z   include-hidden-files: false
+2026-11-13T11:35:14.5581018Z env:
+2026-11-13T11:35:14.5581127Z   VLLM_TARGET_DEVICE: cpu
+2026-11-13T11:35:14.5581259Z   PYTHONFAULTHANDLER: 1
+2026-11-13T11:35:14.5581390Z   VLLM_CPU_OMP_THREADS_BIND: nobind
+2026-11-13T11:35:14.5581649Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-11-13T11:35:14.5581793Z   OMP_NUM_THREADS: 2
+2026-11-13T11:35:14.5581917Z   TOKENIZERS_PARALLELISM: false
+2026-11-13T11:35:14.5582102Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5582333Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib/pkgconfig
+2026-11-13T11:35:14.5582560Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5582769Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5582973Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.16/x64
+2026-11-13T11:35:14.5583184Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.16/x64/lib
+2026-11-13T11:35:14.5583384Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-11-13T11:35:14.5583547Z ##[endgroup]
+2026-11-13T11:35:14.6646208Z (node:3072) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T11:35:14.6646744Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T11:35:14.6736448Z With the provided path, there will be 20 files uploaded
+2026-11-13T11:35:14.6736847Z Artifact name is valid!
+2026-11-13T11:35:14.6736996Z Root directory input is valid!
+2026-11-13T11:35:15.0009742Z Beginning upload of artifact content to blob storage
+2026-11-13T11:35:15.0264125Z (node:3072) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-13T11:35:15.3057076Z Uploaded bytes 13501
+2026-11-13T11:35:15.3670593Z Finished uploading artifact content to blob storage!
+2026-11-13T11:35:15.3671040Z SHA256 digest of uploaded artifact zip is 657364353cab7ed50de51300a97650f32171a75545e5869fec1efeda15ff9971
+2026-11-13T11:35:15.3672101Z Finalizing artifact upload
+2026-11-13T11:35:15.7592603Z Artifact native-maxsim-budget-ebdd3f7a92.zip successfully finalized. Artifact ID 14032502141
+2026-11-13T11:35:15.7593129Z Artifact native-maxsim-budget-ebdd3f7a92 has been successfully uploaded! Final size is 13501 bytes. Artifact ID is 14032502141
+2026-11-13T11:35:15.7597692Z Artifact download URL: https://github.com/Afloat16/vllm/actions/runs/43417368801/artifacts/14032502141
+2026-11-13T11:35:15.7765855Z Post job cleanup.
+2026-11-13T11:35:15.8563266Z (node:3084) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T11:35:15.8564046Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T11:35:15.8565179Z Cache hit occurred on key setup-uv-1-x86_64-unknown-linux-gnu-3.12.16-pruned-d8aaff3ebfe42f61289348e19263c789e4bb0d24d0046fbd42d1aee97a11caf9, not saving cache.
+2026-11-13T11:35:15.8661456Z Post job cleanup.
+2026-11-13T11:35:15.9402439Z (node:3092) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-13T11:35:15.9402881Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-13T11:35:15.9570999Z Post job cleanup.
+2026-11-13T11:35:16.0131939Z [command]/usr/bin/git version
+2026-11-13T11:35:16.0164323Z git version 2.56.0
+2026-11-13T11:35:16.0187488Z Temporarily overriding HOME='/home/runner/work/_temp/808a90a0-6452-4fe2-afc7-d2d94a561ba3' before making global git config changes
+2026-11-13T11:35:16.0188278Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-13T11:35:16.0191404Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/vllm/vllm
+2026-11-13T11:35:16.0225211Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-13T11:35:16.0257576Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-13T11:35:16.0468728Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-13T11:35:16.0497370Z http.https://github.com/.extraheader
+2026-11-13T11:35:16.0506219Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-13T11:35:16.0536151Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-13T11:35:16.0772701Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-13T11:35:16.0819379Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-13T11:35:16.1186531Z Cleaning up orphan processes
+2026-11-13T11:35:16.1428302Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4, astral-sh/setup-uv@v6. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
