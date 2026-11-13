@@ -1,0 +1,17 @@
+{
+  "commit": "168ec59ed61bdbfdfbfb05478ef65ee7f4bcf23d",
+  "files": [
+    {
+      "sha": "a01edebef98912fc6a3882a76a91a6c019f1db5a",
+      "filename": "docs/models/generative_models.md",
+      "status": "modified",
+      "additions": 6,
+      "deletions": 0,
+      "changes": 6,
+      "blob_url": "https://github.com/Afloat16/vllm/blob/168ec59ed61bdbfdfbfb05478ef65ee7f4bcf23d/docs%2Fmodels%2Fgenerative_models.md",
+      "raw_url": "https://github.com/Afloat16/vllm/raw/168ec59ed61bdbfdfbfb05478ef65ee7f4bcf23d/docs%2Fmodels%2Fgenerative_models.md",
+      "contents_url": "https://api.github.com/repos/Afloat16/vllm/contents/docs%2Fmodels%2Fgenerative_models.md?ref=168ec59ed61bdbfdfbfb05478ef65ee7f4bcf23d",
+      "patch": "@@ -55,6 +55,12 @@ for output in outputs:\n     print(f\"Prompt: {prompt!r}, Generated text: {generated_text!r}\")\n ```\n \n+#### Token log probabilities\n+\n+Set `SamplingParams(logprobs=k)` to return token log probabilities alongside generated text. The values in each generated output's `logprobs` are natural logarithms of normalized token probabilities.\n+\n+On the standalone CPU runner, normalization remains stable when logits share a large finite offset. For example, `N` equal logits produce `-log(N)` for every token, including when their common value is large. Normalization cannot recover differences already lost when logits were rounded to their storage dtype.\n+\n !!! important\n     By default, vLLM will use sampling parameters recommended by model creator by applying the `generation_config.json` from the huggingface model repository if it exists. In most cases, this will provide you with the best results by default if [SamplingParams][vllm.SamplingParams] is not specified.\n "
+    }
+  ]
+}

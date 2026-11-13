@@ -1,54 +1,82 @@
-[
-  {
-    "item": 7,
-    "repository": "vllm-project/vllm",
-    "branch": "fix/splade-hf-checkpoint-aliases-20261113",
-    "source_head": "92375f70d4fc2742a4347e55893b821991846dc9",
-    "source_tree": "4f5e120a2e0b44dc79558d128a13f1f4f7681f66",
-    "native_validation_head": "b8f0fb520d5f980b312a33b9a8003cd2846873d3",
-    "native_run": 43420173074,
-    "native_status": "in_progress",
-    "pr_created": false,
-    "merged_at": null,
-    "counts_as_merged": false
-  },
-  {
-    "item": 8,
-    "repository": "vllm-project/vllm",
-    "branch": "fix/cpu-logprob-common-offset-precision-20261113",
-    "source_head": "8b376970f56d33e8a543ee90fa69978cffe0d5d0",
-    "source_tree": "1784a9abbd1f01fdc28478e8df55615a665e3c55",
-    "native_validation_head": "eed48d2562f2739261f3ee2c855f35533effc3d8",
-    "native_run": 43419952030,
-    "native_status": "in_progress",
-    "pr_created": false,
-    "merged_at": null,
-    "counts_as_merged": false
-  },
-  {
-    "item": 9,
-    "repository": "vllm-project/vllm",
-    "branch": "fix/numpy-multimodal-embedding-byteorder-20261113",
-    "source_head": "c736616c6a56a2d9f073fe6df952f179a114376e",
-    "source_tree": "5bf5fa4bd7d3101b838783cb2e31ddfd193318d0",
-    "native_validation_head": "f6ff520484935b0be32bb48b1f58973df5963ddd",
-    "native_run": 43420328108,
-    "native_status": "in_progress",
-    "pr_created": false,
-    "merged_at": null,
-    "counts_as_merged": false
-  },
-  {
-    "item": 10,
-    "repository": "vllm-project/vllm",
-    "branch": "fix/bert-mlm-head-precision-20261113",
-    "source_head": "e6665863bcf0e4f70d15e88d1cdfed67aa339988",
-    "source_tree": "102d2166e71ac79262300cf0f5593826f144fdfd",
-    "native_validation_head": "b61efbb4c07c6d9ee9dddffaedd969a58aa72956",
-    "native_run": 43420075597,
-    "native_status": "in_progress",
-    "pr_created": false,
-    "merged_at": null,
-    "counts_as_merged": false
+{
+  "updated_at": "2026-11-13T12:22:00Z",
+  "base": "191e5d5df2ec693d5536a635079d58864dfacebb",
+  "shared_validation_branch": "validation/native-cpu-environment-20261112",
+  "shared_head": "62ab11b2f720b9ad30f4e9ea6c2b5c1a8ef84bda",
+  "published": [
+    {
+      "item": 5,
+      "branch": "fix/colbert-configured-projection-init-20261113",
+      "head": "c04161eda9e574dc5d5b6d0182bbba661830bf21",
+      "pr": "https://github.com/vllm-project/vllm/pull/67472",
+      "merged_at": null
+    },
+    {
+      "item": 6,
+      "branch": "fix/maxsim-single-pair-memory-budget-20261113",
+      "head": "11c0abf92f2b6237cb731050b9617c58da79f4c8",
+      "pr": "https://github.com/vllm-project/vllm/pull/67473",
+      "merged_at": null
+    },
+    {
+      "item": 8,
+      "branch": "fix/cpu-logprob-common-offset-precision-20261113",
+      "head": "168ec59ed61bdbfdfbfb05478ef65ee7f4bcf23d",
+      "pr": "https://github.com/vllm-project/vllm/pull/67477",
+      "merged_at": null
+    }
+  ],
+  "remaining": [
+    {
+      "item": 7,
+      "branch": "fix/splade-hf-checkpoint-aliases-20261113",
+      "head": "a95f253161941f963b3ca345bca404530cba3670",
+      "tree": "1c2c3788a4e18060bca5d6ff1c174e8bfc70dd99",
+      "status": "native-validation-in-progress",
+      "native_validation_head": "62ab11b2f720b9ad30f4e9ea6c2b5c1a8ef84bda",
+      "native_run": 43424202700,
+      "latest_style_head": "bcb2a2505a33552e075ea474ed4da4c7d844dc9a"
+    },
+    {
+      "item": 9,
+      "branch": "fix/numpy-multimodal-embedding-byteorder-20261113",
+      "head": "50abe3b5a09cd3e505762c92f2fceccf3ebdd38d",
+      "tree": "542a3a5d7d7675f1f129427aa781243ab5151645",
+      "status": "native-validation-in-progress",
+      "native_validation_head": "d0659a8c17549ec767a8e18172ad8138083b0982",
+      "native_run": 43423892421,
+      "latest_style_head": "5e35502cd732dc553321cee7897abb2c49eb1257"
+    },
+    {
+      "item": 10,
+      "branch": "fix/bert-mlm-head-precision-20261113",
+      "head": "a3af37f3e544a4434a52f75414731a10ae176303",
+      "tree": "8782f4129c42be2e35ab03ce75a6aa7de3b26e38",
+      "status": "native-validation-in-progress",
+      "native_validation_head": "48e7e079f32181647cecf8a5dbb14eb4e6c7416a",
+      "native_run": 43424033592,
+      "latest_style_head": "e2355aa29a6ff0e3f857ea7914b09e0fc491e9e4"
+    }
+  ],
+  "diagnostics": {
+    "v7": {
+      "previous_native_run": 43420173074,
+      "result": "9 passed, 1 failed; canonical-only untied fixture removed the actual HF decoder bias",
+      "probe_run": 43422755727,
+      "result_probe": "Callable model inspection rejected by default serialization policy",
+      "resolution": "Keep HF decoder/canonical fixture values consistent; make canonical-only layout use the actual forward decoder bias; preserve explicit decoder.bias precedence regardless of key order; named importable worker extension with string RPC",
+      "peer": "existing_prs reviewed dc497f4"
+    },
+    "v9": {
+      "previous_native_run": 43421775972,
+      "result": "48 passed, 2 integration fixtures exceeded default max_logprobs=20",
+      "resolution": "Explicitly request engine max_logprobs=32 for the 32-token test vocabulary; keep exact input/value oracle"
+    },
+    "v10": {
+      "previous_native_run": 43420075597,
+      "result": "All 14 new cases rejected function serialization during model inspection; 76 existing passed",
+      "resolution": "Use a named importable worker extension and string RPC, keeping the default serialization policy; preserve both HF bias values in the test checkpoint",
+      "style_followup": "Only test type annotation and string formatting after run source 3824fc0a"
+    }
   }
-]
+}

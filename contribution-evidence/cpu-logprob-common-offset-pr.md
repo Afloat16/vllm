@@ -26,4 +26,4 @@ Computing a large log-normalizer and then subtracting it from a similarly large 
 
 The new calculation keeps the common offset out of both terms. This change targets `vllm/v1/worker/cpu/logprob.py`, used by the standalone CPU runner. The x86 Triton runner uses a different implementation; the new end-to-end tests therefore run on native ARM CPU hardware. No GPU path or model-quality improvement is claimed.
 
-The final signed commit has exactly the same Git tree as validated commit `8b376970f56d33e8a543ee90fa69978cffe0d5d0`; only commit history and the sign-off changed.
+Native validation used commit `8b376970f56d33e8a543ee90fa69978cffe0d5d0`. The signed code commit `a1d104587bcf4b86592fe988ac05f4b6cd47ede4` has the identical Git tree. Follow-up commit `168ec59ed61bdbfdfbfb05478ef65ee7f4bcf23d` only adds rendered user documentation; the production Python file and tests are unchanged.
