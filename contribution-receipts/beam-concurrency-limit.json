@@ -1,0 +1,42 @@
+{
+  "repository": "vllm-project/vllm",
+  "fork": "Afloat16/vllm",
+  "base": "c74cab9b33659e92de9ca9c35eb949c78ebbe64c",
+  "branch": "fix/beam-search-empty-batches-20261113",
+  "head": "b7b7946da1ef215beb159cd1dd5434ea3018b80a",
+  "title": "[Bugfix] Reject nonpositive offline beam concurrency limits",
+  "body": "## Problem\n\nA nonpositive `concurrency_limit` in offline beam search is used directly as a `range` step. Zero fails with an incidental range error; negative values skip the generation loop and can return the original prompts as if they were completed beams, with unchanged zero cumulative log probabilities.\n\n## Change\n\nValidate that an explicitly supplied concurrency limit is positive before preprocessing or starting generation. Document the constraint and retain the existing rejection of empty prompt lists.\n\n## Validation\n\nExact production head: `b7b7946da1ef215beb159cd1dd5434ea3018b80a`.\n\n- 26 new tests run a locally saved tiny GPT-2 through the actual source-built vLLM CPU engine.\n- Six nonpositive-limit cases fail on the original source. The other 20 controls pass, including the existing empty-input error contract.\n- All 26 cases pass with the patch.\n- Valid limits `None`, `1`, `2`, and `8` produce the same tokens, decoded text, and cumulative log probabilities as individual generation for three prompts, using both text and token inputs.\n- All 64 existing online beam tests pass.\n- The complete applicable repository pre-commit hooks pass.\n\nNative CPU validation: https://github.com/Afloat16/vllm/actions/runs/43405165739\nRepository hooks: https://github.com/Afloat16/vllm/actions/runs/43404085655\n\nThe native run uses PyTorch 2.14.0+cpu, verifies exact production source files, and reuses native extensions from the unchanged C++/Rust base.",
+  "publication": "pull_request_created",
+  "pull_request": {
+    "number": 67449,
+    "url": "https://github.com/vllm-project/vllm/pull/67449",
+    "head": "b7b7946da1ef215beb159cd1dd5434ea3018b80a",
+    "state": "open",
+    "draft": false,
+    "merged_at": null,
+    "maintainer_can_modify": false
+  },
+  "validation": {
+    "native_run": 43405165739,
+    "native_head": "d3d82fa46e1a457641db67620835b8fc96890210",
+    "native_job": 131817610425,
+    "hook_run": 43404085655,
+    "hook_head": "17ed2fa9714bd38d4412289f18c8254994c01f8b",
+    "new_tests": 26,
+    "baseline_failed": 6,
+    "baseline_passed": 20,
+    "patched_passed": 26,
+    "existing_passed": 64,
+    "torch": "2.14.0+cpu",
+    "status": "success",
+    "limitations": "CPU runtime only. Earlier validation environment attempts are superseded by the final exact-head success; empty input remains an error."
+  },
+  "deduplication": {
+    "queries": "All-state concurrency-limit and beam-batch history",
+    "related_pr": 23599,
+    "distinction": "Original feature patch did not validate nonpositive limits"
+  },
+  "review": "Independent review of final production logic passed; subsequent edits only format and native fixture cache budget.",
+  "merged_at": null,
+  "counts_for_merged": false
+}
