@@ -1,11 +1,11 @@
-name: Validate native narrow integer weight packing
+name: Validate native bounded MaxSim inference scores
 on:
   push:
     branches: [validation/native-cpu-environment-20261112]
 permissions:
   contents: read
 jobs:
-  native-cpu:
+  native-maxsim:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
@@ -37,16 +37,15 @@ jobs:
           key: vllm-native-191e5d5d-py312-torch214-ubuntu24-v1
           fail-on-cache-miss: true
       - name: Install standard test dependencies
-        run: uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema ruff==0.17.2
-      - name: Check actual quantized weights before and after
+        run: uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema
+      - name: Check native MaxSim scoring before and after
         run: |
           source .venv/bin/activate
           IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
           TC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')
           if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
-          ruff check vllm/model_executor/layers/quantization/utils/quant_utils.py tests/quantization/test_cpu_wna16.py
-          ruff format --check vllm/model_executor/layers/quantization/utils/quant_utils.py tests/quantization/test_cpu_wna16.py
-          python validation/run_narrow_packing_native.py
+          python validation/run_maxsim_budget_native.py
+          python validation/benchmark_maxsim_budget.py
       - name: Record native host resources
         if: always()
         run: |
@@ -57,12 +56,14 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-narrow-packing-5e254185c1e2
+          name: native-maxsim-budget-ebdd3f7a92
           path: |
-            before.log
-            before.xml
-            after.log
-            after.xml
-            existing.log
-            existing.xml
-            validation_result.json
+            maxsim_before.log
+            maxsim_before.xml
+            maxsim_after.log
+            maxsim_after.xml
+            maxsim_existing.log
+            maxsim_existing.xml
+            maxsim_validation_result.json
+            maxsim_benchmark.json
+            maxsim_benchmark_*.log
