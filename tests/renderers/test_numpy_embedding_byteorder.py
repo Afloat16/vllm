@@ -202,8 +202,14 @@ def test_numpy_image_embedding_is_consumed_by_native_llava(
     ) as model:
         results = model.llm.generate(
             [
-                {"prompt": "<image> alpha beta", "multi_modal_data": {"image": direct}},
-                {"prompt": "<image> alpha beta", "multi_modal_data": {"image": loaded}},
+                {
+                    "prompt": "<image> alpha beta",
+                    "multi_modal_data": {"image": direct.unsqueeze(0)},
+                },
+                {
+                    "prompt": "<image> alpha beta",
+                    "multi_modal_data": {"image": loaded.unsqueeze(0)},
+                },
             ],
             SamplingParams(temperature=0, max_tokens=2, ignore_eos=True, logprobs=-1),
             use_tqdm=False,
