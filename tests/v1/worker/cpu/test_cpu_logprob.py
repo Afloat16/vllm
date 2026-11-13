@@ -312,13 +312,16 @@ def test_cpu_requested_output_logprobs_without_topk() -> None:
     )
     assert output.selected_token_ranks.tolist() == [3, 3]
 
+
 @pytest.mark.parametrize("dtype", [torch.float16, torch.bfloat16, torch.float32])
 @pytest.mark.parametrize("offset", [0.0, 16384.0, -16384.0, 32768.0, -32768.0])
 def test_cpu_token_logprobs_preserve_common_offsets(dtype, offset):
     # Use the actual rounded input values as the reference, including FP16 ties.
     storage = torch.tensor(
-        [[-4.0, 99.0, 0.0, 99.0, 1.0, 99.0, 3.0, 99.0],
-         [2.0, 99.0, -1.0, 99.0, 4.0, 99.0, 0.0, 99.0]],
+        [
+            [-4.0, 99.0, 0.0, 99.0, 1.0, 99.0, 3.0, 99.0],
+            [2.0, 99.0, -1.0, 99.0, 4.0, 99.0, 0.0, 99.0],
+        ],
         dtype=dtype,
     )
     logits = (storage + offset)[:, ::2]
@@ -345,10 +348,12 @@ def test_cpu_token_logprobs_uniform_large_offset(offset):
 
 def test_cpu_token_logprobs_preserve_masked_and_nonfinite_inputs():
     logits = torch.tensor(
-        [[-math.inf, 1.0, 2.0, 3.0],
-         [-math.inf, -math.inf, -math.inf, -math.inf],
-         [1.0, math.inf, 2.0, -math.inf],
-         [1.0, math.nan, 2.0, 3.0]]
+        [
+            [-math.inf, 1.0, 2.0, 3.0],
+            [-math.inf, -math.inf, -math.inf, -math.inf],
+            [1.0, math.inf, 2.0, -math.inf],
+            [1.0, math.nan, 2.0, 3.0],
+        ]
     )
     ids = torch.tensor([[0, 2], [1, 3], [0, 1], [2, 3]])
     # Preserve the existing semantics of invalid all-masked/nonfinite rows.
@@ -381,7 +386,10 @@ def test_cpu_topk_and_prompt_scores_with_common_offset(logits_mode):
     assert result.logprob_token_ids[:, 0].tolist() == ids.tolist()
     assert result.selected_token_ranks.tolist() == [16, 16, 16]
     _, scores, _ = compute_prompt_logprobs_with_chunking(
-        ids, logits, lambda hidden: hidden, 3,
+        ids,
+        logits,
+        lambda hidden: hidden,
+        3,
         logprobs_mode="raw_logits" if logits_mode else "raw_logprobs",
     )
     torch.testing.assert_close(
@@ -402,8 +410,15 @@ def test_standalone_cpu_engine_logprobs_with_uniform_large_logits(
     # A real model whose final layernorm and output projection produce known
     # uniform logits. Both prompt scoring and autoregressive decoding still run.
     config = GPT2Config(
-        vocab_size=16, n_positions=32, n_embd=32, n_layer=1, n_head=1,
-        bos_token_id=1, eos_token_id=2, pad_token_id=0, tie_word_embeddings=False,
+        vocab_size=16,
+        n_positions=32,
+        n_embd=32,
+        n_layer=1,
+        n_head=1,
+        bos_token_id=1,
+        eos_token_id=2,
+        pad_token_id=0,
+        tie_word_embeddings=False,
     )
     with torch.random.fork_rng(devices=[]), torch.no_grad():
         torch.manual_seed(37)
@@ -413,25 +428,45 @@ def test_standalone_cpu_engine_logprobs_with_uniform_large_logits(
         reference.lm_head.weight.zero_()
         reference.lm_head.weight[:, 0].fill_(offset)
         reference.save_pretrained(tmp_path)
-    vocabulary = {"[PAD]": 0, "[BOS]": 1, "[EOS]": 2, "[UNK]": 3,
-                  "alpha": 4, "beta": 5, "gamma": 6}
+    vocabulary = {
+        "[PAD]": 0,
+        "[BOS]": 1,
+        "[EOS]": 2,
+        "[UNK]": 3,
+        "alpha": 4,
+        "beta": 5,
+        "gamma": 6,
+    }
     vocabulary.update({f"unused{i}": i for i in range(7, 16)})
     backend = Tokenizer(WordLevel(vocabulary, unk_token="[UNK]"))
     backend.pre_tokenizer = Whitespace()
     TokenizersBackend(
-        tokenizer_object=backend, unk_token="[UNK]", pad_token="[PAD]",
-        bos_token="[BOS]", eos_token="[EOS]",
+        tokenizer_object=backend,
+        unk_token="[UNK]",
+        pad_token="[PAD]",
+        bos_token="[BOS]",
+        eos_token="[EOS]",
     ).save_pretrained(tmp_path)
     with vllm_runner(
-        str(tmp_path), dtype="float32", enforce_eager=True,
-        max_model_len=32, max_num_batched_tokens=64, max_num_seqs=2,
-        kv_cache_memory_bytes=16 * 1024 * 1024, enable_prefix_caching=False,
+        str(tmp_path),
+        dtype="float32",
+        enforce_eager=True,
+        max_model_len=32,
+        max_num_batched_tokens=64,
+        max_num_seqs=2,
+        kv_cache_memory_bytes=16 * 1024 * 1024,
+        enable_prefix_caching=False,
         logprobs_mode=logprobs_mode,
     ) as model:
         outputs = model.llm.generate(
             ["alpha beta gamma", "gamma alpha"],
-            SamplingParams(temperature=0, max_tokens=2, ignore_eos=True,
-                           logprobs=-1, prompt_logprobs=-1),
+            SamplingParams(
+                temperature=0,
+                max_tokens=2,
+                ignore_eos=True,
+                logprobs=-1,
+                prompt_logprobs=-1,
+            ),
             use_tqdm=False,
         )
     for result in outputs:
@@ -443,4 +478,3 @@ def test_standalone_cpu_engine_logprobs_with_uniform_large_logits(
             assert [item.logprob for item in row.values()] == pytest.approx(
                 [-math.log(16)] * 16, rel=1e-6, abs=1e-6
             )
-
