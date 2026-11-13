@@ -195,19 +195,13 @@ class BeamSearchOnlineMixin(ABC):
                 count=len(candidates),
             )
             if len(candidates) <= beam_width:
-                topn_idx = np.argsort(-candidate_logprobs, kind="stable")
+                topn_idx = np.argsort(-candidate_logprobs)
             else:
-                cutoff = np.partition(candidate_logprobs, len(candidates) - beam_width)[
-                    len(candidates) - beam_width
-                ]
-                better = np.flatnonzero(candidate_logprobs > cutoff)
-                tied = np.flatnonzero(candidate_logprobs == cutoff)
-                # Select the earliest candidates at the cutoff before sorting
-                # the retained beams, matching the offline stable ordering.
-                topn_idx = np.concatenate((better, tied[: beam_width - len(better)]))
-                topn_idx = topn_idx[
-                    np.argsort(-candidate_logprobs[topn_idx], kind="stable")
-                ]
+                topn_idx = np.argpartition(
+                    -candidate_logprobs,
+                    beam_width - 1,
+                )[:beam_width]
+                topn_idx = topn_idx[np.argsort(-candidate_logprobs[topn_idx])]
 
             new_beams = []
             for idx in topn_idx:
