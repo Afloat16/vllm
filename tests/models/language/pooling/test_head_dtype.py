@@ -47,7 +47,9 @@ def test_classify_models(
             assert torch.allclose(hf_output, vllm_output, atol=1e-2)
 
 
-@pytest.mark.parametrize("architecture", ["BertForMaskedLM", "BertSpladeSparseEmbeddingModel"])
+@pytest.mark.parametrize(
+    "architecture", ["BertForMaskedLM", "BertSpladeSparseEmbeddingModel"]
+)
 @pytest.mark.parametrize(
     "model_dtype,head_dtype",
     [
@@ -91,7 +93,10 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
             reference.cls.predictions.decoder.weight.zero_()
             reference.cls.predictions.bias.copy_(torch.linspace(9999.5, 10001.5, 16))
     config.save_pretrained(tmp_path)
-    state = {name: value.detach().clone().contiguous() for name, value in reference.state_dict().items()}
+    state = {
+        name: value.detach().clone().contiguous()
+        for name, value in reference.state_dict().items()
+    }
     # Explicit decoder names isolate the dtype contract from tied checkpoint aliases.
     if architecture == "BertSpladeSparseEmbeddingModel":
         del state["cls.predictions.bias"]
@@ -140,7 +145,9 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
             use_tqdm=False,
         )
         actual_head_dtypes = model.llm.apply_model(
-            lambda module: {str(parameter.dtype) for parameter in module.mlm_head.parameters()}
+            lambda module: {
+                str(parameter.dtype) for parameter in module.mlm_head.parameters()
+            }
         )
 
     for prompt, output in zip(prompts, outputs):
@@ -148,5 +155,7 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
             target = expected_bias.expand(len(tokenizer.encode(prompt)), -1).float()
         else:
             target = expected_bias.relu().log1p().float()
-        torch.testing.assert_close(torch.as_tensor(output.outputs.data).float(), target, rtol=0, atol=0)
+        torch.testing.assert_close(
+            torch.as_tensor(output.outputs.data).float(), target, rtol=0, atol=0
+        )
     assert actual_head_dtypes == [{str(expected_dtype)}]
