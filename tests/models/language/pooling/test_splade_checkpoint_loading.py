@@ -12,7 +12,7 @@ class SpladeCheckpointInspectionWorker:
 
     def inspect_splade_head_state(self):
         return {
-            name: value.detach().cpu()
+            name: value.detach().cpu().tolist()
             for name, value in self.model_runner.model.mlm_head.state_dict().items()
         }
 
@@ -158,7 +158,9 @@ def test_splade_checkpoint_aliases(
         loaded_heads = model.llm.collective_rpc("inspect_splade_head_state")
 
     for loaded_head in loaded_heads:
-        torch.testing.assert_close(loaded_head, expected_head, rtol=0, atol=0)
+        assert loaded_head == {
+            name: value.tolist() for name, value in expected_head.items()
+        }
 
     assert len(actual) == len(expected)
     for vector, target in zip(actual, expected):
