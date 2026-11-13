@@ -7,7 +7,7 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 BASE = "c74cab9b33659e92de9ca9c35eb949c78ebbe64c"
-HEAD = "cdb0c41d1359a92664e017544cb0ef272f1875ae"
+HEAD = "9fc749d1d66b38060b2bdd8285da1216578d722b"
 FILES = ["vllm/entrypoints/generate/beam_search/offline.py", "tests/samplers/test_beam_search_batch.py"]
 SOURCE_FILES = [path for path in FILES if path.startswith("vllm/entrypoints/")]
 TEST = "tests/samplers/test_beam_search_batch.py"
