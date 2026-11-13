@@ -1,0 +1,54 @@
+[
+  {
+    "item": 7,
+    "repository": "vllm-project/vllm",
+    "branch": "fix/splade-hf-checkpoint-aliases-20261113",
+    "source_head": "92375f70d4fc2742a4347e55893b821991846dc9",
+    "source_tree": "4f5e120a2e0b44dc79558d128a13f1f4f7681f66",
+    "native_validation_head": "b8f0fb520d5f980b312a33b9a8003cd2846873d3",
+    "native_run": 43420173074,
+    "native_status": "in_progress",
+    "pr_created": false,
+    "merged_at": null,
+    "counts_as_merged": false
+  },
+  {
+    "item": 8,
+    "repository": "vllm-project/vllm",
+    "branch": "fix/cpu-logprob-common-offset-precision-20261113",
+    "source_head": "8b376970f56d33e8a543ee90fa69978cffe0d5d0",
+    "source_tree": "1784a9abbd1f01fdc28478e8df55615a665e3c55",
+    "native_validation_head": "eed48d2562f2739261f3ee2c855f35533effc3d8",
+    "native_run": 43419952030,
+    "native_status": "in_progress",
+    "pr_created": false,
+    "merged_at": null,
+    "counts_as_merged": false
+  },
+  {
+    "item": 9,
+    "repository": "vllm-project/vllm",
+    "branch": "fix/numpy-multimodal-embedding-byteorder-20261113",
+    "source_head": "c736616c6a56a2d9f073fe6df952f179a114376e",
+    "source_tree": "5bf5fa4bd7d3101b838783cb2e31ddfd193318d0",
+    "native_validation_head": "f6ff520484935b0be32bb48b1f58973df5963ddd",
+    "native_run": 43420328108,
+    "native_status": "in_progress",
+    "pr_created": false,
+    "merged_at": null,
+    "counts_as_merged": false
+  },
+  {
+    "item": 10,
+    "repository": "vllm-project/vllm",
+    "branch": "fix/bert-mlm-head-precision-20261113",
+    "source_head": "e6665863bcf0e4f70d15e88d1cdfed67aa339988",
+    "source_tree": "102d2166e71ac79262300cf0f5593826f144fdfd",
+    "native_validation_head": "b61efbb4c07c6d9ee9dddffaedd969a58aa72956",
+    "native_run": 43420075597,
+    "native_status": "in_progress",
+    "pr_created": false,
+    "merged_at": null,
+    "counts_as_merged": false
+  }
+]

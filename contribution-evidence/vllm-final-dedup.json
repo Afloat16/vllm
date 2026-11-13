@@ -1,0 +1,767 @@
+{
+  "checked_at": "2026-11-13",
+  "upstream_head": "4dd68d139757b84757d126b7ca279e12d39e91e5",
+  "queries": [
+    {
+      "key": "v7fresh",
+      "results": [
+        {
+          "title": "[Perf] Fuse admission-time staged writes into fewer kernel calls",
+          "url": "https://github.com/vllm-project/vllm/pull/62018"
+        },
+        {
+          "title": "[Pooling] Improve SPLADE throughput 3.6% to 7.8% ",
+          "url": "https://github.com/vllm-project/vllm/pull/62250"
+        },
+        {
+          "title": "[Pooling] Improve BGE-M3 sync pooling throughput by up to 3.13%",
+          "url": "https://github.com/vllm-project/vllm/pull/53464"
+        },
+        {
+          "title": "[ModelRunner v2] Enable decoder token-wise pooling",
+          "url": "https://github.com/vllm-project/vllm/pull/50931"
+        },
+        {
+          "title": "[Model Runner v2] Enable BGE M3 pooling embed token_classify",
+          "url": "https://github.com/vllm-project/vllm/pull/50661"
+        },
+        {
+          "title": "[Pooling] Support prompt embeddings in MRV2 decoder pooling",
+          "url": "https://github.com/vllm-project/vllm/pull/56639"
+        },
+        {
+          "title": "[ModelRunner V2] Enable sequence pooling for embedding and classification models",
+          "url": "https://github.com/vllm-project/vllm/pull/48791"
+        },
+        {
+          "title": "[Model Runner V2] Enable encoder token embedding",
+          "url": "https://github.com/vllm-project/vllm/pull/50574"
+        },
+        {
+          "title": "[Model Runner V2] Enable encoder token classification",
+          "url": "https://github.com/vllm-project/vllm/pull/50293"
+        },
+        {
+          "title": "Kvserve fusion",
+          "url": "https://github.com/vllm-project/vllm/pull/51648"
+        },
+        {
+          "title": "[Perf] Vectorize pooling prompt-token padding in InputBatch",
+          "url": "https://github.com/vllm-project/vllm/pull/48737"
+        },
+        {
+          "title": "feat(model): add embed_sparse task for BGE-M3 server-side sparse aggr…",
+          "url": "https://github.com/vllm-project/vllm/pull/35001"
+        },
+        {
+          "title": "[CI] Fix SPLADE pooler test broken by #38139",
+          "url": "https://github.com/vllm-project/vllm/pull/38495"
+        },
+        {
+          "title": "Revert \"[Perf] Remove redundant device copies for CPU-only pooling token IDs, 48.9% E2E throughput improvement\" (#38139)",
+          "url": "https://github.com/vllm-project/vllm/pull/38490"
+        },
+        {
+          "title": "[Model] Avoid hardcoding pooling type",
+          "url": "https://github.com/vllm-project/vllm/pull/32119"
+        },
+        {
+          "title": "[Model] Reorganize pooling layers",
+          "url": "https://github.com/vllm-project/vllm/pull/31973"
+        },
+        {
+          "title": "[Feature] Add support for naver/splade-v3 (BERT-based sparse embedding model)",
+          "url": "https://github.com/vllm-project/vllm/pull/26339"
+        },
+        {
+          "title": "[Docs] Add SPLADE and Ultravox models to supported models documentation",
+          "url": "https://github.com/vllm-project/vllm/pull/29659"
+        },
+        {
+          "title": "[Model][2/N] Improve all pooling task | Support multi-vector retrieval",
+          "url": "https://github.com/vllm-project/vllm/pull/25370"
+        },
+        {
+          "title": "[Model][0/N] Improve all pooling task | clean up",
+          "url": "https://github.com/vllm-project/vllm/pull/25817"
+        },
+        {
+          "title": "[Feature] Add support for naver/splade-v3 (BERT-based sparse embedding model)",
+          "url": "https://github.com/vllm-project/vllm/pull/26335"
+        }
+      ],
+      "retrieval_limit": 100,
+      "may_be_truncated": false
+    },
+    {
+      "key": "v8fresh_function",
+      "results": [
+        {
+          "title": "v1: fix bf16 precision in logprobs; keep streaming rank kernel",
+          "url": "https://github.com/vllm-project/vllm/pull/63919"
+        },
+        {
+          "title": "[Perf][MRv2] Read the vocabulary once in the token-logprob kernel, and split rows across programs",
+          "url": "https://github.com/vllm-project/vllm/pull/60097"
+        },
+        {
+          "title": "[Feature] Add fixed-token prefill scoring",
+          "url": "https://github.com/vllm-project/vllm/pull/54335"
+        },
+        {
+          "title": "Revert \"[Model Runner V2] Bug fix: logprob dtype int64/int32 issue\" (#41761)",
+          "url": "https://github.com/vllm-project/vllm/pull/42418"
+        },
+        {
+          "title": "Generative Scoring",
+          "url": "https://github.com/vllm-project/vllm/pull/34539"
+        }
+      ],
+      "retrieval_limit": 100,
+      "may_be_truncated": false
+    },
+    {
+      "key": "v9fresh",
+      "results": [
+        {
+          "title": "[Bugfix][Multimodal] Pass only the video count to get_num_frames_with_most_features",
+          "url": "https://github.com/vllm-project/vllm/pull/66608"
+        },
+        {
+          "title": "[Bugfix][Scheduler] Don't let later image requests overtake a request deferred for encoder limits",
+          "url": "https://github.com/vllm-project/vllm/pull/67385"
+        },
+        {
+          "title": "[Kernel] Coalesce reshape_and_cache stores by taking a KV block at a time",
+          "url": "https://github.com/vllm-project/vllm/pull/61417"
+        },
+        {
+          "title": "fix(logits_processor): apply soft capping before scaling in get_top_k…",
+          "url": "https://github.com/vllm-project/vllm/pull/65415"
+        },
+        {
+          "title": "[Model] Gemma 4: native packed vision tower on MMEncoderAttention",
+          "url": "https://github.com/vllm-project/vllm/pull/65431"
+        },
+        {
+          "title": "[Bugfix][Pooling] Make MEAN pooling batch invariant when the flag asks for it",
+          "url": "https://github.com/vllm-project/vllm/pull/60035"
+        },
+        {
+          "title": "[Perf] Precompute Voxtral Realtime's constant AdaRMSNorm time-conditioning scale",
+          "url": "https://github.com/vllm-project/vllm/pull/67046"
+        },
+        {
+          "title": "[Perf][Model] Muse vision encoders: no GPU<->CPU syncs, build Glimmer's vision prep once per call",
+          "url": "https://github.com/vllm-project/vllm/pull/64822"
+        },
+        {
+          "title": "[Model] Kimi-K3: accept video input",
+          "url": "https://github.com/vllm-project/vllm/pull/66849"
+        },
+        {
+          "title": "[Bugfix][LoRA] Fix Gemma 4 audio adapter mappings for unequal-length clips",
+          "url": "https://github.com/vllm-project/vllm/pull/66807"
+        },
+        {
+          "title": "[ROCm][Bugfix] Remove step-path GPU syncs in EPLB skip-rearrange, AITER GDN prefill metadata, Moondream3 BOS and INT4 RHT signs",
+          "url": "https://github.com/vllm-project/vllm/pull/66399"
+        },
+        {
+          "title": "fix(security): bound MRoPE temporal positions to prevent engine crash",
+          "url": "https://github.com/vllm-project/vllm/pull/47407"
+        },
+        {
+          "title": "[Perf] Avoid redundant tensor operations during serialization",
+          "url": "https://github.com/vllm-project/vllm/pull/62464"
+        },
+        {
+          "title": "[Bugfix][Pooling] Enable Matryoshka dimensions for EmbeddingGemma 2",
+          "url": "https://github.com/vllm-project/vllm/pull/64885"
+        },
+        {
+          "title": "[Perf][Frontend] Write run-batch JSON responses without parsing them back",
+          "url": "https://github.com/vllm-project/vllm/pull/65867"
+        },
+        {
+          "title": "[Bugfix][Multimodal] Fix tensor conversion in audio parsing and hashing",
+          "url": "https://github.com/vllm-project/vllm/pull/65579"
+        },
+        {
+          "title": "[Model] Support ViT full CUDA graph for Qwen3-Omni",
+          "url": "https://github.com/vllm-project/vllm/pull/63809"
+        },
+        {
+          "title": "[CPU][MRv2] Enable MRv2 for non-triton CPU backends",
+          "url": "https://github.com/vllm-project/vllm/pull/61995"
+        },
+        {
+          "title": "DSv4.1 flash-decode: eager metadata fusion tracking PR",
+          "url": "https://github.com/vllm-project/vllm/pull/63308"
+        },
+        {
+          "title": "[Core][V2] Send new requests' token ids to the workers as int32 arrays",
+          "url": "https://github.com/vllm-project/vllm/pull/59908"
+        },
+        {
+          "title": "[New Model][Nvidia] Add SM12x support for DeepSeek V4 Flash with essential fixes",
+          "url": "https://github.com/vllm-project/vllm/pull/41834"
+        },
+        {
+          "title": "[Perf][Gemma4][Multimodal] Fuse Gemma4Unified 2D posemb and batch image/video embedder",
+          "url": "https://github.com/vllm-project/vllm/pull/60643"
+        },
+        {
+          "title": "[Perf][Frontend] Share orjson responses across render and pooling",
+          "url": "https://github.com/vllm-project/vllm/pull/58660"
+        },
+        {
+          "title": "[Perf][Nemotron-Parse] Do image rescale/normalize on the device",
+          "url": "https://github.com/vllm-project/vllm/pull/60500"
+        },
+        {
+          "title": "[Bugfix] Restore device placement for repl_token_ids in Qwen3-VL EVS video embeddings",
+          "url": "https://github.com/vllm-project/vllm/pull/44202"
+        },
+        {
+          "title": "[Feature]: Better base64 to torch tensor (Fixes #26781)",
+          "url": "https://github.com/vllm-project/vllm/pull/38604"
+        },
+        {
+          "title": "[Model] Support disk-backed (mmap) PLE table for Qwen3.8-Flash-Next (VLLM_PLE_MMAP)",
+          "url": "https://github.com/vllm-project/vllm/pull/54129"
+        },
+        {
+          "title": "[XPU][UT] Fix OverflowError when storing embeds.data_ptr()",
+          "url": "https://github.com/vllm-project/vllm/pull/56781"
+        },
+        {
+          "title": "[Bugfix][Frontend] Validate mixed prompt embedding mask lengths",
+          "url": "https://github.com/vllm-project/vllm/pull/57006"
+        },
+        {
+          "title": "[Misc] Remove no-op self-assignments across vLLM",
+          "url": "https://github.com/vllm-project/vllm/pull/55988"
+        },
+        {
+          "title": "[Bugfix] Make `mm_device_do_normalize` encoder-cudagraph safe",
+          "url": "https://github.com/vllm-project/vllm/pull/55370"
+        },
+        {
+          "title": " [ROCm][AMD][Installation] add LMCache kv-connector installation and runtime packages to docker image",
+          "url": "https://github.com/vllm-project/vllm/pull/51208"
+        },
+        {
+          "title": "[ROCm] Remove stale SDPA and skinny GEMM workarounds",
+          "url": "https://github.com/vllm-project/vllm/pull/50907"
+        },
+        {
+          "title": "[Model Runner V2][Spec Decode] Add multi-layer MTP speculator",
+          "url": "https://github.com/vllm-project/vllm/pull/48892"
+        },
+        {
+          "title": "[BugFix] Fix Traceback due to malformed MessagePack (#24655)",
+          "url": "https://github.com/vllm-project/vllm/pull/44414"
+        },
+        {
+          "title": "[Perf] Vectorize pooling prompt-token padding in InputBatch",
+          "url": "https://github.com/vllm-project/vllm/pull/48737"
+        },
+        {
+          "title": "[Bug]: OpenAI Embeddings API crashes on invalid token_ids input",
+          "url": "https://github.com/vllm-project/vllm/pull/36947"
+        },
+        {
+          "title": "[Model] Add LLaVA-OneVision-2 (LlavaOnevision2ForConditionalGeneration)",
+          "url": "https://github.com/vllm-project/vllm/pull/44785"
+        },
+        {
+          "title": "[Bugfix] Suppress UserWarning in binary2tensor for read-only numpy arrays",
+          "url": "https://github.com/vllm-project/vllm/pull/35650"
+        },
+        {
+          "title": "[feat] add GlmgaProcessor specific logits in `glm4_1v.py`",
+          "url": "https://github.com/vllm-project/vllm/pull/43575"
+        },
+        {
+          "title": "[Perf] Cache rotary position IDs in Qwen2-VL vision encoder",
+          "url": "https://github.com/vllm-project/vllm/pull/41921"
+        },
+        {
+          "title": "[Perf] Use numpy zero-copy path for embedding float response serialization",
+          "url": "https://github.com/vllm-project/vllm/pull/41681"
+        },
+        {
+          "title": "[VLM] Cache rotary position IDs in Qwen2-VL vision encoder",
+          "url": "https://github.com/vllm-project/vllm/pull/41701"
+        },
+        {
+          "title": "[Core] Encoder separation for Encode-Prefill-Decode Disaggregation",
+          "url": "https://github.com/vllm-project/vllm/pull/21740"
+        },
+        {
+          "title": "[Model] Add Moondream3 model support(only query and caption skills)",
+          "url": "https://github.com/vllm-project/vllm/pull/32325"
+        },
+        {
+          "title": "fix(gdn): use pre-allocated buffer for CUDA graph compatibility",
+          "url": "https://github.com/vllm-project/vllm/pull/38964"
+        },
+        {
+          "title": "[PERF] Speed up Qwen2.5-VL model by speed up rotary position embedding const…",
+          "url": "https://github.com/vllm-project/vllm/pull/17973"
+        },
+        {
+          "title": "[Feature] ViT Full CUDA Graph",
+          "url": "https://github.com/vllm-project/vllm/pull/35963"
+        },
+        {
+          "title": "[Platform] Add MPS (Apple Metal) platform support for macOS",
+          "url": "https://github.com/vllm-project/vllm/pull/36523"
+        },
+        {
+          "title": "[WIP] Add Kimi-Audio integration for vLLM",
+          "url": "https://github.com/vllm-project/vllm/pull/21849"
+        },
+        {
+          "title": "[model] Add support for openPangu7B-VL",
+          "url": "https://github.com/vllm-project/vllm/pull/32449"
+        },
+        {
+          "title": "[Model] Siglip2 Model Support",
+          "url": "https://github.com/vllm-project/vllm/pull/27566"
+        },
+        {
+          "title": "Add Molmo2 multimodal model support",
+          "url": "https://github.com/vllm-project/vllm/pull/30997"
+        },
+        {
+          "title": "Add Qwen3-Omni moe thinker",
+          "url": "https://github.com/vllm-project/vllm/pull/25550"
+        },
+        {
+          "title": "[Core] Add audio_embeds support to chat completions",
+          "url": "https://github.com/vllm-project/vllm/pull/29059"
+        },
+        {
+          "title": "[Misc] Update embedding/cross encoder tests to use `mteb` v2",
+          "url": "https://github.com/vllm-project/vllm/pull/27329"
+        },
+        {
+          "title": "Enable bitsandbytes quantization on AMD GPUs that use warp size 32",
+          "url": "https://github.com/vllm-project/vllm/pull/27307"
+        },
+        {
+          "title": "[Frontend] /metadata: Get more useful server information easily.",
+          "url": "https://github.com/vllm-project/vllm/pull/19604"
+        },
+        {
+          "title": "[Model][Qwen3VL] Cache positional embedding indices ",
+          "url": "https://github.com/vllm-project/vllm/pull/28475"
+        },
+        {
+          "title": "[Frontend][3/N] Improve all pooling task | Support binary embedding response",
+          "url": "https://github.com/vllm-project/vllm/pull/27066"
+        },
+        {
+          "title": "[Model][2/N] Improve all pooling task | Support multi-vector retrieval",
+          "url": "https://github.com/vllm-project/vllm/pull/25370"
+        },
+        {
+          "title": "[Frontend][1/N] Improve all pooling task | Support FP16 Embedding Base64 (Still uses fp32 by default).",
+          "url": "https://github.com/vllm-project/vllm/pull/26414"
+        },
+        {
+          "title": "feat: Support Prefix Caching with Prompt Embeds",
+          "url": "https://github.com/vllm-project/vllm/pull/25741"
+        },
+        {
+          "title": "[PERF] Speedup of MRoPE prepare inputs",
+          "url": "https://github.com/vllm-project/vllm/pull/19939"
+        },
+        {
+          "title": "[ROCm][V1] Changes needed for making vllm run on Fedora 41 with gtx1100",
+          "url": "https://github.com/vllm-project/vllm/pull/16062"
+        },
+        {
+          "title": "[Benchmarks] add benchmark for embedding models",
+          "url": "https://github.com/vllm-project/vllm/pull/23000"
+        },
+        {
+          "title": "[CORE] Prompt Embeddings Support for v1 Engine",
+          "url": "https://github.com/vllm-project/vllm/pull/24278"
+        },
+        {
+          "title": "[Tests] V1 EAGLE Tests for Acceptance Rate",
+          "url": "https://github.com/vllm-project/vllm/pull/19104"
+        },
+        {
+          "title": "[Bugfix][Model] fix Phi3Small model only support v0",
+          "url": "https://github.com/vllm-project/vllm/pull/16493"
+        },
+        {
+          "title": "[Bugfix] fix bf16 multimodal model hash",
+          "url": "https://github.com/vllm-project/vllm/pull/23623"
+        },
+        {
+          "title": "Add support for Prithvi geospatial model in serving mode",
+          "url": "https://github.com/vllm-project/vllm/pull/20307"
+        },
+        {
+          "title": "[Multimodal] Always enable hashing mm data",
+          "url": "https://github.com/vllm-project/vllm/pull/23308"
+        },
+        {
+          "title": "[CI/Build] Add support for Python 3.13",
+          "url": "https://github.com/vllm-project/vllm/pull/13164"
+        },
+        {
+          "title": "Add support for token_type_ids",
+          "url": "https://github.com/vllm-project/vllm/pull/19988"
+        },
+        {
+          "title": "[Bugfix] Fix RuntimeError: Index put requires the source and destination dtypes match",
+          "url": "https://github.com/vllm-project/vllm/pull/22065"
+        },
+        {
+          "title": "[Frontend] Add chunked processing to handle long inputs in embedding models",
+          "url": "https://github.com/vllm-project/vllm/pull/20837"
+        },
+        {
+          "title": "Add support for Prithvi in Online serving mode",
+          "url": "https://github.com/vllm-project/vllm/pull/21518"
+        },
+        {
+          "title": "[Perf] Optimize MRoPR position preparing performance with numba",
+          "url": "https://github.com/vllm-project/vllm/pull/16881"
+        },
+        {
+          "title": "[Model][VLM] Support Keye-VL-8B-Preview",
+          "url": "https://github.com/vllm-project/vllm/pull/20126"
+        },
+        {
+          "title": "[Model][VLM] Add Kimi-VL model support",
+          "url": "https://github.com/vllm-project/vllm/pull/16387"
+        },
+        {
+          "title": "[Bugfix] Fix the failing gte embedding test",
+          "url": "https://github.com/vllm-project/vllm/pull/18720"
+        },
+        {
+          "title": "add support for AMD MI25/50/60",
+          "url": "https://github.com/vllm-project/vllm/pull/12431"
+        },
+        {
+          "title": "[Hardware][TPU][V1] Multi-LoRA implementation for the V1 TPU backend",
+          "url": "https://github.com/vllm-project/vllm/pull/14238"
+        },
+        {
+          "title": "[Bugfix] add input embedding",
+          "url": "https://github.com/vllm-project/vllm/pull/11684"
+        },
+        {
+          "title": "Upstream Llama4 Support to Main",
+          "url": "https://github.com/vllm-project/vllm/pull/16113"
+        },
+        {
+          "title": "[5/N][torch.compile] torch.jit.script --> torch.compile",
+          "url": "https://github.com/vllm-project/vllm/pull/10406"
+        },
+        {
+          "title": "[Model] Enable optional prefix when loading embedding models",
+          "url": "https://github.com/vllm-project/vllm/pull/10639"
+        },
+        {
+          "title": "[Misc] vllm CLI flags should be ordered for better user readability",
+          "url": "https://github.com/vllm-project/vllm/pull/10017"
+        },
+        {
+          "title": "[Model][VLM] Add multi-video support for LLaVA-Onevision",
+          "url": "https://github.com/vllm-project/vllm/pull/8905"
+        },
+        {
+          "title": "[V1] Implement vLLM V1 [1/N]",
+          "url": "https://github.com/vllm-project/vllm/pull/9289"
+        },
+        {
+          "title": "[Model][LoRA]LoRA support added for MiniCPMV2.6",
+          "url": "https://github.com/vllm-project/vllm/pull/8943"
+        },
+        {
+          "title": "[Model] Add Gemma 2",
+          "url": "https://github.com/vllm-project/vllm/pull/5908"
+        },
+        {
+          "title": "[Core] Support loading GGUF model",
+          "url": "https://github.com/vllm-project/vllm/pull/5191"
+        },
+        {
+          "title": "long text (8k) support for Qwen",
+          "url": "https://github.com/vllm-project/vllm/pull/1746"
+        },
+        {
+          "title": "[Build/CI][ROCm] Minor simplification to Dockerfile.rocm",
+          "url": "https://github.com/vllm-project/vllm/pull/6811"
+        },
+        {
+          "title": "[Hardware][Intel GPU]Add Initial Intel GPU(XPU) inference backend",
+          "url": "https://github.com/vllm-project/vllm/pull/3814"
+        },
+        {
+          "title": "Refactor worker & InputMetadata",
+          "url": "https://github.com/vllm-project/vllm/pull/1843"
+        },
+        {
+          "title": "Support tensor parallel",
+          "url": "https://github.com/vllm-project/vllm/pull/2"
+        }
+      ],
+      "retrieval_limit": 100,
+      "may_be_truncated": false
+    },
+    {
+      "key": "v9fresh_endian",
+      "results": [
+        {
+          "title": "[Perf][KVConnector][Mooncake] Compact chunk-hash keys and zero-copy lookup wire format",
+          "url": "https://github.com/vllm-project/vllm/pull/45969"
+        },
+        {
+          "title": "[KVConnector][Mooncake] Wire reset_cache cascade end-to-end",
+          "url": "https://github.com/vllm-project/vllm/pull/42694"
+        },
+        {
+          "title": "[Bug] Fix FlashInfer MNNVL socket collisions under concurrent vLLM jobs",
+          "url": "https://github.com/vllm-project/vllm/pull/36674"
+        },
+        {
+          "title": "[CPU] Enable tcmalloc for s390x",
+          "url": "https://github.com/vllm-project/vllm/pull/50841"
+        },
+        {
+          "title": "[KV Transfer] Add MooncakeStoreConnector for KV cache offloading via Mooncake distributed store",
+          "url": "https://github.com/vllm-project/vllm/pull/40900"
+        },
+        {
+          "title": "[Perf] Exploit out-of-band buffers in shm_broadcast",
+          "url": "https://github.com/vllm-project/vllm/pull/26961"
+        },
+        {
+          "title": "Add tensor IPC transfer mechanism for multimodal data",
+          "url": "https://github.com/vllm-project/vllm/pull/32104"
+        },
+        {
+          "title": "Support SHA256 as hash function in prefix caching",
+          "url": "https://github.com/vllm-project/vllm/pull/15297"
+        },
+        {
+          "title": "[Core] Use sha256 bytes instead of BlockHash to reduce GC overhead",
+          "url": "https://github.com/vllm-project/vllm/pull/23673"
+        }
+      ],
+      "retrieval_limit": 100,
+      "may_be_truncated": false
+    },
+    {
+      "key": "v10fresh",
+      "results": [
+        {
+          "title": "[Perf][DSv4.1] Low-batch LM head GEMM on the default decode path",
+          "url": "https://github.com/vllm-project/vllm/pull/67435"
+        },
+        {
+          "title": "[CI][Qwen3.5] Score Qwen3.5-35B-A3B-FP8 GSM8K on MI355 with an empty think block",
+          "url": "https://github.com/vllm-project/vllm/pull/66985"
+        },
+        {
+          "title": "[Bugfix] build with param.dtype when one is not specified",
+          "url": "https://github.com/vllm-project/vllm/pull/67212"
+        },
+        {
+          "title": "[Quantization] Allow online per-channel fp8 quantization of an unquantized lm_head",
+          "url": "https://github.com/vllm-project/vllm/pull/61815"
+        },
+        {
+          "title": "[Transformers backend] Migrate ModernBERT embedding, reranker and token classification models",
+          "url": "https://github.com/vllm-project/vllm/pull/59206"
+        },
+        {
+          "title": "[Bugfix][Spec Decode] Fix DSpark top-k drafting with FP32 head logits",
+          "url": "https://github.com/vllm-project/vllm/pull/66601"
+        },
+        {
+          "title": "[Bugfix] Register the aten::mm out_dtype overloads for batch invariance",
+          "url": "https://github.com/vllm-project/vllm/pull/60047"
+        },
+        {
+          "title": "[Spec Decode][ROCm] draft_lm_head_quantization for DSpark drafters",
+          "url": "https://github.com/vllm-project/vllm/pull/64368"
+        },
+        {
+          "title": "[DSv4.1][BI] Bitwise batch invariance for DeepSeek-V4.1-Flash with CUDA graphs",
+          "url": "https://github.com/vllm-project/vllm/pull/62365"
+        },
+        {
+          "title": "[Kernel] Add losslessly packed BF16 lm_head backend",
+          "url": "https://github.com/vllm-project/vllm/pull/55494"
+        },
+        {
+          "title": "[Model] Add Flint (RecursiveSI/flint)",
+          "url": "https://github.com/vllm-project/vllm/pull/62938"
+        },
+        {
+          "title": "[Perf] Pad one-row BF16 lm_head GEMMs to two rows on GB10",
+          "url": "https://github.com/vllm-project/vllm/pull/63172"
+        },
+        {
+          "title": "[Model][LoRA] Enable LoRA support for BERT cross-encoders",
+          "url": "https://github.com/vllm-project/vllm/pull/61279"
+        },
+        {
+          "title": "[Frontend] Serve LiquidAI/d1-3B on /v1/systemone",
+          "url": "https://github.com/vllm-project/vllm/pull/60676"
+        },
+        {
+          "title": "[Perf] Integrate flash-maxsim Triton kernels for late-interaction scoring",
+          "url": "https://github.com/vllm-project/vllm/pull/40337"
+        },
+        {
+          "title": "[Bugfix] Handle excluded lm_head re-tying and unavailable cast weights",
+          "url": "https://github.com/vllm-project/vllm/pull/53651"
+        },
+        {
+          "title": "[Performance] Add CUDA\n   graph optimization for classify pooler",
+          "url": "https://github.com/vllm-project/vllm/pull/36182"
+        },
+        {
+          "title": "[Bugfix] Fix logprobs Triton kernel JIT-compiling mid-request for uncommon topk widths",
+          "url": "https://github.com/vllm-project/vllm/pull/55918"
+        },
+        {
+          "title": "[Kernel][Spec Decode] Add hybrid NVFP4 LM-head sampling support",
+          "url": "https://github.com/vllm-project/vllm/pull/54897"
+        },
+        {
+          "title": "[Bugfix][Spec Decode] DFlash2: accept unquantized linear LM heads in the candidate selector",
+          "url": "https://github.com/vllm-project/vllm/pull/52883"
+        },
+        {
+          "title": "[Model] Honor fp32 head_dtype in Inkling muP logits (target + MTP draft)",
+          "url": "https://github.com/vllm-project/vllm/pull/49120"
+        },
+        {
+          "title": "[Spec Decode] DFlash2: local convolution + candidate selector",
+          "url": "https://github.com/vllm-project/vllm/pull/52816"
+        },
+        {
+          "title": "fix(pooling): validate BGE-M3 combined task ownership",
+          "url": "https://github.com/vllm-project/vllm/pull/51823"
+        },
+        {
+          "title": "[Model Runner V2] Cache draft logits in model's LM head dtype",
+          "url": "https://github.com/vllm-project/vllm/pull/50910"
+        },
+        {
+          "title": "[Sampler] Stop upcasting logits to fp32 in apply_sampling_params",
+          "url": "https://github.com/vllm-project/vllm/pull/48641"
+        },
+        {
+          "title": "[Model] Systematic support for fp32 head, generation models part",
+          "url": "https://github.com/vllm-project/vllm/pull/24567"
+        },
+        {
+          "title": "[ROCm][Bugfix] Enable the fp32 head_dtype torch.mm fast path on ROCm",
+          "url": "https://github.com/vllm-project/vllm/pull/48688"
+        },
+        {
+          "title": "[Core][LoRA] Support fp32 lm_head (head_dtype) on the LoRA path",
+          "url": "https://github.com/vllm-project/vllm/pull/48525"
+        },
+        {
+          "title": "[Bugfix][CI] Fix test_head_dtype quant_method test on ROCm",
+          "url": "https://github.com/vllm-project/vllm/pull/48654"
+        },
+        {
+          "title": "[Core] Support fp32 lm_head for generation models via head_dtype (RFC #48305 §3.6)",
+          "url": "https://github.com/vllm-project/vllm/pull/48390"
+        },
+        {
+          "title": "Generalize pooling model support with multi-task, multi-layer, multi-label classification that can be pooled from both hidden states and LM head's logits.",
+          "url": "https://github.com/vllm-project/vllm/pull/30315"
+        },
+        {
+          "title": "Added extra_repr() to pooler classes to improve debuggability",
+          "url": "https://github.com/vllm-project/vllm/pull/44805"
+        },
+        {
+          "title": "[XPU] special handle for pooler models w8a16 gemm",
+          "url": "https://github.com/vllm-project/vllm/pull/35351"
+        },
+        {
+          "title": "use ORJSONResponse when available to improve the efficiency of request process",
+          "url": "https://github.com/vllm-project/vllm/pull/33548"
+        },
+        {
+          "title": "[Bugfix] Dtype error with sequence classification model and lora.",
+          "url": "https://github.com/vllm-project/vllm/pull/24775"
+        },
+        {
+          "title": "[Model] Standardize pooling heads",
+          "url": "https://github.com/vllm-project/vllm/pull/32148"
+        },
+        {
+          "title": "[Model][0/N] Improve all pooling task | clean up",
+          "url": "https://github.com/vllm-project/vllm/pull/25817"
+        },
+        {
+          "title": "[Model] Systematic support for fp32 head, pooling models part",
+          "url": "https://github.com/vllm-project/vllm/pull/23810"
+        },
+        {
+          "title": "[CI] Add ci_envs for convenient local testing",
+          "url": "https://github.com/vllm-project/vllm/pull/24630"
+        }
+      ],
+      "retrieval_limit": 100,
+      "may_be_truncated": false
+    }
+  ],
+  "examined_distinctions": [
+    {
+      "pr": 67212,
+      "reason": "Transformers backend parameter construction; no native BertMLMHead change"
+    },
+    {
+      "pr": 61279,
+      "reason": "BertForSequenceClassification LoRA ReplicatedLinear; MLM/SPLADE untouched"
+    },
+    {
+      "pr": 30315,
+      "reason": "Generic model adapters only"
+    },
+    {
+      "pr": 38604,
+      "reason": "binary2tensor raw byte-buffer serialization; .npy image/video handlers unchanged"
+    },
+    {
+      "pr": 35650,
+      "reason": "binary2tensor read-only warning; no NumPy .npy dtype normalization"
+    },
+    {
+      "pr": 62464,
+      "reason": "Torch/MessagePack serialization copies; no .npy media readers"
+    },
+    {
+      "pr": 65579,
+      "reason": "Audio tensor parsing/hashing; image/video .npy readers unchanged"
+    },
+    {
+      "pr": 63919,
+      "reason": "GPU/Triton logprob implementation; standalone CPU module distinct"
+    },
+    {
+      "pr": 60097,
+      "reason": "Triton token-logprob streaming; standalone CPU module distinct"
+    }
+  ]
+}
