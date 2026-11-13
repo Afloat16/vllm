@@ -1,11 +1,11 @@
-name: Validate native standard SPLADE checkpoint loading
+name: Validate native NumPy multimodal embedding byte order
 on:
   push:
     branches: [validation/native-cpu-environment-20261112]
 permissions:
   contents: read
 jobs:
-  native-splade:
+  native-numpy-mm:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
@@ -38,13 +38,13 @@ jobs:
           fail-on-cache-miss: true
       - name: Install standard test dependencies
         run: uv pip install --python .venv/bin/python tblib anthropic pytest pytest-asyncio jsonschema
-      - name: Check standard saved SPLADE models before and after
+      - name: Check NumPy embeddings and native Llava before and after
         run: |
           source .venv/bin/activate
           IOMP_PATH=$(rg --files --hidden --no-ignore .venv | rg '/libiomp5.so$' | head -1)
           TC_PATH=$(ldconfig -p | awk '/libtcmalloc_minimal.so.4 / {print $NF; exit}')
           if [ -n "$IOMP_PATH" ]; then export LD_PRELOAD="$TC_PATH:$PWD/$IOMP_PATH${LD_PRELOAD:+:$LD_PRELOAD}"; fi
-          python validation/run_splade_checkpoint_native.py
+          python validation/run_numpy_mm_native.py
       - name: Record native host resources
         if: always()
         run: |
@@ -55,12 +55,12 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: native-splade-checkpoint-9199802eb3
+          name: native-numpy-mm-checkpoint-9199802eb3
           path: |
-            splade_before.log
-            splade_before.xml
-            splade_after.log
-            splade_after.xml
-            splade_existing.log
-            splade_existing.xml
-            splade_validation_result.json
+            numpy_mm_before.log
+            numpy_mm_before.xml
+            numpy_mm_after.log
+            numpy_mm_after.xml
+            numpy_mm_existing.log
+            numpy_mm_existing.xml
+            numpy_mm_validation_result.json
