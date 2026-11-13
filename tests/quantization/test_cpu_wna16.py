@@ -3,13 +3,13 @@
 import numpy as np
 import pytest
 import torch
-from vllm.platforms import CpuArchEnum, current_platform
-from vllm.scalar_type import scalar_types
 
 from vllm.model_executor.layers.quantization.utils.quant_utils import (
     pack_quantized_values_into_int32,
     unpack_quantized_values_into_int32,
 )
+from vllm.platforms import CpuArchEnum, current_platform
+from vllm.scalar_type import scalar_types
 
 if not current_platform.is_cpu():
     pytest.skip("skipping CPU-only tests", allow_module_level=True)
