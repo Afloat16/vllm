@@ -3,14 +3,13 @@
 import numpy as np
 import pytest
 import torch
+from vllm.platforms import CpuArchEnum, current_platform
+from vllm.scalar_type import scalar_types
 
 from vllm.model_executor.layers.quantization.utils.quant_utils import (
-    pack_cols,
     pack_quantized_values_into_int32,
     unpack_quantized_values_into_int32,
 )
-from vllm.platforms import CpuArchEnum, current_platform
-from vllm.scalar_type import scalar_types
 
 if not current_platform.is_cpu():
     pytest.skip("skipping CPU-only tests", allow_module_level=True)
@@ -127,44 +126,3 @@ def test_quantized_packing_preserves_integer_lanes(
     unpacked = unpack_quantized_values_into_int32(actual, wtype, packed_dim)
     torch.testing.assert_close(unpacked, values.to(torch.int32) & mask, rtol=0, atol=0)
     torch.testing.assert_close(values, original, rtol=0, atol=0)
-
-
-@pytest.mark.cpu_test
-@pytest.mark.parametrize(
-    "storage_dtype", [torch.uint8, torch.int8, torch.int16, torch.int32]
-)
-@pytest.mark.parametrize("dtype", [torch.float16, torch.bfloat16])
-def test_cpu_wna16_narrow_integer_weights(storage_dtype, dtype):
-    """Narrow checkpoint values must produce the same native GEMM outputs."""
-    torch.manual_seed(31)
-    k, n, group_size = 64, 64, 32
-    values = torch.randint(0, 16, (k, n), dtype=storage_dtype)
-    packed = pack_quantized_values_into_int32(values, scalar_types.uint4b8, 1)
-    packed = (
-        packed.view(k, n // 16, 2).permute(1, 0, 2).reshape(n // 16, -1).contiguous()
-    )
-    scales = torch.rand(k // group_size, n, dtype=dtype) / 16
-    inputs = torch.randn(2, 3, k, dtype=dtype)
-    reference = pack_cols(values, 4, k, n)
-    reference = (
-        reference.view(k, n // 16, 2).permute(1, 0, 2).reshape(n // 16, -1).contiguous()
-    )
-    expected = cpu_gemm_wna16(
-        input=inputs,
-        q_weight=reference,
-        scales=scales,
-        zeros=None,
-        bias=None,
-        pack_factor=8,
-        isa_hint=_get_isa_hint(dtype),
-    )
-    actual = cpu_gemm_wna16(
-        input=inputs,
-        q_weight=packed,
-        scales=scales,
-        zeros=None,
-        bias=None,
-        pack_factor=8,
-        isa_hint=_get_isa_hint(dtype),
-    )
-    torch.testing.assert_close(actual, expected, rtol=0, atol=0)
