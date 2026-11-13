@@ -7,10 +7,10 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 BASE = "c74cab9b33659e92de9ca9c35eb949c78ebbe64c"
-HEAD = "b81083bbff4c08f379ad763383b8605bd485ddbf"
-FILES = ["vllm/entrypoints/generate/beam_search/online.py", "tests/samplers/test_beam_search_online.py", "tests/samplers/test_beam_search_ties.py"]
+HEAD = "b7b7946da1ef215beb159cd1dd5434ea3018b80a"
+FILES = ["vllm/entrypoints/generate/beam_search/offline.py", "tests/samplers/test_beam_search_batch.py"]
 SOURCE_FILES = [path for path in FILES if path.startswith("vllm/entrypoints/")]
-TEST = ["tests/samplers/test_beam_search_online.py", "tests/samplers/test_beam_search_ties.py"]
+TEST = "tests/samplers/test_beam_search_batch.py"
 subprocess.run(["git", "fetch", "--no-tags", "--depth=1", "origin", BASE, HEAD], check=True)
 for path in FILES:
     assert Path(path).read_bytes() == subprocess.check_output(["git", "show", f"{HEAD}:{path}"]), path
@@ -26,7 +26,7 @@ assert native, "Source-built CPU extensions are missing"
 print("Native runtime", torch.__version__, vllm.__version__, native, flush=True)
 
 def run(label, path, expression=None):
-    args = [sys.executable, "-m", "pytest", *(path if isinstance(path, list) else [path]), "-q", f"--junitxml={label}.xml"]
+    args = [sys.executable, "-m", "pytest", path, "-q", f"--junitxml={label}.xml"]
     if expression:
         args += ["-k", expression]
     result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
@@ -43,15 +43,15 @@ fixed = {path: Path(path).read_bytes() for path in SOURCE_FILES}
 try:
     for path in SOURCE_FILES:
         Path(path).write_bytes(subprocess.check_output(["git", "show", f"{BASE}:{path}"]))
-    before = run("before", TEST, "test_online_beam_stable_ties or test_beam_tied_scores_native_outputs")
+    before = run("before", TEST, None)
 finally:
     for path, content in fixed.items():
         Path(path).write_bytes(content)
-assert before["tests"] == 25 and before["errors"] == before["skipped"] == 0, before
-assert before["returncode"] == 1 and before["failures"] > 0, before
-after = run("after", TEST, "test_online_beam_stable_ties or test_beam_tied_scores_native_outputs")
-assert after == {"tests": 25, "failures": 0, "errors": 0, "skipped": 0, "returncode": 0}, after
-existing = run("existing", "tests/samplers/test_beam_search_online.py", "not test_online_beam_stable_ties")
+assert before["tests"] == 26 and before["errors"] == before["skipped"] == 0, before
+assert before["returncode"] == 1 and before["failures"] == 6, before
+after = run("after", TEST, None)
+assert after == {"tests": 26, "failures": 0, "errors": 0, "skipped": 0, "returncode": 0}, after
+existing = run("existing", "tests/samplers/test_beam_search_online.py")
 assert existing["returncode"] == existing["failures"] == existing["errors"] == 0, existing
 for path in FILES:
     assert Path(path).read_bytes() == subprocess.check_output(["git", "show", f"{HEAD}:{path}"]), path
