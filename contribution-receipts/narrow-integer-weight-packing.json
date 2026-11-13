@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "repository": "vllm-project/vllm",
+  "pr": 67475,
+  "url": "https://github.com/vllm-project/vllm/pull/67475",
+  "title": "[Bugfix] Preserve lanes when packing narrow integer quantized weights",
+  "branch": "fix/narrow-integer-weight-packing-20261113",
+  "base": "191e5d5df2ec693d5536a635079d58864dfacebb",
+  "head": "2e7c853b3b6af28d8fb66923b71a67c74d08d84a",
+  "validated_head": "8b997c34e40ac86091eec2587b2d227ed41bed04",
+  "tree": "28f35334e025490ec20b0465a5d0707b0e061770",
+  "state": "open",
+  "draft": false,
+  "merged_at": null,
+  "verified_at": "2026-11-13T11:47:48Z",
+  "native_run": "https://github.com/Afloat16/vllm/actions/runs/43418160015",
+  "native_job": 131861167231,
+  "native_validation_commit": "bcf4f65107a80645ee8c674b18b24be18703c413",
+  "before": {
+    "tests": 51,
+    "failures": 33,
+    "errors": 0,
+    "skipped": 0
+  },
+  "after": {
+    "tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "existing": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "environment": {
+    "torch": "2.14.0+cpu",
+    "cpu": "Intel Xeon 6975P-C",
+    "vllm": "source-built CPU extensions"
+  },
+  "scope": "40 packing-oracle cases, 8 FP16/BF16 linear cases, 3 full native vLLM Llama comparisons using dequantized FP32 checkpoints, and 1 pre-existing WNA16 control. No end-to-end GPTQ/WNA16 model claim.",
+  "log_annotation": "The runner result JSON contains a stale hardcoded 'AVX2 ... WNA16 unavailable' description inherited from an earlier AMD runner. The final run's lscpu records Intel Xeon 6975P-C with AVX512/AMX; its existing WNA16 control passed. The actual execution and counts above come from the final job log.",
+  "peer_review": "Actual two-file diff and full pack/unpack function reviewed by data_contributions; no blocking correctness issue.",
+  "dedup_review": {
+    "all_states": true,
+    "related_prs": [
+      46136,
+      31431
+    ],
+    "notes": "46136 casts one Humming call site; 31431 replaces constants. Both actual patches inspected; neither repairs the shared helper for narrow inputs."
+  },
+  "files": [
+    "vllm/model_executor/layers/quantization/utils/quant_utils.py",
+    "tests/quantization/test_cpu_wna16.py"
+  ],
+  "body": "## Purpose\n\n`pack_quantized_values_into_int32` shifts each lane while it still has the input tensor's dtype. For int8, uint8, and int16 inputs, bits are truncated (or sign-extended) before the final int32 conversion. This silently corrupts the packed weight words.\n\n## Changes\n\n- Promote int8, uint8, and int16 inputs to int32 before masking and shifting.\n- Keep the existing int32 and int64 paths.\n- Add 40 independent NumPy uint32 oracle cases covering 4-bit and 8-bit values, both packing dimensions, contiguous and transposed inputs, all five input dtypes, unpacking, and source preservation.\n\n## Validation\n\n[Native CPU before/after run](https://github.com/Afloat16/vllm/actions/runs/43418160015), using official PyTorch 2.14.0+cpu and source-built vLLM CPU extensions on an Intel Xeon 6975P-C runner:\n\n- Baseline: 33 failures and 18 passes. Fixed: all 51 cases pass, with no errors or skips.\n- Those 51 cases include the 40 production packing tests, 8 real FP16/BF16 linear comparisons, and 3 full vLLM Llama inference comparisons.\n- For each full Llama comparison, actual pack/unpack output is dequantized and saved as an FP32 checkpoint; inference is compared with an independently dequantized reference checkpoint. Generated tokens match and all checked log probabilities agree within 1e-6.\n- One existing CPU WNA16 regression control also passes.\n- Ruff check, Ruff format, and diff whitespace checks pass.\n\nThe full-model checks exercise checkpoints produced by the packing helper. They use ordinary FP32 inference; they do not exercise a GPTQ/WNA16-quantized model end to end.\n\nValidated source commit: `8b997c34e40ac86091eec2587b2d227ed41bed04`. The submitted signed commit `2e7c853b3b6af28d8fb66923b71a67c74d08d84a` has the identical Git tree `28f35334e025490ec20b0465a5d0707b0e061770`.\n\nRelated changes checked: #46136 converts a Humming input to int32 at its call site; #31431 replaces the packing-width constant. Neither fixes narrow inputs to this shared helper."
+}
