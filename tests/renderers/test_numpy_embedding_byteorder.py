@@ -140,7 +140,9 @@ def test_numpy_image_embedding_is_consumed_by_native_llava(
     state = {}
     for name, tensor in load_file(checkpoint).items():
         for prefix in ("model.vision_tower.", "vision_tower."):
-            if name.startswith(prefix) and not name.startswith(prefix + "vision_model."):
+            if name.startswith(prefix) and not name.startswith(
+                prefix + "vision_model."
+            ):
                 name = prefix + "vision_model." + name[len(prefix) :]
                 break
         state[name] = tensor
