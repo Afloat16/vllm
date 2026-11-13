@@ -1,0 +1,38 @@
+name: Validate SPLADE checkpoint repository hooks
+on:
+  push:
+    branches: [validation/splade-checkpoint-style-20261113]
+permissions:
+  contents: read
+jobs:
+  style:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+      - name: Ruff checks
+        id: check
+        continue-on-error: true
+        run: uvx ruff==0.17.2 check --diff vllm/model_executor/models/bert.py tests/models/language/pooling/test_splade_checkpoint_loading.py
+      - name: Ruff formatting
+        id: format
+        continue-on-error: true
+        run: uvx ruff==0.17.2 format --diff vllm/model_executor/models/bert.py tests/models/language/pooling/test_splade_checkpoint_loading.py
+      - name: Run applicable repository pre-commit hooks
+        if: always()
+        id: hooks
+        continue-on-error: true
+        run: |
+          uvx pre-commit run --files vllm/model_executor/models/bert.py tests/models/language/pooling/test_splade_checkpoint_loading.py docs/models/pooling_models/specific_models.md
+          git diff --exit-code
+      - name: Require both checks
+        run: |
+          test "${{ steps.check.outcome }}" = success
+          test "${{ steps.format.outcome }}" = success
+          test "${{ steps.hooks.outcome }}" = success
