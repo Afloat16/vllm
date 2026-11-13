@@ -27,23 +27,15 @@ def execute(name, targets):
     return summary
 
 def main():
-    import torch
-    from transformers import BertConfig, BertForMaskedLM
-    probe = BertForMaskedLM(BertConfig(vocab_size=16, hidden_size=8, num_hidden_layers=1, num_attention_heads=2, intermediate_size=16, tie_word_embeddings=False))
-    probe_head = probe.cls.predictions
-    with torch.no_grad():
-        probe_head.bias.fill_(0.7)
-    print("HF untied bias aliases", json.dumps({"shared": probe_head.bias is probe_head.decoder.bias, "canonical": probe_head.bias.tolist(), "decoder": probe_head.decoder.bias.tolist()}), flush=True)
-    del probe, probe_head
-    target = ["tests/models/language/pooling/test_splade_checkpoint_loading.py"]
-    after = execute("splade_after", target)
-    existing = execute("splade_existing", [
+    target = ["tests/models/language/pooling/test_head_dtype.py", "-k", "mlm_head_dtype"]
+    after = execute("mlm_dtype_after", target)
+    existing = execute("mlm_dtype_existing", [
         "tests/model_executor/layers/test_pooler_heads.py",
         "tests/model_executor/layers/test_pooler_activations.py",
     ])
-    evidence = {"base": BASE, "source_sha": "a95f253161941f963b3ca345bca404530cba3670", "baseline_run": 43424202700, "after": after, "existing": existing}
-    Path("splade_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
-    assert after.get("passed") == 12 and after.get("returncode") == 0 and after.get("skipped") == 0, after
+    evidence = {"base": BASE, "source_sha": "a3af37f3e544a4434a52f75414731a10ae176303", "baseline_run": 43424033592, "after": after, "existing": existing}
+    Path("mlm_dtype_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    assert after.get("passed") == 14 and after.get("returncode") == 0 and after.get("skipped") == 0, after
     assert existing["returncode"] == 0, existing
 
 if __name__ == "__main__":
