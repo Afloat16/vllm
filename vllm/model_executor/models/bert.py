@@ -788,10 +788,12 @@ class BertSpladeSparseEmbeddingModel(BertEmbeddingModel):
             self.model.config.tie_word_embeddings
             and "mlm_head.decoder.weight" not in loaded
         ):
-            embeddings = self.model.embeddings.word_embeddings.weight
-            decoder = self.mlm_head.decoder.weight
-            decoder.data.copy_(embeddings.data[: decoder.shape[0]])
-            loaded.add("mlm_head.decoder.weight")
+            tied_weights = (
+                ("mlm_head.decoder.weight", weight)
+                for name, weight in model_side
+                if name == "embeddings.word_embeddings.weight"
+            )
+            loaded.update(AutoWeightsLoader(self).load_weights(tied_weights))
 
         return loaded
 
