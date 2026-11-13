@@ -6,8 +6,8 @@ import sys
 import xml.etree.ElementTree as ET
 
 BASE = "191e5d5df2ec693d5536a635079d58864dfacebb"
-SOURCES = [Path(name) for name in ("vllm/utils/serial_utils.py", "vllm/multimodal/media/image.py", "vllm/multimodal/media/video.py")]
-FIXED = {path: path.read_bytes() for path in SOURCES}
+SOURCE = Path("vllm/model_executor/models/bert.py")
+FIXED = SOURCE.read_bytes()
 ENV = os.environ.copy()
 ENV["PYTHONDONTWRITEBYTECODE"] = "1"
 ENV["TOKENIZERS_PARALLELISM"] = "false"
@@ -27,24 +27,21 @@ def execute(name, targets):
     return summary
 
 def main():
-    target = ["tests/renderers/test_numpy_embedding_byteorder.py"]
+    target = ["tests/models/language/pooling/test_head_dtype.py", "-k", "mlm_head_dtype"]
     try:
-        for path in SOURCES:
-            path.write_bytes(subprocess.check_output(["git", "show", BASE + ":" + str(path)]))
-        before = execute("numpy_mm_before", target)
+        SOURCE.write_bytes(subprocess.check_output(["git", "show", BASE + ":" + str(SOURCE)]))
+        before = execute("mlm_dtype_before", target)
     finally:
-        for path, content in FIXED.items():
-            path.write_bytes(content)
-    after = execute("numpy_mm_after", target)
-    existing = execute("numpy_mm_existing", [
-        "tests/utils_/test_serial_utils.py",
-        "tests/renderers/test_sparse_tensor_validation.py",
-        "-k", "numpy or encode_and_decode",
+        SOURCE.write_bytes(FIXED)
+    after = execute("mlm_dtype_after", target)
+    existing = execute("mlm_dtype_existing", [
+        "tests/model_executor/layers/test_pooler_heads.py",
+        "tests/model_executor/layers/test_pooler_activations.py",
     ])
-    evidence = {"base": BASE, "source_sha": "50abe3b5a09cd3e505762c92f2fceccf3ebdd38d", "before": before, "after": after, "existing": existing}
-    Path("numpy_mm_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
-    assert before.get("failures") == 27 and before.get("passed") == 23 and before.get("errors") == 0, before
-    assert after.get("passed") == 50 and after.get("returncode") == 0 and after.get("skipped") == 0, after
+    evidence = {"base": BASE, "source_sha": "3824fc0a705e9f79215eae7f32ac0a4afee57a79", "before": before, "after": after, "existing": existing}
+    Path("mlm_dtype_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    assert before.get("failures") == 6 and before.get("passed") == 8 and before.get("errors") == 0, before
+    assert after.get("passed") == 14 and after.get("returncode") == 0 and after.get("skipped") == 0, after
     assert existing["returncode"] == 0, existing
 
 if __name__ == "__main__":
