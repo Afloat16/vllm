@@ -47,6 +47,16 @@ def test_classify_models(
             assert torch.allclose(hf_output, vllm_output, atol=1e-2)
 
 
+class MLMHeadDtypeInspectionWorker:
+    def inspect_mlm_head_dtypes(self):
+        return sorted(
+            {
+                str(parameter.dtype)
+                for parameter in self.model_runner.model.mlm_head.parameters()
+            }
+        )
+
+
 @pytest.mark.parametrize(
     "architecture", ["BertForMaskedLM", "BertSpladeSparseEmbeddingModel"]
 )
@@ -91,7 +101,9 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
         reference = BertForMaskedLM(config).eval()
         with torch.no_grad():
             reference.cls.predictions.decoder.weight.zero_()
-            reference.cls.predictions.bias.copy_(torch.linspace(9999.5, 10001.5, 16))
+            bias = torch.linspace(9999.5, 10001.5, 16)
+            reference.cls.predictions.bias.copy_(bias)
+            reference.cls.predictions.decoder.bias.copy_(bias)
     config.save_pretrained(tmp_path)
     state = {
         name: value.detach().clone().contiguous()
@@ -119,7 +131,7 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
     tokenizer.save_pretrained(tmp_path)
     head_dtype_name = model_dtype if head_dtype == "model" else head_dtype or "float32"
     expected_dtype = getattr(torch, head_dtype_name)
-    expected_bias = reference.cls.predictions.bias.detach().to(expected_dtype)
+    expected_bias = reference.cls.predictions.decoder.bias.detach().to(expected_dtype)
     prompts = ["alpha", "beta alpha beta"]
     overrides = {"architectures": [architecture]}
     if head_dtype is not None:
@@ -137,6 +149,10 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
         kv_cache_memory_bytes=16 * 1024 * 1024,
         enable_prefix_caching=False,
         enforce_eager=True,
+        worker_extension_cls=(
+            "tests.models.language.pooling.test_head_dtype."
+            "MLMHeadDtypeInspectionWorker"
+        ),
     ) as model:
         outputs = model.llm.encode(
             prompts,
@@ -144,11 +160,7 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
             pooling_params=PoolingParams(use_activation=False),
             use_tqdm=False,
         )
-        actual_head_dtypes = model.llm.apply_model(
-            lambda module: {
-                str(parameter.dtype) for parameter in module.mlm_head.parameters()
-            }
-        )
+        actual_head_dtypes = model.llm.collective_rpc("inspect_mlm_head_dtypes")
 
     for prompt, output in zip(prompts, outputs):
         if task == "token_classify":
@@ -158,4 +170,4 @@ def test_mlm_head_dtype_controls_saved_weights_and_outputs(
         torch.testing.assert_close(
             torch.as_tensor(output.outputs.data).float(), target, rtol=0, atol=0
         )
-    assert actual_head_dtypes == [{str(expected_dtype)}]
+    assert actual_head_dtypes == [[str(expected_dtype)]]
