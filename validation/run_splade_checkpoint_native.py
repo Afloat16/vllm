@@ -27,21 +27,21 @@ def execute(name, targets):
     return summary
 
 def main():
-    target = ["tests/models/language/pooling/test_head_dtype.py", "-k", "mlm_head_dtype"]
+    target = ["tests/models/language/pooling/test_splade_checkpoint_loading.py"]
     try:
         SOURCE.write_bytes(subprocess.check_output(["git", "show", BASE + ":" + str(SOURCE)]))
-        before = execute("mlm_dtype_before", target)
+        before = execute("splade_before", target)
     finally:
         SOURCE.write_bytes(FIXED)
-    after = execute("mlm_dtype_after", target)
-    existing = execute("mlm_dtype_existing", [
+    after = execute("splade_after", target)
+    existing = execute("splade_existing", [
         "tests/model_executor/layers/test_pooler_heads.py",
         "tests/model_executor/layers/test_pooler_activations.py",
     ])
-    evidence = {"base": BASE, "source_sha": "e6665863bcf0e4f70d15e88d1cdfed67aa339988", "before": before, "after": after, "existing": existing}
-    Path("mlm_dtype_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
-    assert before.get("failures") == 6 and before.get("passed") == 8 and before.get("errors") == 0, before
-    assert after.get("passed") == 14 and after.get("returncode") == 0 and after.get("skipped") == 0, after
+    evidence = {"base": BASE, "source_sha": "92375f70d4fc2742a4347e55893b821991846dc9", "before": before, "after": after, "existing": existing}
+    Path("splade_validation_result.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    assert before.get("failures") == 4 and before.get("passed") == 6 and before.get("errors") == 0, before
+    assert after.get("passed") == 10 and after.get("returncode") == 0 and after.get("skipped") == 0, after
     assert existing["returncode"] == 0, existing
 
 if __name__ == "__main__":
