@@ -124,7 +124,11 @@ def compute_maxsim_score_batched(
             max_d = max(int(x.shape[0]) for x in d_embs[start:end])
 
         # A single long pair cannot be made smaller by shrinking the batch.
-        if max_q * max_d > max_score_matrix_elements:
+        # Preserve the global amax tie gradient when autograd is required.
+        if max_q * max_d > max_score_matrix_elements and not (
+            torch.is_grad_enabled()
+            and (q_embs[start].requires_grad or d_embs[start].requires_grad)
+        ):
             scores.append(
                 _compute_maxsim_score_chunked(
                     q_embs[start], d_embs[start], max_score_matrix_elements
